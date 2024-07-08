@@ -1,38 +1,13 @@
 import {QuantityCounter} from "@/shared/QuantityCounter";
+import classNames from "classnames";
 
 export const ProductView = ({product, quantity, setQuantity}) => {
 
-  const changeQuantity = (productId, direction) => {
+  const productItemsClasses = classNames(
+    "w-1/4", "p-4", "relative", {"border-4": quantity[product.id] > 0}
+  );
 
-    let _quantity, newValue = 0;
-
-    if(direction === "+"){
-      newValue = (quantity[productId] ?? 0) + 1
-    }
-
-    if(direction === "-"){
-      newValue = (quantity[productId] ?? 0) - 1
-    }
-
-    if(newValue < 0) {
-      newValue = 0
-    }
-
-    _quantity = {
-      ...quantity,
-      [productId]: newValue
-    }
-
-    setQuantity(_quantity)
-
-  }
-
-  const onQuantityChanged = (productId, value) => {
-    const _quanity = {...quantity, [productId]: value}
-    setQuantity(_quanity)
-  }
-
-  return <li className="w-1/4 p-4 relative">
+  return <li className={productItemsClasses}>
     <img alt={product.short_description} src={product.photo_urls}/>
     <span> {product.short_description}</span>
     <span> {product.price}</span>

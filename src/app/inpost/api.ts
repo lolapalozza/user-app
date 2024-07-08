@@ -7,10 +7,9 @@ export const getProducts = async() => {
   })
   const productsDTO = await response.json()
 
-  const products = Object.entries(productsDTO).map(([key, value]) => ({
+  return Object.entries(productsDTO).map(([key, value]) => ({
     id: key,
     ...value
   }));
 
-  return products
 }

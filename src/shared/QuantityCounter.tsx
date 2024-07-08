@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 export const QuantityCounter = ({quantity, setQuantity}) => {
 
   const changeQuantity = (direction) => {
@@ -24,8 +22,8 @@ export const QuantityCounter = ({quantity, setQuantity}) => {
 
   return <div className="flex justify-center">
     <button onClick={() => changeQuantity("-")}>-</button>
-    <input onChange={(e) => setQuantity(e.target.value)} value={quantity ?? 0}
-           className="w-8 text-center text-black"/>
+    <input style={{textAlign: "center", color: "#000", width: "2rem"}} className="w-8 text-center text-black"
+           onChange={(e) => setQuantity(e.target.value)} value={quantity ?? 0}/>
     <button onClick={() => changeQuantity("+")}>+</button>
   </div>
 }
