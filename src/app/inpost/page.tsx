@@ -4,7 +4,7 @@ import {useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {ProductView} from "@/app/inpost/productView";
 
-export default function Home() {
+export default function Products() {
   const [products, setProducts] = useState([])
   const [quantity, setQuantity] = useState({})
 

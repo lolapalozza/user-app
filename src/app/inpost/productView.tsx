@@ -1,3 +1,5 @@
+import {QuantityCounter} from "@/shared/QuantityCounter";
+
 export const ProductView = ({product, quantity, setQuantity}) => {
 
   const changeQuantity = (productId, direction) => {
@@ -35,12 +37,17 @@ export const ProductView = ({product, quantity, setQuantity}) => {
     <span> {product.short_description}</span>
     <span> {product.price}</span>
     <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2">
-      <div className="flex justify-center">
-        <button onClick={() => changeQuantity(product.id, "-")}>-</button>
-        <input onChange={(e) => onQuantityChanged(product.id, e.target.value)} value={quantity[product.id] ?? 0}
-               className="w-8 text-center text-black"/>
-        <button onClick={() => changeQuantity(product.id, "+")}>+</button>
-      </div>
+      <QuantityCounter
+        quantity={quantity[product.id]}
+        setQuantity={
+          (value) => {
+            let _quantity = {
+              ...quantity,
+              [product.id]: value
+            }
+            setQuantity(_quantity)
+          }
+        } />
       {quantity[product.id] > 0 && <div className="mt-4">
         Total Price: {product.price * (quantity[product.id] ?? 0)}
       </div>}
