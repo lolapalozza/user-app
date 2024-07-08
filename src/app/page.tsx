@@ -1,20 +1,45 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ul>
-        <li>
-          <Link href="/inpost">Create InPost Order</Link>
+      <ul className="flex gap-20">
+        <li className="flex flex-col items-center">
+          <Image
+            src="/icons/envelope.png"
+            className="dark:invert"
+            width={48}
+            height={48}
+          />
+          <Link href="/inpost">InPost</Link>
         </li>
-        <li>
-          <Link href="/drops">Buy a Drop</Link>
+        <li className="flex flex-col items-center">
+          <Image
+            src="/icons/drop.png"
+            className="dark:invert"
+            width={48}
+            height={48}
+          />
+          <Link href="/drops">Drop</Link>
         </li>
-        <li>
-          <Link href="/balance">Check Balance</Link>
+        <li className="flex flex-col items-center">
+          <Image
+            src="/icons/balance.png"
+            className="dark:invert"
+            width={48}
+            height={48}
+          />
+          <Link href="/balance">Balance</Link>
         </li>
-        <li>
-          <Link href="/orders">My Orders</Link>
+        <li className="flex flex-col items-center">
+          <Image
+            src="/icons/orders.png"
+            className="dark:invert"
+            width={48}
+            height={48}
+          />
+          <Link href="/orders">Orders</Link>
         </li>
       </ul>
     </main>
