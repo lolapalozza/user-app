@@ -12,7 +12,7 @@ export const SelectProduct = ({selection, setSelection}) => {
   const onProductSelected = (product) => {
     const _selection = {
       ...selection,
-      productId: product.id,
+      product,
       productTitle: product.short_description,
       step: selection.step + 1
     }

@@ -1,29 +1,18 @@
-const drops = [
-  {id: 1,
-  product: "Шишка",
-  district: "Центральный",
-  amount: 3,
-  unit: "g",
-  price: 30},
-  {id: 2,
-    product: "Шишка",
-    district: "Брайтон Бич",
-    amount: 3,
-    unit: "g",
-    price: 30},
-  {id: 3,
-    product: "Шишка",
-    district: "Брайтон Бич",
-    amount: 5,
-    unit: "g",
-    price: 80}
-]
+import {useState} from "react";
+import {getDropsToBuy} from "@/app/drops/api";
 
 export const SelectDrop = ({selection, setSelection}) => {
+  const [drops, setDrops] = useState([])
+
+  useState(() => {
+    getDropsToBuy(selection.city.id, selection.product.id).then((_drops) => {
+      setDrops(_drops)
+    })
+  },[])
+
   const onDropSelected = (drop) => {
     const _selection = {
       ...selection,
-      dropId: drop.id,
       district: drop.district,
       amount: drop.amount,
       unit: drop.unit,
@@ -36,8 +25,8 @@ export const SelectDrop = ({selection, setSelection}) => {
 
     <ul className="mt-20">
       {
-        drops.map((drop) => <li key={drop.id}>
-          <button onClick={() => onDropSelected(drop)}>{selection.productTitle} {drop.district} {drop.amount}{drop.unit} - {drop.price}</button>
+        drops.map((drop, index) => <li key={index}>
+          <button onClick={() => onDropSelected(drop)}>{selection.productTitle} {drop.district.title} {drop.amount}{drop.unit} - {drop.price} PLN</button>
         </li>)
       }
     </ul>
