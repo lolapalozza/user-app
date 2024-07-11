@@ -21,10 +21,10 @@ export const SelectProduct = ({selection, setSelection}) => {
 
   return <div>
     <h2>Select Product from {selection.city.name}</h2>
-    <ul className="mt-20">
+    <ul className="mt-20 flex gap-1">
       {
         products.map((product) => <li key={product.id}>
-          <button onClick={() => onProductSelected(product)}>{product.product}</button>
+          <button className="border-2 border-white p-3 rounded" onClick={() => onProductSelected(product)}>{product.product}</button>
         </li>)
       }
     </ul>

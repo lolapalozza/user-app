@@ -10,23 +10,20 @@ export const SelectDrop = ({selection, setSelection}) => {
     })
   },[])
 
-  const onDropSelected = (drop) => {
+   const onDropSelected = (drop) => {
     const _selection = {
       ...selection,
-      district: drop.district,
-      amount: drop.amount,
-      unit: drop.unit,
-      price: drop.price
+      drop
     }
     setSelection(_selection)
   }
   return <div>
     <h2>Select Drop</h2>
 
-    <ul className="mt-20">
+    <ul className="mt-20 flex gap-1">
       {
         drops.map((drop, index) => <li key={index}>
-          <button onClick={() => onDropSelected(drop)}>{selection.productTitle} {drop.district.title} {drop.amount}{drop.unit} - {drop.price} PLN</button>
+          <button className="border-2 border-white p-3 rounded" onClick={() => onDropSelected(drop)}>{selection.product.product}: {drop.district.title} - {drop.amount}{drop.unit} - {drop.price} PLN</button>
         </li>)
       }
     </ul>

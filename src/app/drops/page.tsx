@@ -31,7 +31,7 @@ export default function Drops() {
       </h1>
 
       <div>
-        {selection.dropId ? <Payment selection={selection} /> : <DropSelector selection={selection} setSelection={setSelection} />}
+        {selection.drop ? <Payment selection={selection} /> : <DropSelector selection={selection} setSelection={setSelection} />}
       </div>
 
     </main>

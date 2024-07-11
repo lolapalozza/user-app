@@ -21,7 +21,7 @@ export default function Home() {
             width={48}
             height={48}
           />
-          <Link href="/drops">Drop</Link>
+          <Link href="/drops">Drops</Link>
         </li>
         <li className="flex flex-col items-center">
           <Image
