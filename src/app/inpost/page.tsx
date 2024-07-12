@@ -20,7 +20,7 @@ export default function Products() {
   }, [cart.cartItems])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 relative">
+    <main className="flex min-h-screen flex-col items-center justify-between relative">
 
       <div className="absolute left-0 ml-20">
         <span>
@@ -38,8 +38,7 @@ export default function Products() {
         </span>
       </div>
 
-      {/*<input type="text" className="w-8 text-center text-black bg-transparent text-2xl text-5xl" />*/}
-
+      {/*<input type="text" className="w-8 text-center bg-transparent text-5xl" />*/}
 
       <ul className="flex flex-wrap">
         {products.map((product) =>

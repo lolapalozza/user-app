@@ -16,9 +16,6 @@ export default function Home() {
 
       <Script src="https://telegram.org/js/telegram-web-app.js"/>
 
-      <p>TG
-        {tg?.initData}</p>
-
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
           <Image
