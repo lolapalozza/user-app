@@ -11,8 +11,6 @@ export default function Home() {
 
   useEffect(() => {
     setInterval(() => {
-      alert("window.Telegram: ", window.Telegram)
-      alert("window.Telegram.WebApp: ", window.Telegram?.WebApp)
       const tg = window.Telegram?.WebApp;
       const _user = tg?.initDataUnsafe?.user;
       setUser(_user)
