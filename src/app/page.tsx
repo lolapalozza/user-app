@@ -10,7 +10,6 @@ export default function Home() {
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;
-    tg.ready();
     const _user = tg.initDataUnsafe.user;
     setUser(_user)
   },[])
@@ -18,7 +17,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
-      User: {user.id}
+      User: {user?.id}
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
