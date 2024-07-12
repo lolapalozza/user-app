@@ -10,3 +10,15 @@ export const saveTransaction = async() => {
   const data = await response.json()
   return data
 }
+
+export const getBalance = async(userId) => {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/balance`, {
+    method: 'GET',
+    headers: {
+      'api_token': '1c4c00c76bd2d59902a983d304481a2a',
+      'user_id': userId
+    }
+  })
+  const balance = await response.json()
+  return balance
+}

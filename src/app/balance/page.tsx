@@ -1,16 +1,31 @@
 'use client'
 
 import Link from "next/link";
-import QRCode from "react-qr-code";
-import {saveTransaction} from "@/app/balance/api";
+import {getBalance, saveTransaction} from "@/app/balance/api";
+import {useEffect, useState} from "react";
+import {DepositTRC20} from "@/app/balance/depositTRC20";
+import {DepositBlik} from "@/app/balance/depositBlik";
+
+const DEPOSIT_TYPE = {
+  "BLIK": "blik",
+  "TRC-20": "trc-20"
+}
 
 export default function Balance() {
+
+  const [balance, setBalance] = useState(0)
+  const [depositType, setDepositType] = useState(null)
+
+  useEffect(() => {
+    getBalance(1).then((_balance) => {
+      setBalance(_balance.balance)
+    })
+  }, [])
 
   const deposit = () => {
     saveTransaction()
   }
 
-  const balance = 0
   const address = "TRDGtt4EL9cvGkRqCpnNoqNiQHojVdPHM2"
 
   return (
@@ -26,15 +41,22 @@ export default function Balance() {
         Balance
       </h1>
 
-      <h2 className="mb-10">Your current Balance is {balance} USD</h2>
+      <h2 className="mb-10">Your current Balance is <span className="text-5xl">{balance}</span> PLN</h2>
 
-      <p>Deposit with USDT (TRC-20)</p>
-      <p className="mb-20">Your balance will be updated automatically</p>
+      <h3 className="mb-4">Fill up your balance with:</h3>
 
-      {address}
-      <QRCode value={address} />
+      <ul className="flex gap-2 mb-10">
+        <li>
+          <button onClick={() => setDepositType(DEPOSIT_TYPE["TRC-20"])} className="border-2 border-white rounded p-2">USDT TRC-20</button>
+        </li>
+        <li>
+          <button onClick={() => setDepositType(DEPOSIT_TYPE.BLIK)} className="border-2 border-white rounded p-2">BLIK</button>
+        </li>
+      </ul>
 
-      <button onClick={deposit}>Deposit</button>
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 />}
+
+      {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 
     </main>
   );
