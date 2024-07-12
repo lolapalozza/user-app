@@ -13,8 +13,8 @@ const DEPOSIT_TYPE = {
 
 export default function Balance() {
 
-  const [balance, setBalance] = useState(0)
   const [depositType, setDepositType] = useState(null)
+  const [balance, setBalance] = useState(0)
 
   useEffect(() => {
     getBalance(1).then((_balance) => {
@@ -22,8 +22,11 @@ export default function Balance() {
     })
   }, [])
 
-  const deposit = () => {
-    saveTransaction()
+  const depositCallback = () => {
+    getBalance(1).then((_balance) => {
+      setBalance(_balance.balance)
+    })
+    setDepositType(null)
   }
 
   const address = "TRDGtt4EL9cvGkRqCpnNoqNiQHojVdPHM2"
@@ -54,7 +57,7 @@ export default function Balance() {
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 />}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 depositCallback={depositCallback} />}
 
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 
