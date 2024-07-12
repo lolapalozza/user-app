@@ -11,21 +11,6 @@ export default function Home() {
   const [username, setUsername] = useState(null);
   const [tg, setTg] = useState({})
 
-  useEffect(() => {
-    alert('useTelegram')
-    function initTg() {
-      if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
-        alert('Telegram WebApp is set');
-        const tgData = window.Telegram.WebApp
-        setTg(tgData);
-      } else {
-        alert('Telegram WebApp is undefined, retrying…');
-        setTimeout(initTg, 5000);
-      }
-    }
-    initTg();
-  }, []);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
