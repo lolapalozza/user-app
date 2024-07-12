@@ -7,22 +7,29 @@ import Script from "next/script";
 
 export default function Home() {
 
-  const [user, setUser] = useState("")
+  const [userId, setUserId] = useState(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
-    setInterval(() => {
-      const tg = window.Telegram?.WebApp;
-      const _user = tg?.initDataUnsafe?.user;
-      setUser(_user)
-    }, 3000)
-  },[])
+    // Убедитесь, что код выполняется на клиентской стороне
+    if (typeof window !== 'undefined' && window.Telegram) {
+      const tg = window.Telegram.WebApp;
+      tg.ready();
+      const user = tg.initDataUnsafe?.user;
+      if (user) {
+        setUserId(user.id);
+        setUsername(user.username);
+      }
+    }
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
-      <Script src="https://telegram.org/js/telegram-web-app.js" />
+      <Script src="https://telegram.org/js/telegram-web-app.js"/>
 
-      User: {user?.id}
+      <p>User ID: {userId}</p>
+      <p>Username: {username}</p>
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
