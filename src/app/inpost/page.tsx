@@ -38,6 +38,9 @@ export default function Products() {
         </span>
       </div>
 
+      {/*<input type="text" className="w-8 text-center text-black bg-transparent text-2xl text-5xl" />*/}
+
+
       <ul className="flex flex-wrap">
         {products.map((product) =>
           <ProductView

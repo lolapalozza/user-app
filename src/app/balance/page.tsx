@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import QRCode from "react-qr-code";
+import {saveTransaction} from "@/app/balance/api";
 
 export default function Balance() {
+
+  const deposit = () => {
+    saveTransaction()
+  }
 
   const balance = 0
   const address = "TRDGtt4EL9cvGkRqCpnNoqNiQHojVdPHM2"
@@ -28,6 +33,8 @@ export default function Balance() {
 
       {address}
       <QRCode value={address} />
+
+      <button onClick={deposit}>Deposit</button>
 
     </main>
   );
