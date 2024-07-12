@@ -3,19 +3,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import {useEffect, useState} from "react";
+import Script from "next/script";
 
 export default function Home() {
 
   const [user, setUser] = useState("")
 
   useEffect(() => {
-    const tg = window.Telegram.WebApp;
-    const _user = tg.initDataUnsafe.user;
-    setUser(_user)
+    setInterval(() => {
+      alert("window.Telegram: ", window.Telegram)
+      alert("window.Telegram.WebApp: ", window.Telegram?.WebApp)
+      const tg = window.Telegram?.WebApp;
+      const _user = tg?.initDataUnsafe?.user;
+      setUser(_user)
+    }, 3000)
   },[])
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+
+      <Script src="https://telegram.org/js/telegram-web-app.js" />
 
       User: {user?.id}
 

@@ -29,14 +29,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-    <head>
-      <title>
-        Mini App
-      </title>
-      <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    </head>
     <body className={inter.className}>
-    <CartContext.Provider value={{ cart }}>
+      <CartContext.Provider value={{ cart }}>
         {children}
       </CartContext.Provider>
       </body>
