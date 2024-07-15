@@ -14,11 +14,10 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       if(window.Telegram){
-        const a = JSON.stringify(window.Telegram.WebView)
+        const a = JSON.stringify(window.Telegram.WebApp)
         setTg(a)
-        clearInterval(interval)
       }
-    }, 5000)
+    }, 3000)
 
   },[])
 
