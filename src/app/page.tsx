@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import Script from "next/script";
+import {http} from "@/utils/httpClient";
 
 export default function Home() {
 
@@ -12,10 +13,11 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       if(window.Telegram){
-        const a = JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id)
-        setUserId(a)
+        const _userId = JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id)
+        setUserId(_userId)
         window.Telegram.WebApp.ready()
         clearInterval(interval)
+        http.setHeaders("user_id", _userId)
       }
     }, 1000)
 
