@@ -12,13 +12,10 @@ export default function Home() {
   const [tg, setTg] = useState("")
 
   useEffect(() => {
-    const interval = setInterval(() => {
       if(window.Telegram){
-        const a = JSON.stringify(window.Telegram.WebApp)
+        const a = JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id)
         setTg(a)
       }
-    }, 3000)
-
   },[])
 
   return (
