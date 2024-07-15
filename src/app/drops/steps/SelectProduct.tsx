@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getProductsByCity} from "@/app/drops/api";
+import {STEP} from "@/app/drops/DropSelector";
 
 export const SelectProduct = ({selection, setSelection}) => {
 
@@ -14,13 +15,13 @@ export const SelectProduct = ({selection, setSelection}) => {
       ...selection,
       product,
       productTitle: product.short_description,
-      step: selection.step + 1
+      step: STEP.DROP
     }
     setSelection(_selection)
   }
 
   return <div>
-    <h2>Select Product from {selection.city.name}</h2>
+    <h2>Select Product</h2>
     <ul className="mt-20 flex gap-1 flex-wrap">
       {
         products.map((product) => <li key={product.id}>

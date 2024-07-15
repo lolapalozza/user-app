@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export const NavigationBack = ({linkTo}) => {
+interface INavigationBackProps {
+  linkTo?: String;
+}
+
+export const NavigationBack = ({linkTo}: INavigationBackProps) => {
   return <div className="flex self-start ml-5 mt-5">
     <Link href={linkTo || "/"}>
       <Image

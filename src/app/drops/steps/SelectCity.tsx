@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getCitiesWithProducts} from "@/app/drops/api";
+import {STEP} from "@/app/drops/DropSelector";
 
 export const SelectCity = ({selection, setSelection}) => {
 
@@ -15,7 +16,7 @@ export const SelectCity = ({selection, setSelection}) => {
     const _selection = {
       ...selection,
       city: city,
-      step: selection.step + 1
+      step: STEP.PRODUCT
     }
     setSelection(_selection)
   }

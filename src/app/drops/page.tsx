@@ -1,14 +1,15 @@
 'use client'
 
 import Link from "next/link";
-import {DropSelector} from "@/app/drops/DropSelector";
+import {DropSelector, STEP} from "@/app/drops/DropSelector";
 import {useState} from "react";
 import {Payment} from "@/app/drops/Payment";
 import {NavigationBack} from "@/shared/NavigationBack";
+import {BreadCrumbs} from "@/app/drops/BreadCrumbs";
 
 export default function Drops() {
   const [selection, setSelection] = useState({
-    step: 1,
+    step: STEP.CITY,
     city: undefined,
     district: undefined,
     amount: undefined,
@@ -16,7 +17,8 @@ export default function Drops() {
     price: undefined,
     productId: undefined,
     productTitle: undefined,
-    dropId: undefined
+    dropId: undefined,
+    drop: undefined
   })
   return (
     <main className="flex min-h-screen flex-col items-center relative">
@@ -27,7 +29,9 @@ export default function Drops() {
         Drops
       </h1>
 
-      <div className="p-5">
+      <BreadCrumbs selection={selection} setSelection={setSelection} />
+
+      <div className="p-5 w-full">
         {selection.drop ? <Payment selection={selection} /> : <DropSelector selection={selection} setSelection={setSelection} />}
       </div>
 

@@ -28,7 +28,7 @@ export const Payment = ({selection}) => {
     <div className="flex gap-2">
       <Link href="/orders">
         <button onClick={order} className="border-2 border-white rounded p-2">
-          Order
+          Place Order
         </button>
       </Link>
       <Link href="/orders">
