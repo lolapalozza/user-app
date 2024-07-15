@@ -4,7 +4,7 @@ import {useContext, useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {QuantityCounter} from "@/shared/QuantityCounter";
 import {CartContext} from "@/app/cartContext";
-import Link from "next/link";
+import {NavigationBack} from "@/shared/NavigationBack";
 
 export default function Cart() {
 
@@ -23,22 +23,19 @@ export default function Cart() {
   }, [products, cart.cartItems])
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 relative">
+    <main className="flex min-h-screen flex-col items-center relative">
 
-      <div className="absolute left-0 ml-20">
-        <span>
-          <Link href="/inpost">Back to InPost</Link>
-        </span>
-      </div>
+      <NavigationBack linkTo="/inpost" />
 
-      <h1 className="mb-40">
+      <h2 className="mb-10">
         Cart
-      </h1>
-      <div>
-        <ul>
+      </h2>
+
+      <div className="p-4 mb-2">
+        {totalPrice > 0 ? <ul>
           {Object.entries(cart.cartItems).map(([_id, quantity]) =>
-            <li key={_id} className="flex gap-20">
-              <div className="min-w-32">{products.find(({id}) => id === _id)?.short_description}</div>
+            <li key={_id} className="flex gap-10 items-center mb-2">
+              <div className="min-w-24">{products.find(({id}) => id === _id)?.short_description}</div>
               <QuantityCounter
                 quantity={quantity}
                 setQuantity={
@@ -54,11 +51,33 @@ export default function Cart() {
               Price: {products.find(({id}) => id === _id)?.price * quantity}
             </li>
           )}
-        </ul>
+        </ul> : <h2>
+          Cart is Empty
+        </h2>}
+
         <div className="mt-20">
-          Total Price: {totalPrice}
+          {totalPrice > 0 && <>Total Price: {totalPrice}</>}
         </div>
       </div>
+
+      {totalPrice > 0 && <>
+        <hr className="color-white w-full mb-5"/>
+        <h2>
+          Enter your data
+        </h2>
+        <div className="p-4">
+          <form>
+            <input className="w-full h-9 mb-2 rounded" placeholder="Email"/>
+            <input className="w-full h-9 mb-2 rounded" placeholder="Phone Number"/>
+            <input className="w-full h-9 mb-2 rounded" placeholder="City"/>
+            <input className="w-full h-9 mb-2 rounded" placeholder="Pachkomat #"/>
+          </form>
+        </div>
+        <button className="border-2 p-2 color-white rounded">
+          Place Order
+        </button>
+      </>}
+
     </main>
   );
 }

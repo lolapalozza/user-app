@@ -20,11 +20,11 @@ export const QuantityCounter = ({quantity, setQuantity}) => {
 
   }
 
-  if((!quantity || quantity === 0)) return (<button className="text-2xl" onClick={() => setQuantity(1)}>Add</button>);
+  if((!quantity || quantity === 0)) return (<button className="text-2xl border-2 border-white p-2 rounded" onClick={() => setQuantity(1)}>Add</button>);
 
   return <div className="flex justify-center">
       <button className="text-2xl" onClick={() => changeQuantity("-")}>-</button>
-      <input type="text" className="w-8 text-center bg-transparent text-5xl"
+      <input type="text" className="w-8 text-center bg-transparent text-4xl"
            onChange={(e) => setQuantity(e.target.value)} value={quantity ?? 0}/>
       <button className="text-2xl" onClick={() => changeQuantity("+")}>+</button>
     </div>

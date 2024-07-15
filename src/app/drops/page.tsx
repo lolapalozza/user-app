@@ -4,6 +4,7 @@ import Link from "next/link";
 import {DropSelector} from "@/app/drops/DropSelector";
 import {useState} from "react";
 import {Payment} from "@/app/drops/Payment";
+import {NavigationBack} from "@/shared/NavigationBack";
 
 export default function Drops() {
   const [selection, setSelection] = useState({
@@ -18,19 +19,15 @@ export default function Drops() {
     dropId: undefined
   })
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 relative">
+    <main className="flex min-h-screen flex-col items-center relative">
 
-      <div className="absolute left-0 ml-20">
-        <span>
-          <Link href="/">Back Home</Link>
-        </span>
-      </div>
+      <NavigationBack />
 
-      <h1 className="mb-40">
+      <h1 className="mb-5">
         Drops
       </h1>
 
-      <div>
+      <div className="p-5">
         {selection.drop ? <Payment selection={selection} /> : <DropSelector selection={selection} setSelection={setSelection} />}
       </div>
 

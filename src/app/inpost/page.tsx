@@ -5,6 +5,8 @@ import {getProducts} from "@/app/inpost/api";
 import {ProductView} from "@/app/inpost/productView";
 import Link from "next/link";
 import {CartContext} from "@/app/cartContext";
+import {NavigationBack} from "@/shared/NavigationBack";
+import Image from "next/image";
 
 export default function Products() {
   const [products, setProducts] = useState([])
@@ -20,25 +22,25 @@ export default function Products() {
   }, [cart.cartItems])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between relative">
+    <main className="flex min-h-screen flex-col items-center relative">
 
-      <div className="absolute left-0 ml-20">
-        <span>
-          <Link href="/">Back Home</Link>
-        </span>
-      </div>
+      <NavigationBack />
 
-      <h1 className="mb-40">
+      <h1 className="mt-10 mb-10">
         Collect Products and Create Order
       </h1>
 
-      <div className="absolute right-0 mr-20">
-        <span>
-          <Link href="/cart">Cart ({cartQuantity})</Link>
-        </span>
+      <div className="absolute right-0 mt-3 mr-2">
+        <Link href="/inpost/cart" className="flex items-end">
+          <Image
+            src="/icons/icon-cart.png"
+            className="dark:invert"
+            width={32}
+            height={32}
+          />
+          ({cartQuantity})
+        </Link>
       </div>
-
-      {/*<input type="text" className="w-8 text-center bg-transparent text-5xl" />*/}
 
       <ul className="flex flex-wrap">
         {products.map((product) =>

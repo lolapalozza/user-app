@@ -22,7 +22,7 @@ export const SelectCity = ({selection, setSelection}) => {
   return <div>
     <h2>Select City</h2>
 
-    <ul className="mt-20 flex gap-1">
+    <ul className="mt-20 flex gap-1 flex-wrap">
       {
         cities.map((city) => <li key={city.id}>
           <button className="border-2 border-white p-3 rounded" onClick={() => onCitySelected(city)}>{city.name}</button>

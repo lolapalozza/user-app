@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Script from "next/script";
 
 export default function Home() {
