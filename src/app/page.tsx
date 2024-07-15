@@ -7,15 +7,18 @@ import Script from "next/script";
 
 export default function Home() {
 
-  const [userId, setUserId] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [tg, setTg] = useState("")
+  const [userId, setUserId] = useState("")
 
   useEffect(() => {
+    const interval = setInterval(() => {
       if(window.Telegram){
         const a = JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id)
-        setTg(a)
+        setUserId(a)
+        window.Telegram.WebApp.ready()
+        clearInterval(interval)
       }
+    }, 1000)
+
   },[])
 
   return (
@@ -23,7 +26,7 @@ export default function Home() {
 
       <Script src="https://telegram.org/js/telegram-web-app.js"/>
 
-      {tg}
+      {userId}
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
