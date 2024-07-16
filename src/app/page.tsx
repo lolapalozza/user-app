@@ -17,7 +17,7 @@ export default function Home() {
         setUserId(_userId)
         window.Telegram.WebApp.ready()
         clearInterval(interval)
-        http.setHeaders("user_id", _userId)
+        http.setHeaders("telegram_id", _userId)
       }
     }, 1000)
 

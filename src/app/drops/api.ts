@@ -1,5 +1,7 @@
+import {http} from "@/utils/httpClient";
+
 export const getCitiesWithProducts = async() => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/cities", {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/cities", {
     method: 'GET',
     headers: {
       'api_token': '1c4c00c76bd2d59902a983d304481a2a'
@@ -12,7 +14,7 @@ export const getCitiesWithProducts = async() => {
 }
 
 export const getProductsByCity = async(cityId) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/cities/${cityId}/products`, {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/cities/${cityId}/products`, {
     method: 'GET',
     headers: {
       'api_token': '1c4c00c76bd2d59902a983d304481a2a'
@@ -26,7 +28,7 @@ export const getProductsByCity = async(cityId) => {
 
 
 export const getDropsToBuy = async(cityId, productId) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/cities/${cityId}/products/${productId}/drops`, {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/cities/${cityId}/products/${productId}/drops`, {
     method: 'GET',
     headers: {
       'api_token': '1c4c00c76bd2d59902a983d304481a2a'

@@ -1,5 +1,7 @@
+import {http} from "@/utils/httpClient";
+
 export const saveTransaction = async({amount, paymentType}) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/transactions", {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/transactions", {
     method: 'POST',
     body: JSON.stringify({transactionId: "xxx" + Math.random(), userId: 1, paymentType, amount, direction: "in"}),
     headers: {
@@ -12,7 +14,7 @@ export const saveTransaction = async({amount, paymentType}) => {
 }
 
 export const getBalance = async(userId) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/balance`, {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/balance`, {
     method: 'GET',
     headers: {
       'api_token': '1c4c00c76bd2d59902a983d304481a2a',
