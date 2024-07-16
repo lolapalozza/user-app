@@ -34,40 +34,48 @@ export default function Home() {
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
-          <Image
-            src="/icons/envelope.png"
-            className="dark:invert"
-            width={48}
-            height={48}
-          />
-          <Link href="/inpost">InPost</Link>
+          <Link href="/inpost" className="flex flex-col items-center">
+            <Image
+              src="/icons/envelope.png"
+              className="dark:invert"
+              width={48}
+              height={48}
+            />
+            <span>InPost</span>
+          </Link>
         </li>
         <li className="flex flex-col items-center">
-          <Image
-            src="/icons/drop.png"
-            className="dark:invert"
-            width={48}
-            height={48}
-          />
-          <Link href="/drops">Drops</Link>
+          <Link href="/drops" className="flex flex-col items-center">
+            <Image
+              src="/icons/drop.png"
+              className="dark:invert"
+              width={48}
+              height={48}
+            />
+            <span>Drops</span>
+          </Link>
         </li>
         <li className="flex flex-col items-center">
-          <Image
-            src="/icons/balance.png"
-            className="dark:invert"
-            width={48}
-            height={48}
-          />
-          <Link href="/balance">Balance</Link>
+          <Link href="/balance" className="flex flex-col items-center">
+            <Image
+              src="/icons/balance.png"
+              className="dark:invert"
+              width={48}
+              height={48}
+            />
+            <span>Balance</span>
+          </Link>
         </li>
         <li className="flex flex-col items-center">
-          <Image
-            src="/icons/orders.png"
-            className="dark:invert"
-            width={48}
-            height={48}
-          />
-          <Link href="/orders">Orders</Link>
+          <Link href="/orders" className="flex flex-col items-center">
+            <Image
+              src="/icons/orders.png"
+              className="dark:invert"
+              width={48}
+              height={48}
+            />
+            <span>Orders</span>
+            </Link>
         </li>
       </ul>
     </main>
