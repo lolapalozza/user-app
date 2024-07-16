@@ -37,7 +37,7 @@ export default function Balance() {
 
       <NavigationBack />
 
-      <h1 className="mb-40">
+      <h1 className="mb-20">
         Balance
       </h1>
 

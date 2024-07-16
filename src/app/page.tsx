@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(window.Telegram){
+      if(window.Telegram && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user){
         const _userId = JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id)
         setUserId(_userId)
         window.Telegram.WebApp.ready()
@@ -26,7 +26,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
-      <Script src="https://telegram.org/js/telegram-web-app.js"/>
+      {/*<div className="ml-5 mt-5 self-start w-8 text-4xl"></div>*/}
+
+      <Script src="https://telegram.org/js/telegram-web-app.js" />
 
       {userId}
 
