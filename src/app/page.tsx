@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
-      {/*<div className="ml-5 mt-5 self-start w-8 text-4xl"></div>*/}
+      {/*<div className="ml-5 mt-5 self-start w-8 text-4xl text-black"></div>*/}
 
       <Script src="https://telegram.org/js/telegram-web-app.js" />
 
