@@ -1,7 +1,7 @@
 import {http} from "@/utils/httpClient";
 
 export const getCitiesWithProducts = async() => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/cities/with-products", {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/cities", {
     method: 'GET'
   })
   const cities = await response.json()
