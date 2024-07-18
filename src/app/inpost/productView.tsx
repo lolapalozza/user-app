@@ -1,4 +1,4 @@
-import {QuantityCounter} from "@/shared/QuantityCounter";
+import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import classNames from "classnames";
 import {useRouter} from "next/navigation";
 
@@ -34,6 +34,8 @@ export const ProductView = ({product, quantity, setQuantity}) => {
           }
           setQuantity(_quantity)
         }
-      }/>
+      }
+      measure={product.measure}
+    />
   </li>
 }

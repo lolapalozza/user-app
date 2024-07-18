@@ -4,7 +4,7 @@ import {useContext, useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {useRouter} from "next/navigation";
 import {NavigationBack} from "@/shared/NavigationBack";
-import {QuantityCounter} from "@/shared/QuantityCounter";
+import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/cartContext";
 
 export default function ProductPage({params}) {
@@ -50,7 +50,9 @@ export default function ProductPage({params}) {
                   }
                   cart.setCartItems(_quantity)
                 }
-              }/>
+              }
+            measure={product.measure}
+          />
         </div>
       </>}
     </div>

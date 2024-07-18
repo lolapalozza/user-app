@@ -2,7 +2,7 @@
 
 import {useContext, useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
-import {QuantityCounter} from "@/shared/QuantityCounter";
+import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/cartContext";
 import {NavigationBack} from "@/shared/NavigationBack";
 import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
@@ -51,23 +51,26 @@ export default function Cart() {
 
       <div className="p-4 mb-2">
         {totalPrice > 0 ? <ul>
-          {Object.entries(cart.cartItems).map(([_id, quantity]) =>
-            <li key={_id} className="flex gap-10 items-center mb-2">
-              <div className="min-w-24">{products.find(({id}) => id === _id)?.short_description}</div>
-              <QuantityCounter
-                quantity={quantity}
-                setQuantity={
-                  (value) => {
-                    let _cartItems = {
-                      ...cart.cartItems,
-                      [_id]: value
+          {Object.entries(cart.cartItems).map(([_id, quantity]) => {
+            const product = products.find(({id}) => id === _id)
+              return <li key={_id} className="flex gap-10 items-center mb-2">
+                <div className="min-w-24">{product?.short_description}</div>
+                <QuantityCounter
+                  quantity={quantity}
+                  setQuantity={
+                    (value) => {
+                      let _cartItems = {
+                        ...cart.cartItems,
+                        [_id]: value
+                      }
+                      cart.setCartItems(_cartItems)
                     }
-                    cart.setCartItems(_cartItems)
                   }
-                }
-              />
-              Price: {products.find(({id}) => id === _id)?.price * quantity}
-            </li>
+                  measure={product.measure}
+                />
+                Price: {product?.price * quantity}
+              </li>
+            }
           )}
         </ul> : <h2>
           Cart is Empty
