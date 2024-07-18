@@ -5,7 +5,7 @@ import {getProducts} from "@/app/inpost/api";
 import {useRouter} from "next/navigation";
 import {NavigationBack} from "@/shared/NavigationBack";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
-import {CartContext} from "@/app/cartContext";
+import {CartContext} from "@/app/inpost/cartContext";
 
 export default function ProductPage({params}) {
 

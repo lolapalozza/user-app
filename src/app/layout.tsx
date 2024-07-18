@@ -2,8 +2,6 @@
 
 import {Inter} from "next/font/google";
 import "./globals.css";
-import {useMemo, useState} from "react";
-import {CartContext} from "@/app/cartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,21 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const [cartItems, setCartItems] = useState({})
-
-  const cart = useMemo(() => {
-    return {
-      cartItems,
-      setCartItems
-    }
-  }, [cartItems])
-
   return (
     <html lang="en">
-    <body className={inter.className}>
-      <CartContext.Provider value={{ cart }}>
+      <body className={inter.className}>
         {children}
-      </CartContext.Provider>
       </body>
     </html>
   );

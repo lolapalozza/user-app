@@ -4,7 +4,7 @@ import {useContext, useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {ProductView} from "@/app/inpost/productView";
 import Link from "next/link";
-import {CartContext} from "@/app/cartContext";
+import {CartContext} from "@/app/inpost/cartContext";
 import {NavigationBack} from "@/shared/NavigationBack";
 import Image from "next/image";
 

@@ -1,15 +1,17 @@
 'use client'
 
 import {useContext, useEffect, useMemo, useState} from "react";
-import {getProducts} from "@/app/inpost/api";
+import {createInpostOrder, getProducts} from "@/app/inpost/api";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
-import {CartContext} from "@/app/cartContext";
+import {CartContext} from "@/app/inpost/cartContext";
 import {NavigationBack} from "@/shared/NavigationBack";
 import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
+import {formatToOrderDTO} from "@/app/inpost/utils/formatToOrderDTO";
 
 export default function Cart() {
 
   const [products, setProducts] = useState([])
+  const [orderSuccess, setOrderSuccess] = useState(false)
 
   const { cart } = useContext(CartContext);
 
@@ -23,7 +25,7 @@ export default function Cart() {
       .reduce((acc, cur) => acc + cur, 0)
   }, [products, cart.cartItems])
 
-  const createInpost = (e) => {
+  const createInpost = async(e) => {
     e.preventDefault();
     const email = e.target.form.email.value;
     const phone = e.target.form.phone.value;
@@ -32,11 +34,21 @@ export default function Cart() {
 
     const orderString = formatOrderString(cart.cartItems, products)
 
-    const order = {
-      email, phone, city, pachkomat, order: orderString
-    }
+    const order = formatToOrderDTO(cart.cartItems)
 
-    console.log(order)
+    const result = await createInpostOrder({
+      userId: 1, price: totalPrice, email, phone, pachkomat, name: "HARDCODED", order
+    })
+
+    if(result.success){
+
+      cart.setCartItems({})
+
+      setOrderSuccess(true);
+      setTimeout(() => {
+        setOrderSuccess(false)
+      }, 4000)
+    }
 
   }
 
@@ -100,6 +112,13 @@ export default function Cart() {
           </form>
         </div>
       </>}
+
+      {
+        orderSuccess && <div>
+            Order Created Successfully!
+        </div>
+      }
+
 
     </main>
   );
