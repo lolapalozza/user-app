@@ -29,15 +29,14 @@ export default function Cart() {
     e.preventDefault();
     const email = e.target.form.email.value;
     const phone = e.target.form.phone.value;
-    const city = e.target.form.city.value;
     const pachkomat = e.target.form.pachkomat.value
 
-    const orderString = formatOrderString(cart.cartItems, products)
+    // const orderString = formatOrderString(cart.cartItems, products)
 
     const order = formatToOrderDTO(cart.cartItems)
 
     const result = await createInpostOrder({
-      userId: 1, price: totalPrice, email, phone, pachkomat, name: "HARDCODED", order
+      userId: 1, price: totalPrice, email, phone, pachkomat, order
     })
 
     if(result.success){
@@ -102,10 +101,13 @@ export default function Cart() {
           <form className="text-center">
             <input className="w-full h-9 mb-2 p-1 rounded text-black" name="email" placeholder="Email"/>
             <input className="w-full h-9 mb-2 p-1 rounded text-black" name="phone" placeholder="Phone Number"/>
-            <input className="w-full h-9 mb-2 p-1 rounded text-black" name="city" placeholder="City"/>
             <input className="w-full h-9 mb-2 p-1 rounded text-black" name="pachkomat" placeholder="Pachkomat #"/>
 
-            <button className="border-2 p-2 color-white rounded" onClick={createInpost}>
+            <div className="text-left text-blue-300">
+              <a href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
+            </div>
+
+            <button className="border-2 mt-5 p-2 color-white rounded" onClick={createInpost}>
               Place Order
             </button>
 
@@ -116,7 +118,7 @@ export default function Cart() {
       {
         orderSuccess && <div>
             Order Created Successfully!
-        </div>
+          </div>
       }
 
 
