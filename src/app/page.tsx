@@ -14,8 +14,10 @@ export default function Home() {
     const interval = setInterval(() => {
       if(window.Telegram && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user){
         const _userId = JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id)
+        const _initData = window.Telegram.WebApp.initData
         if(_userId){
-          setUserId(_userId)
+          // setUserId(_userId)
+          setUserId(_initData)
           window.Telegram.WebApp.ready()
           clearInterval(interval)
           http.setHeaders("telegram_id", _userId)
