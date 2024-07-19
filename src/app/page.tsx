@@ -2,61 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Script from "next/script";
-import {http} from "@/utils/httpClient";
-import crypto from "crypto";
+import {authorization} from "@/app/authorization";
 
 export default function Home() {
 
-  const [userId, setUserId] = useState("")
-
-  // Bot token
-  const bot_token = '7435766909:AAG0Ue5yHw9h6YQ7p9AKvl1rL3usmeBNy9s';
-
-  const isValidHash = () => {
-    // Parse query data
-    const parsedData = window.Telegram.Utils.urlParseQueryString(window.Telegram.WebApp.initData)
-
-    // Get Telegram hash
-    const hash = parsedData.hash
-
-    // Remove 'hash' value & Sort alphabetically
-    const data_keys = Object.keys(parsedData).filter(v => v !== 'hash').sort()
-
-    // Create line format key=<value>
-    const items = data_keys.map(key => key + '=' + parsedData[key])
-
-    const data_check_string = items.join('\n')
-
-    function HMAC_SHA256(value, key) {
-      const crypto = require('crypto');
-      return crypto.createHmac('sha256', key).update(value).digest()
-    }
-
-    function hex(bytes) {
-      return bytes.toString('hex');
-    }
-
-    // Generate secret key
-    const secret_key = HMAC_SHA256(bot_token, 'WebAppData')
-
-    // Generate hash to validate
-    const hashGenerate = hex(HMAC_SHA256(data_check_string, secret_key))
-
-    // Return bool value is valid
-    return Boolean(hashGenerate === hash)
-  }
-
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      if(window.Telegram && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user){
-        const result = isValidHash()
-        setUserId(result.toString())
-      }
-    }, 1000)
-
+    authorization.init()
   },[])
 
   return (
@@ -65,8 +18,6 @@ export default function Home() {
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl text-black border-spacing-2"></div>*/}
 
       <Script src="https://telegram.org/js/telegram-web-app.js" />
-
-      {userId}
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
