@@ -17,7 +17,7 @@ export const authorization = {
           if(result){
             http.setHeaders("query", initData)
           }
-          return result
+          return {result, tg_query: initData}
       }
     }, INTERVAL)
   },

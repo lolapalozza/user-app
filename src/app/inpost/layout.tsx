@@ -22,12 +22,8 @@ export default function RootLayout({
   }, [cartItems])
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <CartContext.Provider value={{ cart }}>
-          {children}
-        </CartContext.Provider>
-      </body>
-    </html>
+    <CartContext.Provider value={{ cart }}>
+      {children}
+    </CartContext.Provider>
   );
 }

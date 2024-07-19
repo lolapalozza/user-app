@@ -2,18 +2,26 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import Script from "next/script";
 import {authorization} from "@/app/authorization";
 
 export default function Home() {
 
+  const [auth, setAuth] = useState("")
+
   useEffect(() => {
-    authorization.init()
+    authorization.init().then(({result, tg_query}) => {
+      setAuth(tg_query)
+    }).catch(() => {
+      setAuth("not Auth")
+    })
   },[])
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+
+      {auth}
 
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl text-black border-spacing-2"></div>*/}
 
