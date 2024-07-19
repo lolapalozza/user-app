@@ -34,6 +34,9 @@ export const authorization = {
     const secret_key = authorization._HMAC_SHA256(authorization.bot_token, 'WebAppData')
     const hashGenerate = authorization._hex(authorization._HMAC_SHA256(data_check_string, secret_key))
 
+    console.log(hashGenerate)
+    console.log(hash)
+
     return Boolean(hashGenerate === hash)
   },
 
