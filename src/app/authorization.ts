@@ -7,19 +7,21 @@ export const authorization = {
   bot_token: '7435766909:AAG0Ue5yHw9h6YQ7p9AKvl1rL3usmeBNy9s',
 
   init: async() => {
-    const interval = setInterval(() => {
-      if(window.Telegram &&
-        window.Telegram.WebApp.initDataUnsafe &&
-        window.Telegram.WebApp.initDataUnsafe.user){
-          clearInterval(interval)
+    return new Promise((resolve, reject) => {
+      const interval = setInterval(() => {
+        if (window.Telegram &&
+          window.Telegram.WebApp.initDataUnsafe &&
+          window.Telegram.WebApp.initDataUnsafe.user) {
+          clearInterval(interval);
           const initData = window.Telegram.WebApp.initData;
-          const result = authorization.isValidHash(initData)
-          if(result){
-            http.setHeaders("query", initData)
+          const result = authorization.isValidHash(initData);
+          if (result) {
+            http.setHeaders("query", initData);
           }
-          return {result, tg_query: initData}
-      }
-    }, INTERVAL)
+          resolve({ result, tg_query: initData });
+        }
+      }, INTERVAL);
+    });
   },
 
   isValidHash: (initData) => {
