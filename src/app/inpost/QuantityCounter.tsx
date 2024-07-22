@@ -20,7 +20,7 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
 
   }
 
-  if((!quantity || quantity === 0)) return (<button className="text-2xl border-2 border-white p-2 rounded" onClick={() => setQuantity(1)}>Add</button>);
+  if((!quantity || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(1)}>Add</button>);
 
   return <div>
     <div className="flex justify-between">

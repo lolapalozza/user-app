@@ -87,7 +87,7 @@ export default function Cart() {
                   }
                   product={product}
                 />
-                Price: {product?.price * quantity} PLN
+                <div>Price: {product?.price * quantity} PLN</div>
               </li>
             }
           )}
