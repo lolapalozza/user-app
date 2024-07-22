@@ -86,7 +86,7 @@ export default function Cart() {
                   }
                   product={product}
                 />
-                Price: {product?.price * quantity}
+                Price: {product?.price * quantity} PLN
               </li>
             }
           )}
@@ -97,8 +97,8 @@ export default function Cart() {
         {totalPrice > 0 && <>
           <hr className="color-white w-full mt-10 mb-5"/>
           <div className="mt-10 flex gap-2 flex-col">
-            <span>Total Price: {totalPrice}</span>
-            <span className={balanceClass}>Your Balance: {balance}</span>
+            <span>Total Price: {totalPrice} PLN</span>
+            <span className={balanceClass}>Your Balance: {balance} PLN</span>
             {
               balance < totalPrice &&
                 <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
