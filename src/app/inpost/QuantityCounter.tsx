@@ -1,15 +1,15 @@
-export const QuantityCounter = ({quantity, setQuantity, measure}) => {
+export const QuantityCounter = ({quantity, setQuantity, product}) => {
 
   const changeQuantity = (direction) => {
 
     let newValue = 0;
 
     if(direction === "+"){
-      newValue = (quantity ?? 0) + 1
+      newValue = (quantity ?? 0) + product.min_cart_step
     }
 
     if(direction === "-"){
-      newValue = (quantity ?? 0) - 1
+      newValue = (quantity ?? 0) - product.min_cart_step
     }
 
     if(newValue < 0) {
@@ -23,14 +23,14 @@ export const QuantityCounter = ({quantity, setQuantity, measure}) => {
   if((!quantity || quantity === 0)) return (<button className="text-2xl border-2 border-white p-2 rounded" onClick={() => setQuantity(1)}>Add</button>);
 
   return <div>
-    <div className="flex justify-center">
+    <div className="flex justify-between">
       <button className="text-2xl" onClick={() => changeQuantity("-")}>-</button>
-      <input type="text" className="w-8 text-center bg-transparent text-4xl"
+      <input type="text" className="min-w-1 text-center bg-transparent text-3xl"
            onChange={(e) => setQuantity(e.target.value)} value={quantity ?? 0}/>
       <button className="text-2xl" onClick={() => changeQuantity("+")}>+</button>
     </div>
     <div className="flex justify-center text-xs">
-      {measure}
+      {product.measure}
     </div>
   </div>
 

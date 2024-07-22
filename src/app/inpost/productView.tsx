@@ -35,7 +35,7 @@ export const ProductView = ({product, quantity, setQuantity}) => {
           setQuantity(_quantity)
         }
       }
-      measure={product.measure}
+      product={product}
     />
   </li>
 }

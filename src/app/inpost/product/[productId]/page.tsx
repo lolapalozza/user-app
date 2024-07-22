@@ -51,7 +51,7 @@ export default function ProductPage({params}) {
                   cart.setCartItems(_quantity)
                 }
               }
-            measure={product.measure}
+            product={product}
           />
         </div>
       </>}

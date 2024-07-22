@@ -77,7 +77,7 @@ export default function Cart() {
                       cart.setCartItems(_cartItems)
                     }
                   }
-                  measure={product.measure}
+                  product={product}
                 />
                 Price: {product?.price * quantity}
               </li>
