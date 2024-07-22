@@ -23,7 +23,7 @@ export const SelectDrop = ({selection, setSelection}) => {
     <ul className="mt-20 flex gap-1 flex-wrap">
       {
         drops.map((drop, index) => <li key={index}>
-          <button className="border-2 border-white p-3 rounded" onClick={() => onDropSelected(drop)}>{selection.product.product}: {drop.district.title} - {drop.amount}{drop.unit} - {drop.price} PLN</button>
+          <button className="border-2 border-white p-3 rounded" onClick={() => onDropSelected(drop)}>{selection.product.product} {drop.amount}{drop.unit} - {drop.district.title} - {drop.price} PLN</button>
         </li>)
       }
     </ul>

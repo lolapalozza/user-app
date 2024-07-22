@@ -9,6 +9,7 @@ import {formatToOrderDTO} from "@/app/inpost/utils/formatToOrderDTO";
 import {AddressForm} from "@/app/inpost/cart/addressForm";
 import {getBalance} from "@/app/balance/api";
 import Link from "next/link";
+import classNames from "classnames";
 
 export default function Cart() {
 
@@ -34,7 +35,9 @@ export default function Cart() {
       .reduce((acc, cur) => acc + cur, 0)
   }, [products, cart.cartItems])
 
-  const insufficientBalanceClass = "text-red-400"
+  const balanceClass = classNames({
+    "text-red-400": balance < totalPrice
+  })
 
   const createInpost = async({email, phone, pachkomat}) => {
     const order = formatToOrderDTO(cart.cartItems)
@@ -93,7 +96,7 @@ export default function Cart() {
 
         {totalPrice > 0 && <div className="mt-20 flex gap-2 flex-col">
           <span>Total Price: {totalPrice}</span>
-          <span className={balance < totalPrice && insufficientBalanceClass}>Your Balance: {balance}</span>
+          <span className={balanceClass}>Your Balance: {balance}</span>
           {
             balance < totalPrice &&
               <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
