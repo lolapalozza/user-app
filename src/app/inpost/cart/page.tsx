@@ -94,15 +94,18 @@ export default function Cart() {
           Cart is Empty
         </h2>}
 
-        {totalPrice > 0 && <div className="mt-20 flex gap-2 flex-col">
-          <span>Total Price: {totalPrice}</span>
-          <span className={balanceClass}>Your Balance: {balance}</span>
-          {
-            balance < totalPrice &&
-              <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
-                  className="text-blue-300" href="/balance">balance</Link></span>
-          }
-        </div>}
+        {totalPrice > 0 && <>
+          <hr className="color-white w-full mt-10 mb-5"/>
+          <div className="mt-10 flex gap-2 flex-col">
+            <span>Total Price: {totalPrice}</span>
+            <span className={balanceClass}>Your Balance: {balance}</span>
+            {
+              balance < totalPrice &&
+                <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
+                    className="text-blue-300" href="/balance">balance</Link></span>
+            }
+          </div>
+        </>}
 
       </div>
 
