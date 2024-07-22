@@ -5,8 +5,8 @@ import {createInpostOrder, getProducts} from "@/app/inpost/api";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/inpost/cartContext";
 import {NavigationBack} from "@/shared/NavigationBack";
-import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 import {formatToOrderDTO} from "@/app/inpost/utils/formatToOrderDTO";
+import {AddressForm} from "@/app/inpost/cart/addressForm";
 
 export default function Cart() {
 
@@ -25,14 +25,7 @@ export default function Cart() {
       .reduce((acc, cur) => acc + cur, 0)
   }, [products, cart.cartItems])
 
-  const createInpost = async(e) => {
-    e.preventDefault();
-    const email = e.target.form.email.value;
-    const phone = e.target.form.phone.value;
-    const pachkomat = e.target.form.pachkomat.value
-
-    // const orderString = formatOrderString(cart.cartItems, products)
-
+  const createInpost = async({email, phone, pachkomat}) => {
     const order = formatToOrderDTO(cart.cartItems)
 
     const result = await createInpostOrder({
@@ -94,25 +87,7 @@ export default function Cart() {
 
       {totalPrice > 0 && <>
         <hr className="color-white w-full mb-5"/>
-        <h2>
-          Enter your data
-        </h2>
-        <div className="p-4">
-          <form className="text-center">
-            <input className="w-full h-9 mb-2 p-1 rounded text-black" name="email" placeholder="Email"/>
-            <input className="w-full h-9 mb-2 p-1 rounded text-black" name="phone" placeholder="Phone Number"/>
-            <input className="w-full h-9 mb-2 p-1 rounded text-black" name="pachkomat" placeholder="Pachkomat #"/>
-
-            <div className="text-left text-blue-300">
-              <a href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
-            </div>
-
-            <button className="border-2 mt-5 p-2 color-white rounded" onClick={createInpost}>
-              Place Order
-            </button>
-
-          </form>
-        </div>
+        <AddressForm createInpost={createInpost} />
       </>}
 
       {
@@ -120,7 +95,6 @@ export default function Cart() {
             Order Created Successfully!
           </div>
       }
-
 
     </main>
   );
