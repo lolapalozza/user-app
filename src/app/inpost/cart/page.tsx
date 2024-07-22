@@ -10,6 +10,7 @@ import {AddressForm} from "@/app/inpost/cart/addressForm";
 import {getBalance} from "@/app/balance/api";
 import Link from "next/link";
 import classNames from "classnames";
+import Image from "next/image";
 
 export default function Cart() {
 
@@ -90,9 +91,15 @@ export default function Cart() {
               </li>
             }
           )}
-        </ul> : <h2>
-          Cart is Empty
-        </h2>}
+        </ul> : <div className="text-center">
+          <Image
+            src="/icons/icon-empty.png"
+            className="dark:invert inline-block mb-5"
+            width={64}
+            height={64}
+          />
+          <h2>Cart is Empty</h2>
+        </div>}
 
         {totalPrice > 0 && <>
           <hr className="color-white w-full mt-10 mb-5"/>
