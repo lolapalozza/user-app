@@ -7,11 +7,20 @@ import {CartContext} from "@/app/inpost/cartContext";
 import {NavigationBack} from "@/shared/NavigationBack";
 import {formatToOrderDTO} from "@/app/inpost/utils/formatToOrderDTO";
 import {AddressForm} from "@/app/inpost/cart/addressForm";
+import {getBalance} from "@/app/balance/api";
+import Link from "next/link";
 
 export default function Cart() {
 
   const [products, setProducts] = useState([])
   const [orderSuccess, setOrderSuccess] = useState(false)
+  const [balance, setBalance] = useState(0)
+
+  useEffect(() => {
+    getBalance(1).then((_balance) => {
+      setBalance(_balance.balance)
+    })
+  }, [])
 
   const { cart } = useContext(CartContext);
 
@@ -24,6 +33,8 @@ export default function Cart() {
       .map(([_id, quantity]) => products.find(product => product.id === _id)?.price * quantity)
       .reduce((acc, cur) => acc + cur, 0)
   }, [products, cart.cartItems])
+
+  const insufficientBalanceClass = "text-red-400"
 
   const createInpost = async({email, phone, pachkomat}) => {
     const order = formatToOrderDTO(cart.cartItems)
@@ -80,20 +91,27 @@ export default function Cart() {
           Cart is Empty
         </h2>}
 
-        <div className="mt-20">
-          {totalPrice > 0 && <>Total Price: {totalPrice}</>}
-        </div>
+        {totalPrice > 0 && <div className="mt-20 flex gap-2 flex-col">
+          <span>Total Price: {totalPrice}</span>
+          <span className={balance < totalPrice && insufficientBalanceClass}>Your Balance: {balance}</span>
+          {
+            balance < totalPrice &&
+              <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
+                  className="text-blue-300" href="/balance">balance</Link></span>
+          }
+        </div>}
+
       </div>
 
-      {totalPrice > 0 && <>
+      {(totalPrice > 0 && balance >= totalPrice) && <>
         <hr className="color-white w-full mb-5"/>
-        <AddressForm createInpost={createInpost} />
+        <AddressForm createInpost={createInpost}/>
       </>}
 
       {
         orderSuccess && <div>
-            Order Created Successfully!
-          </div>
+          Order Created Successfully!
+        </div>
       }
 
     </main>
