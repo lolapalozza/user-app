@@ -5,11 +5,11 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
     let newValue = 0;
 
     if(direction === "+"){
-      newValue = (quantity ?? 0) + product.min_cart_step
+      newValue = Number(((quantity ?? 0) + product.min_cart_step).toFixed(1))
     }
 
     if(direction === "-"){
-      newValue = (quantity ?? 0) - product.min_cart_step
+      newValue = Number(((quantity ?? 0) - product.min_cart_step).toFixed(1))
     }
 
     if(newValue < 0) {

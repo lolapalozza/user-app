@@ -17,11 +17,11 @@ export const ProductView = ({product, quantity, setQuantity}) => {
 
   return <li className={productItemsClasses}>
 
-    <div className="relative flex justify-center mb-1">
-      <img onClick={goToProductPage} alt={product.short_description} src="/icons/icon-product.png" className="cursor-pointer dark:invert" width={48} height={48} />
-    </div>
+    {/*<div className="relative flex justify-center mb-1">*/}
+    {/*  <img onClick={goToProductPage} alt={product.short_description} src="/icons/icon-product.png" className="cursor-pointer dark:invert" width={48} height={48} />*/}
+    {/*</div>*/}
     <p onClick={goToProductPage} className="cursor-pointer mb-1">
-      {product.short_description} <br />
+      <span className="text-2xl">{product.short_description}</span><br />
       {`${product.price} PLN`}
     </p>
     <QuantityCounter
