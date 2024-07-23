@@ -123,6 +123,12 @@ export default function Cart() {
 
       {
         orderSuccess && <div>
+            <Image
+                src="/icons/icon-check.png"
+                className="dark:invert inline-block mb-5"
+                width={64}
+                height={64}
+            />
           Order Created Successfully!
         </div>
       }
