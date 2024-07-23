@@ -1,20 +1,22 @@
 'use client'
 
 import {useContext, useEffect, useMemo, useState} from "react";
-import {getProducts} from "@/app/inpost/api";
+import {getCategories, getProducts} from "@/app/inpost/api";
 import {ProductView} from "@/app/inpost/productView";
 import Link from "next/link";
 import {CartContext} from "@/app/inpost/cartContext";
 import {NavigationBack} from "@/shared/NavigationBack";
 import Image from "next/image";
+import {CategoriesSelector} from "@/app/inpost/categoriesSelector";
 
 export default function Products() {
   const [products, setProducts] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState(null)
 
   const { cart } = useContext(CartContext);
 
   useEffect(() => {
-     getProducts().then((_products) => setProducts(_products))
+     getProducts().then((setProducts))
   }, [])
 
   const cartQuantity = useMemo(() => {
@@ -30,6 +32,8 @@ export default function Products() {
         Collect Products and Create Order
       </h1>
 
+      <CategoriesSelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+
       <div className="absolute right-0 mt-3 mr-2">
         <Link href="/inpost/cart" className="flex items-end">
           <Image
@@ -43,7 +47,7 @@ export default function Products() {
       </div>
 
       <ul className="flex flex-wrap">
-        {products.map((product) =>
+        {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
           <ProductView
             key={product.id}
             product={product}

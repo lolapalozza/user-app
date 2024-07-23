@@ -24,3 +24,10 @@ export const createInpostOrder = async({userId, price, name, phone, email, pachk
   })
   return response.json()
 }
+
+export const getCategories = async() => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/categories", {
+    method: "GET"
+  })
+  return response.json()
+}
