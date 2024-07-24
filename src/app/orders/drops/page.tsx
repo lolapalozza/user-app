@@ -1,10 +1,16 @@
 'use client'
 
 import {NavigationBack} from "@/shared/NavigationBack";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {getBoughtDrops} from "@/app/orders/api";
 
 export default function OrdersDrops() {
-  const [orders, setOrders] = useState([])
+  const [drops, setDrops] = useState([])
+
+  useEffect(() => {
+    getBoughtDrops().then((setDrops))
+  }, [])
+
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
@@ -18,41 +24,33 @@ export default function OrdersDrops() {
       <table className="border-2 border-separate p-4 border-spacing-4">
         <thead>
         <tr>
-          <td>UserID</td>
-          <td>Phone</td>
-          <td>Email</td>
-          <td>Pachkomat</td>
-          <td>Order</td>
+          <td>Product</td>
+          <td>Quantity</td>
+          <td>City</td>
+          <td>District</td>
           <td>Price</td>
-          <td>Date</td>
+          <td>Purchase Date</td>
         </tr>
         </thead>
         <tbody>
-        {orders.map((order) => {
-          return <tr key={order.id} className="border-2">
+        {drops.map((drop) => {
+          return <tr key={drop.id} className="border-2">
             <td>
-              {order.user_id}
+              {drop.productTitle}
             </td>
             <td>
-              {order.phone}
+              {drop.packageQuantity}
             </td>
             <td>
-              {order.email}
+              {drop.cityName}
             </td>
             <td>
-              {order.pachkomat}
+              {drop.districtName}
             </td>
             <td>
-              {formatOrderString(order.items.reduce((acc, item) => {
-                acc[item.product_id] = item.quantity;
-                return acc;
-              }, {}), products)}
             </td>
             <td>
-              {order.price}
-            </td>
-            <td>
-              {order.created_at}
+              {drop.soldAt}
             </td>
           </tr>
         })}

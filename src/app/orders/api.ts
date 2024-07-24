@@ -9,15 +9,11 @@ export const getInpostOrders = async() => {
   return orders
 }
 
-export const createInpostOrder = async({userId, price, name, phone, email, pachkomat, order}) => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/inpost", {
-    method: "POST",
-    body: JSON.stringify({
-      userId, price, name, phone, email, pachkomat, order
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    }
+export const getBoughtDrops = async() => {
+  const userId = 1;
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/drops?user_id=${userId}`,{
+    method: "GET"
   })
-  return response.json()
+  const drops = await response.json()
+  return drops
 }
