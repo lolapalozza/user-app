@@ -29,3 +29,16 @@ export const getDropsToBuy = async(cityId, productId) => {
   return drops;
 
 }
+
+export const buyDrop = async({cityId, districtId, productId, packageId}) => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + '/drop', {
+    method: "PUT",
+    body: JSON.stringify({
+      cityId, districtId, productId, packageId
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  return response.json()
+}

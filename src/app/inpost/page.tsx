@@ -46,7 +46,7 @@ export default function Products() {
         </Link>
       </div>
 
-      <ul className="flex flex-wrap">
+      <ul className="flex flex-wrap w-full">
         {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
           <ProductView
             key={product.id}

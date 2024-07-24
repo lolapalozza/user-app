@@ -2,11 +2,14 @@ import Link from "next/link";
 import {useEffect, useState} from "react";
 import {getBalance} from "@/app/balance/api";
 import classNames from "classnames";
-import {className} from "postcss-selector-parser";
+import {buyDrop} from "@/app/drops/api";
+import Image from "next/image";
+import {defaultSelection} from "@/app/drops/page";
 
-export const Payment = ({selection}) => {
+export const Payment = ({selection, setSelection}) => {
 
   const [balance, setBalance] = useState(0)
+  const [orderSuccess, setOrderSuccess] = useState(false)
 
   useEffect(() => {
     getBalance(1).then((_balance) => {
@@ -14,8 +17,28 @@ export const Payment = ({selection}) => {
     })
   }, [])
 
-  const order = () => {
-    console.log("order")
+  const order = async(e) => {
+
+    e.preventDefault()
+
+    const dropData = {
+      cityId: selection.city.id,
+      districtId: selection.drop.district.districtId,
+      productId: selection.product.id,
+      packageId: 2 // @todo add real packageID
+    }
+
+    const result = await buyDrop(dropData)
+    if(result.success){
+
+      // @todo navigate to drop page
+
+      setOrderSuccess(true)
+      setTimeout(() => {
+        setOrderSuccess(false)
+        setSelection(defaultSelection())
+      }, 4000)
+    }
   }
 
   const balanceClass = classNames({
@@ -47,17 +70,25 @@ export const Payment = ({selection}) => {
 
 
     <div className="flex gap-2">
-      <Link href="/orders">
-        <button disabled={balance < selection.drop.price} onClick={order} className={placeOrderButtonClasses}>
-          Place Order
-        </button>
-      </Link>
-      <Link href="/orders">
-        <button className="border-2 border-white rounded p-2">
-          Get Lucky (Game)
-        </button>
-      </Link>
+      <button disabled={balance < selection.drop.price} onClick={order} className={placeOrderButtonClasses}>
+        Place Order
+      </button>
+      <button className="border-2 border-white rounded p-2">
+        Get Lucky (Game)
+      </button>
     </div>
+
+    {
+      orderSuccess && <div>
+          <Image
+              src="/icons/icon-check.png"
+              className="dark:invert inline-block mb-5"
+              width={64}
+              height={64}
+          />
+          Drop purchased successfully
+      </div>
+    }
 
   </div>
 }
