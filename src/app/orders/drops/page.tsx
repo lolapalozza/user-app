@@ -15,13 +15,6 @@ export default function OrdersDrops() {
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
-
-      <NavigationBack />
-
-      <h1 className="mb-40">
-        Orders
-      </h1>
-
       <table className="border-2 border-separate p-4 border-spacing-4">
         <thead>
         <tr>
