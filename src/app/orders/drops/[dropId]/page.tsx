@@ -12,8 +12,6 @@ export default function OrdersDrop({params}) {
     getDropById(params.dropId).then((setDrop))
   }, [])
 
-  console.log(params.dropId)
-
   return (<>
     <h1 className="mb-20 mt-5">
       Drop Details

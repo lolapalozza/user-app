@@ -5,11 +5,14 @@ import classNames from "classnames";
 import {buyDrop} from "@/app/drops/api";
 import Image from "next/image";
 import {defaultSelection} from "@/app/drops/page";
+import {useRouter} from "next/navigation";
 
 export const Payment = ({selection, setSelection}) => {
 
   const [balance, setBalance] = useState(0)
   const [orderSuccess, setOrderSuccess] = useState(false)
+
+  const router = useRouter()
 
   useEffect(() => {
     getBalance(1).then((_balance) => {
@@ -30,14 +33,8 @@ export const Payment = ({selection, setSelection}) => {
 
     const result = await buyDrop(dropData)
     if(result.success){
-
-      // @todo navigate to drop page
-
-      setOrderSuccess(true)
-      setTimeout(() => {
-        setOrderSuccess(false)
-        setSelection(defaultSelection())
-      }, 4000)
+      setSelection(defaultSelection())
+      router.push(`orders/drops/${result.id}`)
     }
   }
 
