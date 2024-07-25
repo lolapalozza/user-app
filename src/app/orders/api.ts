@@ -17,3 +17,11 @@ export const getBoughtDrops = async() => {
   const drops = await response.json()
   return drops
 }
+
+export const getDropById = async(dropId) => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/drop?drop_id=${dropId}`,{
+    method: "GET"
+  })
+  const drop = await response.json()
+  return drop
+}

@@ -14,8 +14,6 @@ export default function ProductPage({params}) {
 
   const { cart } = useContext(CartContext);
 
-  console.log(cart)
-
   const goBack = () => {
     router.push("/inpost")
   }
