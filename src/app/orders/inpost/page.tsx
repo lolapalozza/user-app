@@ -4,6 +4,7 @@ import {NavigationBack} from "@/shared/NavigationBack";
 import {useEffect, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {getInpostOrders} from "@/app/orders/api";
+import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 
 export default function OrdersInpost() {
   const [orders, setOrders] = useState([]);
