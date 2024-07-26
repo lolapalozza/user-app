@@ -4,6 +4,7 @@ import {NavigationBack} from "@/shared/NavigationBack";
 import {useEffect, useState} from "react";
 import {getBoughtDrops} from "@/app/orders/api";
 import Link from "next/link";
+import {formatDate} from "@/app/orders/formatDate";
 
 export default function OrdersDrops() {
   const [drops, setDrops] = useState([])
@@ -15,13 +16,13 @@ export default function OrdersDrops() {
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
-      <table className="border-2 border-separate p-4 border-spacing-4">
+      <table className="w-full border-2 border-separate p-2 border-spacing-2">
         <thead>
         <tr>
           <td>Product</td>
           <td>Quantity</td>
-          <td>City</td>
-          <td>District</td>
+          {/*<td>City</td>*/}
+          {/*<td>District</td>*/}
           <td>Price</td>
           <td>Purchase Date</td>
         </tr>
@@ -37,16 +38,16 @@ export default function OrdersDrops() {
             <td>
               {drop.packageQuantity}
             </td>
+            {/*<td>*/}
+            {/*  {drop.cityName}*/}
+            {/*</td>*/}
+            {/*<td>*/}
+            {/*  {drop.districtName}*/}
+            {/*</td>*/}
             <td>
-              {drop.cityName}
             </td>
             <td>
-              {drop.districtName}
-            </td>
-            <td>
-            </td>
-            <td>
-              {drop.soldAt}
+              {formatDate(drop.soldAt)}
             </td>
           </tr>
         })}

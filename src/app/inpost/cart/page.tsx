@@ -68,13 +68,14 @@ export default function Cart() {
         Cart
       </h2>
 
-      <div className="p-4 mb-2">
+      <div className="p-4 w-full">
         {totalPrice > 0 ? <ul>
           {Object.entries(cart.cartItems).map(([_id, quantity]) => {
-            const product = products.find(({id}) => id === _id)
-              return <li key={_id} className="flex gap-10 items-center mb-2">
-                <div className="min-w-24">{product?.short_description}</div>
+              const product = products.find(({id}) => id === _id)
+              return <li key={_id} className="flex items-center mb-2">
+                <div className="min-w-24 w-1/3">{product?.short_description}</div>
                 <QuantityCounter
+                  className="w-1/3"
                   quantity={quantity}
                   setQuantity={
                     (value) => {
@@ -87,7 +88,7 @@ export default function Cart() {
                   }
                   product={product}
                 />
-                <div>Price: {product?.price * quantity} PLN</div>
+                <div className="w-1/3 text-right">{product?.price * quantity} PLN</div>
               </li>
             }
           )}
@@ -102,8 +103,8 @@ export default function Cart() {
         </div>}
 
         {totalPrice > 0 && <>
-          <hr className="color-white w-full mt-10 mb-5"/>
-          <div className="mt-10 flex gap-2 flex-col">
+          <hr className="color-white w-full mt-10"/>
+          <div className="mt-5 flex gap-2 flex-col">
             <span>Total Price: {totalPrice} PLN</span>
             <span className={balanceClass}>Your Balance: {balance} PLN</span>
             {
@@ -117,7 +118,9 @@ export default function Cart() {
       </div>
 
       {(totalPrice > 0 && balance >= totalPrice) && <>
-        <hr className="color-white w-full mb-5"/>
+        <div className="p-4 w-full">
+          <hr className="color-white w-full"/>
+        </div>
         <AddressForm createInpost={createInpost}/>
       </>}
 

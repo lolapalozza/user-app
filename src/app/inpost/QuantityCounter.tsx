@@ -25,7 +25,7 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
   return <div>
     <div className="flex justify-between">
       <button className="text-2xl" onClick={() => changeQuantity("-")}>-</button>
-      <input type="text" className="min-w-1 max-w-40 text-center bg-transparent text-3xl"
+      <input type="text" className="min-w-1 max-w-28 text-center bg-transparent text-3xl"
            onChange={(e) => setQuantity(e.target.value)} value={quantity ?? 0}/>
       <button className="text-2xl" onClick={() => changeQuantity("+")}>+</button>
     </div>

@@ -30,7 +30,7 @@ export const AddressForm = ({createInpost}) => {
 
   return <div className="p-4 w-full">
     <form className="text-center">
-      <h2 className="mb-5">
+      <h2 className="mb-10">
         Enter your data
       </h2>
       <input className={formErrors.email?.required ? inputInvalidClasses : inputValidClasses} name="email"

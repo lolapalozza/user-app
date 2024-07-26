@@ -28,7 +28,7 @@ export default function Drops() {
 
       <NavigationBack />
 
-      <h1 className="mb-5">
+      <h1 className="mb-2">
         Drops
       </h1>
 

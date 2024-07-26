@@ -3,6 +3,7 @@
 import {NavigationBack} from "@/shared/NavigationBack";
 import {useEffect, useState} from "react";
 import {getBoughtDrops, getDropById} from "@/app/orders/api";
+import {formatDate} from "@/app/orders/formatDate";
 
 export default function OrdersDrop({params}) {
 
@@ -25,7 +26,7 @@ export default function OrdersDrop({params}) {
       {drop.packages.quantity}<br/>
       {drop.photos}<br/>
       {drop.comment}<br/>
-      {drop.sold_at}<br/>
+      {formatDate(drop.sold_at)}<br/>
     </>}
   </>
   );
