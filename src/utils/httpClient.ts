@@ -2,8 +2,8 @@ class HttpClient {
 
   constructor(){
     this.headers = {
-      'api_token': '1c4c00c76bd2d59902a983d304481a2a',
-      "telegram_id": '1054413208'
+      // 'api_token': '1c4c00c76bd2d59902a983d304481a2a',
+      // "telegram_id": '1054413208'
     }
   }
 
