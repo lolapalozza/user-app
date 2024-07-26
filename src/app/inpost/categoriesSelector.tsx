@@ -21,7 +21,7 @@ export const CategoriesSelector = ({selectedCategory, setSelectedCategory}) => {
     return id === selectedCategory ? "border-2 p-2 bg-red-400 rounded" : "border-2 p-2 rounded"
   }
 
-  return <ul className="flex gap-2 mb-10">
+  return <ul className="flex justify-center flex-wrap gap-2 mb-10 w-full">
     {categories.map((category) => {
       return <li key={category.id}>
         <button className={categoryButtonClass(category.id)} onClick={() => categoryClicked(category.id)}>{category.title}</button>
