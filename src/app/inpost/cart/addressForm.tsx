@@ -10,6 +10,7 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
   const onSubmit = async(e) => {
+    e.preventDefault();
 
     const email = e.target.form.email.value;
     const phone = e.target.form.phone.value;
@@ -47,6 +48,8 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
       <div className="text-left text-blue-300">
         <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
       </div>
+
+      <button onSubmit={onSubmit}>Place Order</button>
 
       <PlaceOrderButton onSubmit={onSubmit} show={showPlaceOrderButton} />
 
