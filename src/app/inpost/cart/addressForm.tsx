@@ -1,7 +1,8 @@
 import {useState} from "react";
 import classNames from "classnames";
+import {PlaceOrderButton} from "@/app/inpost/cart/PlaceOrderButton";
 
-export const AddressForm = ({createInpost}) => {
+export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
 
   const [formErrors, setFormErrors] = useState({})
 
@@ -48,9 +49,7 @@ export const AddressForm = ({createInpost}) => {
         <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
       </div>
 
-      <button type="submit" className="border-2 mt-5 p-2 color-white rounded" onClick={onSubmit}>
-        Place Order
-      </button>
+      <PlaceOrderButton onSubmit={onSubmit} show={showPlaceOrderButton} />
 
     </form>
   </div>

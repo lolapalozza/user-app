@@ -60,7 +60,7 @@ export default function Cart() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center relative">
+    <main className="flex min-h-screen mt-10 flex-col items-center relative">
 
       <BackButton linkTo="/inpost" />
 
@@ -121,7 +121,7 @@ export default function Cart() {
         <div className="p-4 w-full">
           <hr className="color-white w-full"/>
         </div>
-        <AddressForm createInpost={createInpost}/>
+        <AddressForm createInpost={createInpost} showPlaceOrderButton={totalPrice > 0 && balance >= totalPrice} />
       </>}
 
       {

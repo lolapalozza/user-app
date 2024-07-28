@@ -21,7 +21,7 @@ export default function ProductPage({params}) {
     return products.find(product => product.id === params.productId)
   }, [products, params.productId])
 
-  return (<div>
+  return (<div className="mt-10">
       {product && <>
         <BackButton linkTo="/inpost" />
         <div className="flex text-center justify-center flex-col items-center	">
