@@ -4,18 +4,16 @@ import {PlaceOrderButton} from "@/app/inpost/cart/PlaceOrderButton";
 
 export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
 
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [pachkomat, setPachkomat] = useState("")
+
   const [formErrors, setFormErrors] = useState({})
 
   const inputInvalidClasses = "w-full h-9 mb-2 p-1 rounded text-black bg-red-200"
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
-  const onSubmit = async(e) => {
-    e.preventDefault();
-
-    const email = e.target.form.email.value;
-    const phone = e.target.form.phone.value;
-    const pachkomat = e.target.form.pachkomat.value
-
+  const onSubmit = async() => {
     const _formErrors = {}
     if(!email){
       _formErrors.email = {required: true}
@@ -35,13 +33,17 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
         Enter your data
       </h2>
       <input className={formErrors.email?.required ? inputInvalidClasses : inputValidClasses} name="email"
-             placeholder="Email*"/>
+             placeholder="Email*"
+             value={email}
+             onChange={(e) => setEmail(e.target.value)}/>
       {formErrors.email?.required && <div className="text-xs text-red-300 text-left mb-2">
         Email is required
       </div>}
-      <input className="w-full h-9 mb-2 p-1 rounded text-black" name="phone" placeholder="Phone Number"/>
+      <input className="w-full h-9 mb-2 p-1 rounded text-black" name="phone" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
       <input className={formErrors.pachkomat?.required ? inputInvalidClasses : inputValidClasses} name="pachkomat"
-             placeholder="Pachkomat*"/>
+             placeholder="Pachkomat*"
+             value={pachkomat}
+             onChange={(e) => setPachkomat(e.target.value)}/>
       {formErrors.pachkomat?.required && <div className="text-xs text-red-300 text-left mb-2">
         Pachkomat is required
       </div>}
