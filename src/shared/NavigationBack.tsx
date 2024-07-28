@@ -1,21 +1,23 @@
 import Link from "next/link";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
+import {useEffect} from "react";
 
 interface INavigationBackProps {
-  linkTo?: String;
+  linkTo?: string;
 }
 
 export const NavigationBack = ({linkTo}: INavigationBackProps) => {
-  return <div className="flex self-start ml-5 mt-5">
-    <Link href={linkTo || "/"}>
-      <Image
-        src="/icons/icon-left.png"
-        className="dark:invert"
-        width={24}
-        height={24}
-      />
-    </Link>
-  </div>
+
+  const router = useRouter()
+
+  useEffect(() => {
+    showBackButton(() => {
+      router.push(linkTo || "/")
+    })
+  }, [router, linkTo]);
+
+  return <></>
 }
 
 export const showBackButton = (callback) => {
