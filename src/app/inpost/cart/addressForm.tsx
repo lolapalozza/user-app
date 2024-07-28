@@ -51,8 +51,6 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
         <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
       </div>
 
-      <button onSubmit={onSubmit}>Place Order</button>
-
       <PlaceOrderButton onSubmit={onSubmit} show={showPlaceOrderButton} />
 
     </form>
