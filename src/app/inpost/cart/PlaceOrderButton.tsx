@@ -1,8 +1,6 @@
-import {useRouter} from "next/navigation";
 import {useEffect} from "react";
 
 export const PlaceOrderButton = ({onSubmit, show}) => {
-  const router = useRouter()
 
   useEffect(() => {
     if(show){
@@ -15,7 +13,7 @@ export const PlaceOrderButton = ({onSubmit, show}) => {
     }else{
       window.Telegram.WebApp.MainButton.hide();
     }
-  }, [router, show]);
+  }, [show, onSubmit]);
 
   return <></>
 }
