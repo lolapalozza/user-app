@@ -3,7 +3,7 @@
 import {DropSelector, STEP} from "@/app/drops/DropSelector";
 import {useState} from "react";
 import {Payment} from "@/app/drops/Payment";
-import {NavigationBack} from "@/shared/NavigationBack";
+import {BackButton} from "@/shared/BackButton";
 import {BreadCrumbs} from "@/app/drops/BreadCrumbs";
 
 export const defaultSelection = () => {
@@ -31,7 +31,7 @@ export default function Drops() {
         Drops
       </h1>
 
-      <NavigationBack />
+      <BackButton />
 
       <BreadCrumbs selection={selection} setSelection={setSelection} />
 

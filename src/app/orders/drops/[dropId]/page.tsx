@@ -1,6 +1,6 @@
 'use client'
 
-import {NavigationBack} from "@/shared/NavigationBack";
+import {BackButton} from "@/shared/BackButton";
 import {useEffect, useState} from "react";
 import {getBoughtDrops, getDropById} from "@/app/orders/api";
 import {formatDate} from "@/app/orders/formatDate";

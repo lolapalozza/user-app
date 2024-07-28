@@ -4,7 +4,7 @@ import {getBalance, saveTransaction} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {DepositTRC20} from "@/app/balance/depositTRC20";
 import {DepositBlik} from "@/app/balance/depositBlik";
-import {NavigationBack, showBackButton} from "@/shared/NavigationBack";
+import {BackButton, showBackButton} from "@/shared/BackButton";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
@@ -34,7 +34,7 @@ export default function Balance() {
   return (
     <main className="flex min-h-screen flex-col items-center relative">
 
-      <NavigationBack />
+      <BackButton />
 
       <h1 className="mb-20">
         Balance

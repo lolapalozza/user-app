@@ -3,7 +3,7 @@
 import {useContext, useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {useRouter} from "next/navigation";
-import {NavigationBack, showBackButton} from "@/shared/NavigationBack";
+import {BackButton, showBackButton} from "@/shared/BackButton";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/inpost/cartContext";
 
@@ -23,7 +23,7 @@ export default function ProductPage({params}) {
 
   return (<div>
       {product && <>
-        <NavigationBack linkTo="/inpost" />
+        <BackButton linkTo="/inpost" />
         <div className="flex text-center justify-center flex-col items-center	">
           <h2 className="text-center mb-2">
             {product.short_description} - {product.price} PLN

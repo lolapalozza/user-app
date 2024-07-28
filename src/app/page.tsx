@@ -5,7 +5,7 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import Script from "next/script";
 import {authorization} from "@/app/authorization";
-import {hideBackButton} from "@/shared/NavigationBack";
+import {hideBackButton} from "@/shared/BackButton";
 
 export default function Home() {
 

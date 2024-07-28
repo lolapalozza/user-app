@@ -1,6 +1,6 @@
 'use client'
 
-import {NavigationBack} from "@/shared/NavigationBack";
+import {BackButton} from "@/shared/BackButton";
 import {useEffect, useState} from "react";
 import {getBoughtDrops} from "@/app/orders/api";
 import Link from "next/link";

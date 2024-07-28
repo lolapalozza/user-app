@@ -4,7 +4,7 @@ import {useContext, useEffect, useMemo, useState} from "react";
 import {createInpostOrder, getProducts} from "@/app/inpost/api";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/inpost/cartContext";
-import {NavigationBack, showBackButton} from "@/shared/NavigationBack";
+import {BackButton, showBackButton} from "@/shared/BackButton";
 import {formatToOrderDTO} from "@/app/inpost/utils/formatToOrderDTO";
 import {AddressForm} from "@/app/inpost/cart/addressForm";
 import {getBalance} from "@/app/balance/api";
@@ -62,7 +62,7 @@ export default function Cart() {
   return (
     <main className="flex min-h-screen flex-col items-center relative">
 
-      <NavigationBack linkTo="/inpost" />
+      <BackButton linkTo="/inpost" />
 
       <h2 className="mb-10">
         Cart

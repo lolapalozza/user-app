@@ -1,12 +1,12 @@
 'use client'
 
-import {NavigationBack} from "@/shared/NavigationBack";
+import {BackButton} from "@/shared/BackButton";
 
 export default function Orders() {
 
   return (
     <>
-      <NavigationBack />
+      <BackButton />
     </>
   );
 }
