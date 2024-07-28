@@ -25,7 +25,7 @@ export default function Drops() {
 
   const [selection, setSelection] = useState(defaultSelection())
   return (
-    <main className="flex min-h-screen flex-col items-center relative">
+    <main className="flex min-h-screen mt-10 flex-col items-center relative">
 
       <h1 className="mb-2">
         Drops

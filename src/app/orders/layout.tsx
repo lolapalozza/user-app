@@ -17,7 +17,7 @@ export default function OrdersLayout({children}){
     "bg-red-400": path.includes('drops')
   })
 
-  return <main className="flex min-h-screen flex-col items-center relative">
+  return <main className="flex min-h-screen mt-10 flex-col items-center relative">
     <BackButton/>
     <h1 className="mb-5">Orders</h1>
     <div className="flex gap-2 mb-5">

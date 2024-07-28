@@ -39,11 +39,11 @@ export default function Products() {
   }, [router, cartQuantity]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center relative">
+    <main className="flex min-h-screen mt-10 flex-col items-center relative">
 
       <BackButton />
 
-      <h1 className="mt-10 mb-10">
+      <h1 className="mb-10">
         Collect Products and Create Order
       </h1>
 
