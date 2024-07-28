@@ -31,6 +31,11 @@ export default function Products() {
       router.push("/inpost/cart")
     });
     window.Telegram.WebApp.MainButton.show();
+
+    return () => {
+      window.Telegram.WebApp.MainButton.hide();
+    }
+
   }, [router, cartQuantity]);
 
   return (
@@ -44,17 +49,17 @@ export default function Products() {
 
       <CategoriesSelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
-      <div className="absolute right-0 mt-3 mr-2">
-        <Link href="/inpost/cart" className="flex items-end">
-          <Image
-            src="/icons/icon-cart.png"
-            className="dark:invert"
-            width={32}
-            height={32}
-          />
-          ({cartQuantity})
-        </Link>
-      </div>
+      {/*<div className="absolute right-0 mt-3 mr-2">*/}
+      {/*  <Link href="/inpost/cart" className="flex items-end">*/}
+      {/*    <Image*/}
+      {/*      src="/icons/icon-cart.png"*/}
+      {/*      className="dark:invert"*/}
+      {/*      width={32}*/}
+      {/*      height={32}*/}
+      {/*    />*/}
+      {/*    ({cartQuantity})*/}
+      {/*  </Link>*/}
+      {/*</div>*/}
 
       <ul className="flex flex-wrap w-full">
         {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
