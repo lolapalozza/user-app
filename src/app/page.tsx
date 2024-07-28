@@ -11,14 +11,13 @@ export default function Home() {
 
   const [auth, setAuth] = useState("")
 
-  useEffect(() => {
+  useEffect(() => { //@todo put authorization in other place
     authorization.init().then(({result, tg_query}) => {
       setAuth(tg_query)
+      hideBackButton()
     }).catch(() => {
       setAuth("not Auth")
     })
-
-    hideBackButton()
 
   },[])
 
