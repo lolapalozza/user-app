@@ -26,13 +26,17 @@ export default function Products() {
   }, [cart.cartItems])
 
   useEffect(() => {
-    window.Telegram.WebApp.MainButton.setText(`Cart (${cartQuantity})`);
-    window.Telegram.WebApp.MainButton.onClick(() => {
-      router.push("/inpost/cart")
-    });
-    window.Telegram.WebApp.MainButton.show();
+    if(cartQuantity){
+      window.Telegram.WebApp.MainButton.setText(`Cart (${cartQuantity})`);
+      window.Telegram.WebApp.MainButton.onClick(() => {
+        router.push("/inpost/cart")
+      });
+      window.Telegram.WebApp.MainButton.show();
 
-    return () => {
+      return () => {
+        window.Telegram.WebApp.MainButton.hide();
+      }
+    }else{
       window.Telegram.WebApp.MainButton.hide();
     }
 
@@ -48,18 +52,6 @@ export default function Products() {
       </h1>
 
       <CategoriesSelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-
-      {/*<div className="absolute right-0 mt-3 mr-2">*/}
-      {/*  <Link href="/inpost/cart" className="flex items-end">*/}
-      {/*    <Image*/}
-      {/*      src="/icons/icon-cart.png"*/}
-      {/*      className="dark:invert"*/}
-      {/*      width={32}*/}
-      {/*      height={32}*/}
-      {/*    />*/}
-      {/*    ({cartQuantity})*/}
-      {/*  </Link>*/}
-      {/*</div>*/}
 
       <ul className="flex flex-wrap w-full">
         {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
