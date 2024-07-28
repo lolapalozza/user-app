@@ -10,7 +10,6 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
   const onSubmit = async(e) => {
-    e.preventDefault();
 
     const email = e.target.form.email.value;
     const phone = e.target.form.phone.value;
