@@ -5,6 +5,7 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import Script from "next/script";
 import {authorization} from "@/app/authorization";
+import {hideBackButton, hideNackButton} from "@/shared/NavigationBack";
 
 export default function Home() {
 
@@ -13,12 +14,12 @@ export default function Home() {
   useEffect(() => {
     authorization.init().then(({result, tg_query}) => {
       setAuth(tg_query)
-
-      window.Telegram.WebApp.BackButton.show()
-
     }).catch(() => {
       setAuth("not Auth")
     })
+
+    hideBackButton()
+
   },[])
 
   return (

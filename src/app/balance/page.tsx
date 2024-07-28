@@ -5,7 +5,8 @@ import {getBalance, saveTransaction} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {DepositTRC20} from "@/app/balance/depositTRC20";
 import {DepositBlik} from "@/app/balance/depositBlik";
-import {NavigationBack} from "@/shared/NavigationBack";
+import {NavigationBack, showBackButton} from "@/shared/NavigationBack";
+import {useRouter} from "next/navigation";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
@@ -14,6 +15,7 @@ const DEPOSIT_TYPE = {
 
 export default function Balance() {
 
+  const router = useRouter()
   const [depositType, setDepositType] = useState(null)
   const [balance, setBalance] = useState(0)
 
@@ -21,6 +23,11 @@ export default function Balance() {
     getBalance(1).then((_balance) => {
       setBalance(_balance.balance)
     })
+
+    showBackButton(() => {
+      router.push("/")
+    })
+
   }, [])
 
   const depositCallback = () => {
@@ -35,7 +42,7 @@ export default function Balance() {
   return (
     <main className="flex min-h-screen flex-col items-center relative">
 
-      <NavigationBack />
+      {/*<NavigationBack />*/}
 
       <h1 className="mb-20">
         Balance
