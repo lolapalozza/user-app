@@ -1,11 +1,10 @@
 'use client'
 
 import {DropSelector, STEP} from "@/app/drops/DropSelector";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Payment} from "@/app/drops/Payment";
-import {NavigationBack, showBackButton} from "@/shared/NavigationBack";
+import {NavigationBack} from "@/shared/NavigationBack";
 import {BreadCrumbs} from "@/app/drops/BreadCrumbs";
-import {useRouter} from "next/navigation";
 
 export const defaultSelection = () => {
   return {
@@ -24,14 +23,6 @@ export const defaultSelection = () => {
 
 export default function Drops() {
 
-  const router = useRouter()
-
-  useEffect(() => {
-    showBackButton(() => {
-      router.push("/")
-    })
-  }, [router]);
-
   const [selection, setSelection] = useState(defaultSelection())
   return (
     <main className="flex min-h-screen flex-col items-center relative">
@@ -39,6 +30,8 @@ export default function Drops() {
       <h1 className="mb-2">
         Drops
       </h1>
+
+      <NavigationBack />
 
       <BreadCrumbs selection={selection} setSelection={setSelection} />
 

@@ -11,21 +11,12 @@ import {getBalance} from "@/app/balance/api";
 import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
 
 export default function Cart() {
-
-  const router = useRouter()
 
   const [products, setProducts] = useState([])
   const [orderSuccess, setOrderSuccess] = useState(false)
   const [balance, setBalance] = useState(0)
-
-  useEffect(() => {
-    showBackButton(() => {
-      router.push("/inpost")
-    })
-  }, [router]);
 
   useEffect(() => {
     getBalance(1).then((_balance) => {
@@ -70,6 +61,8 @@ export default function Cart() {
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
+
+      <NavigationBack linkTo="/inpost" />
 
       <h2 className="mb-10">
         Cart
