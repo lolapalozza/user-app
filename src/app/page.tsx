@@ -5,7 +5,7 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import Script from "next/script";
 import {authorization} from "@/app/authorization";
-import {hideBackButton, hideNackButton} from "@/shared/NavigationBack";
+import {hideBackButton} from "@/shared/NavigationBack";
 
 export default function Home() {
 
@@ -14,10 +14,11 @@ export default function Home() {
   useEffect(() => { //@todo put authorization in other place
     authorization.init().then(({result, tg_query}) => {
       setAuth(tg_query)
-      hideBackButton()
     }).catch(() => {
       setAuth("not Auth")
     })
+
+    hideBackButton()
 
   },[])
 

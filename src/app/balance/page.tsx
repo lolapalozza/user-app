@@ -28,7 +28,7 @@ export default function Balance() {
       router.push("/")
     })
 
-  }, [])
+  }, [router])
 
   const depositCallback = () => {
     getBalance(1).then((_balance) => {
@@ -41,8 +41,6 @@ export default function Balance() {
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
-
-      {/*<NavigationBack />*/}
 
       <h1 className="mb-20">
         Balance

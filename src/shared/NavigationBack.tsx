@@ -24,5 +24,5 @@ export const showBackButton = (callback) => {
 }
 
 export const hideBackButton = () => {
-  window.Telegram.WebApp.BackButton.hide()
+  window.Telegram?.WebApp?.BackButton?.hide()
 }
