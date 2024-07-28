@@ -13,6 +13,9 @@ export default function Home() {
   useEffect(() => {
     authorization.init().then(({result, tg_query}) => {
       setAuth(tg_query)
+
+      window.Telegram.WebApp.BackButton.show()
+
     }).catch(() => {
       setAuth("not Auth")
     })
