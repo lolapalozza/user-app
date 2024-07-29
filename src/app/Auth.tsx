@@ -14,14 +14,18 @@ export const Auth = ({children}) => {
   useEffect(() => {
 
     if(process.env.NEXT_PUBLIC_ENV === 'local'){
-
+      getUser().then((_user) => {
+        setUser(_user)
+      })
     }else{
-      authorization.init() // this is to set tg_query header to requests. no need for local
+      authorization.init().then((data) => { // this is to set tg_query header to requests. no need for local
+        if(data.result){
+          getUser().then((_user) => {
+            setUser(_user)
+          })
+        }
+      })
     }
-
-    getUser().then((_user) => {
-      setUser(_user)
-    })
 
   }, []);
 

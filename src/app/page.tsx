@@ -19,7 +19,7 @@ export default function Home() {
 
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
-      <div className="mb-10">Hello, {user.full_name}</div>
+      {user.full_name && <div className="mb-10">Hello, {user.full_name}</div>}
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
