@@ -17,13 +17,13 @@ export default function Balance() {
   const [balance, setBalance] = useState(0)
 
   useEffect(() => {
-    getBalance(1).then((_balance) => {
+    getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
   }, [])
 
   const depositCallback = () => {
-    getBalance(1).then((_balance) => {
+    getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
     setDepositType(null)

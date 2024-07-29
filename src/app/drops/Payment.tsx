@@ -15,7 +15,7 @@ export const Payment = ({selection, setSelection}) => {
   const router = useRouter()
 
   useEffect(() => {
-    getBalance(1).then((_balance) => {
+    getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
   }, [])

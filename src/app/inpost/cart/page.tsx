@@ -19,7 +19,7 @@ export default function Cart() {
   const [balance, setBalance] = useState(0)
 
   useEffect(() => {
-    getBalance(1).then((_balance) => {
+    getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
   }, [])

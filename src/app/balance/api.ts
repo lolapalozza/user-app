@@ -3,7 +3,7 @@ import {http} from "@/utils/httpClient";
 export const saveTransaction = async({amount, paymentType}) => {
   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/transactions", {
     method: 'POST',
-    body: JSON.stringify({transactionId: "xxx" + Math.random(), userId: 1, paymentType, amount, direction: "in"}),
+    body: JSON.stringify({transactionId: "xxx" + Math.random(), paymentType, amount, direction: "in"}),
     headers: {
       'Content-Type': 'application/json',
     }
@@ -12,8 +12,8 @@ export const saveTransaction = async({amount, paymentType}) => {
   return data
 }
 
-export const getBalance = async(userId) => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/balance`, {
+export const getBalance = async() => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/balance`, {
     method: 'GET'
   })
   const balance = await response.json()
