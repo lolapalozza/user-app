@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import {http} from "@/utils/httpClient";
+import {http} from "@/services/httpClient";
 
 const INTERVAL = 500
 

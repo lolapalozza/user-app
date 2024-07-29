@@ -1,4 +1,4 @@
-import {http} from "@/utils/httpClient";
+import {http} from "@/services/httpClient";
 
 export const getInpostOrders = async() => {
   const userId = 1;

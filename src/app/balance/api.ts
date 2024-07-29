@@ -1,4 +1,4 @@
-import {http} from "@/utils/httpClient";
+import {http} from "@/services/httpClient";
 
 export const saveTransaction = async({amount, paymentType}) => {
   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/transactions", {

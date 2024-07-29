@@ -19,8 +19,8 @@ export const BackButton = ({linkTo}: INavigationBackProps) => {
 }
 
 export const showBackButton = (callback) => {
-  window.Telegram.WebApp.BackButton.onClick(callback);
-  window.Telegram.WebApp.BackButton.show()
+  window.Telegram?.WebApp?.BackButton?.onClick(callback);
+  window.Telegram?.WebApp?.BackButton?.show()
 }
 
 export const hideBackButton = () => {

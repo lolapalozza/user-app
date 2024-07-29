@@ -2,32 +2,24 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {useEffect, useState} from "react";
-import Script from "next/script";
-import {authorization} from "@/app/authorization";
+import {useContext, useEffect, useState} from "react";
 import {hideBackButton} from "@/shared/BackButton";
+import {UserContext} from "@/app/Auth";
 
 export default function Home() {
 
-  const [auth, setAuth] = useState("")
+  const { user }  = useContext(UserContext)
 
-  useEffect(() => { //@todo put authorization in other place
-    authorization.init().then(({result, tg_query}) => {
-      setAuth(tg_query)
-    }).catch(() => {
-      setAuth("not Auth")
-    })
-
+  useEffect(() => {
     hideBackButton()
-
   },[])
 
   return (
-    <main className="flex min-h-screen flex-col  items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center p-24">
 
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
-      <Script src="https://telegram.org/js/telegram-web-app.js" />
+      <div className="mb-10">Hello, {user.full_name}</div>
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">
