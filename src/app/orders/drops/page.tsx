@@ -1,18 +1,22 @@
 'use client'
 
 import {BackButton} from "@/shared/BackButton";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {getBoughtDrops} from "@/app/orders/api";
 import Link from "next/link";
 import {formatDate} from "@/app/orders/formatDate";
+import {UserContext} from "@/app/Auth";
 
 export default function OrdersDrops() {
   const [drops, setDrops] = useState([])
 
-  useEffect(() => {
-    getBoughtDrops().then((setDrops))
-  }, [])
+  const { user } = useContext(UserContext)
 
+  useEffect(() => {
+    if(user.user_id){
+      getBoughtDrops(user.user_id).then((setDrops))
+    }
+  }, [user])
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">

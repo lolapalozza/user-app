@@ -14,8 +14,6 @@ export default function OrdersDrop({params}) {
     return drop.photos.split(",")
   }, [drop])
 
-  console.log(photos)
-
   useEffect(() => {
     getDropById(params.dropId).then((setDrop))
   }, [])

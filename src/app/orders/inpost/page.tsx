@@ -1,21 +1,26 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
 import {getInpostOrders} from "@/app/orders/api";
 import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 import {formatDate} from "@/app/orders/formatDate";
+import {UserContext} from "@/app/Auth";
 
 export default function OrdersInpost() {
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([])
+
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     getProducts().then(setProducts)
   }, [])
 
   useEffect(() => {
-    getInpostOrders().then(setOrders)
+    if(user.user_id){
+      getInpostOrders(user.user_id).then(setOrders)
+    }
   }, [])
 
   return (
