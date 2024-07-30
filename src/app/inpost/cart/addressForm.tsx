@@ -1,6 +1,10 @@
 import {useState} from "react";
-import classNames from "classnames";
 import {PlaceOrderButton} from "@/app/inpost/cart/PlaceOrderButton";
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
 export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
 
@@ -13,10 +17,16 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
   const inputInvalidClasses = "w-full h-9 mb-2 p-1 rounded text-black bg-red-200"
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
-  const onSubmit = async() => {
+  const onSubmit = async(e) => {
+    e.preventDefault()
+
     const _formErrors = {}
     if(!email){
       _formErrors.email = {required: true}
+    }else{
+      if(!isValidEmail(email)){
+        _formErrors.email = {pattern: true}
+      }
     }
     if(!pachkomat){
       _formErrors.pachkomat = {required: true}
@@ -32,12 +42,15 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
       <h2 className="mb-10">
         Enter your data
       </h2>
-      <input className={formErrors.email?.required ? inputInvalidClasses : inputValidClasses} name="email"
+      <input className={(formErrors.email?.required || formErrors.email?.pattern) ? inputInvalidClasses : inputValidClasses} name="email"
              placeholder="Email*"
              value={email}
              onChange={(e) => setEmail(e.target.value)}/>
       {formErrors.email?.required && <div className="text-xs text-red-300 text-left mb-2">
         Email is required
+      </div>}
+      {formErrors.email?.pattern && <div className="text-xs text-red-300 text-left mb-2">
+        Enter valid Email
       </div>}
       <input className="w-full h-9 mb-2 p-1 rounded text-black" name="phone" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
       <input className={formErrors.pachkomat?.required ? inputInvalidClasses : inputValidClasses} name="pachkomat"
