@@ -3,7 +3,7 @@ import {createPaymentJob, saveTransaction} from "@/app/balance/api";
 import {useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 
-const address = "12312542523123"
+const address = "TWTiiVQpCMndDjGzvGoVDorV99QDKmbhjF"
 
 export const DepositTRC20 = ({depositCallback}) => {
 
