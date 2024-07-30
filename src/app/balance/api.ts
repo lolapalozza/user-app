@@ -19,3 +19,15 @@ export const getBalance = async() => {
   const balance = await response.json()
   return balance
 }
+
+export const createPaymentJob = async(amountPLN) => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {
+    method: 'POST',
+    body: JSON.stringify({amount: amountPLN}),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  const result = await response.json()
+  return result
+}
