@@ -17,7 +17,7 @@ export const AddressForm = ({createInpost}) => {
   const inputInvalidClasses = "w-full h-9 mb-2 p-1 rounded text-black bg-red-200"
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
-  const onSubmit = useCallback(async(e) => {
+  const onSubmit = async(e) => {
     if(process.env.NEXT_PUBLIC_ENV === 'local'){
       e.preventDefault()
     }
@@ -37,7 +37,7 @@ export const AddressForm = ({createInpost}) => {
       return setFormErrors(_formErrors)
     }
     createInpost({email, phone, pachkomat})
-  }, [formErrors, phone, email, pachkomat])
+  }
 
   return <div className="p-4 w-full">
     <form className="text-center">
