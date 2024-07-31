@@ -37,7 +37,7 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
       return setFormErrors(_formErrors)
     }
     createInpost({email, phone, pachkomat})
-  }, [formErrors])
+  }, [formErrors, phone, email, pachkomat])
 
   return <div className="p-4 w-full">
     <form className="text-center">
