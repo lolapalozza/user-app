@@ -2,12 +2,16 @@ import React, {useEffect} from "react";
 
 const PlaceOrderButton = React.memo(({onSubmit, show}) => {
 
+  console.log('rerender')
+
   useEffect(() => {
     if(show){
+      console.log('show button')
       window.Telegram?.WebApp?.MainButton?.setText("Place Order");
       window.Telegram?.WebApp?.MainButton?.show();
       window.Telegram?.WebApp?.onEvent('mainButtonClicked', onSubmit)
       return () => {
+        console.log('destroy button')
         window.Telegram?.WebApp?.offEvent('mainButtonClicked', onSubmit)
         window.Telegram?.WebApp?.MainButton?.hide();
       }

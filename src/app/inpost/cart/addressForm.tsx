@@ -18,9 +18,9 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
   const onSubmit = useCallback(async(e) => {
-    if(process.env.NEXT_PUBLIC_ENV === 'local'){
+    // if(process.env.NEXT_PUBLIC_ENV === 'local'){
       e.preventDefault()
-    }
+    // }
 
     const _formErrors = {}
     if(!email){
