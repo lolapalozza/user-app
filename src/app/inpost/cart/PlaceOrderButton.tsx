@@ -2,15 +2,15 @@ import React, {useEffect} from "react";
 
 const PlaceOrderButton = ({onSubmit}) => {
 
-  // useEffect(() => {
-  //   window.Telegram?.WebApp?.MainButton?.setText("Place Order");
-  //   window.Telegram?.WebApp?.MainButton?.show();
-  //   window.Telegram?.WebApp?.onEvent('mainButtonClicked', onSubmit)
-  //   return () => {
-  //     window.Telegram?.WebApp?.offEvent('mainButtonClicked', onSubmit)
-  //     window.Telegram?.WebApp?.MainButton?.hide();
-  //   }
-  // },[]);
+  useEffect(() => {
+    window.Telegram?.WebApp?.MainButton?.setText("Place Order");
+    window.Telegram?.WebApp?.MainButton?.show();
+    window.Telegram?.WebApp?.onEvent('mainButtonClicked', onSubmit)
+    return () => {
+      window.Telegram?.WebApp?.offEvent('mainButtonClicked', onSubmit)
+      window.Telegram?.WebApp?.MainButton?.hide();
+    }
+  },[]);
 
   return <button className="border-2 p-2 rounded" onClick={onSubmit}>
     Place Order
