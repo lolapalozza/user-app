@@ -9,7 +9,7 @@ export const getInpostOrders = async({userId, limit=10, offset=0}) => {
 }
 
 export const getBoughtDrops = async(userId) => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/drops?user_id=${userId}`,{
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/drops`,{
     method: "GET"
   })
   const drops = await response.json()

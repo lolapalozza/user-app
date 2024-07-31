@@ -77,10 +77,11 @@ export default function OrdersInpost() {
           <button onClick={() => setOffset(offset - +limit)} className="border-2 p-1 border-white">{`<`} Prev</button>
         }
 
+        {offset} - {Math.min(offset + limit, pagination?.total)}
+
         {+limit + offset < pagination?.total &&
             <button onClick={() => setOffset(offset + +limit)} className="border-2 p-1 border-white">Next {`>`}</button>
         }
-
 
         <div>
         Total: {pagination?.total}
