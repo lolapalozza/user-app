@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 const PlaceOrderButton = React.memo(({onSubmit, show}) => {
 
