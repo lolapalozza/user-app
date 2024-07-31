@@ -14,7 +14,7 @@ const PlaceOrderButton = React.memo(({onSubmit, show}) => {
     }else{
       window.Telegram?.WebApp?.MainButton?.hide();
     }
-  }, [show, onSubmit]);
+  }, [show]);
 
   if(process.env.NEXT_PUBLIC_ENV === "local"){
     return <button className="border-2 p-2 rounded" onClick={onSubmit}>
