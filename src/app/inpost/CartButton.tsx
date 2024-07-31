@@ -27,7 +27,7 @@ export const CartButton = ({cartQuantity}: ICartButton) => {
 
   }, [router, cartQuantity]);
 
-  if(process.env.NEXT_PUBLIC_ENV){
+  if(process.env.NEXT_PUBLIC_ENV === 'local'){
     return <Link href="/inpost/cart">
       Cart
     </Link>
