@@ -121,7 +121,7 @@ export default function Cart() {
         <div className="p-4 w-full">
           <hr className="color-white w-full"/>
         </div>
-        <AddressForm createInpost={createInpost} showPlaceOrderButton={totalPrice > 0 && balance >= totalPrice} />
+        <AddressForm createInpost={createInpost} />
       </>}
 
       {

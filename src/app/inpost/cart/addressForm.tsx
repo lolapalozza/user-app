@@ -6,7 +6,7 @@ function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
+export const AddressForm = ({createInpost}) => {
 
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -66,7 +66,7 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
         <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
       </div>
 
-      <PlaceOrderButton onSubmit={onSubmit} show={showPlaceOrderButton} />
+      <PlaceOrderButton onSubmit={onSubmit} />
 
     </form>
   </div>
