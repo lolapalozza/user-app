@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import PlaceOrderButton from "@/app/inpost/cart/PlaceOrderButton";
 
 function isValidEmail(email) {
@@ -17,7 +17,7 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
   const inputInvalidClasses = "w-full h-9 mb-2 p-1 rounded text-black bg-red-200"
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
-  const onSubmit = async(e) => {
+  const onSubmit = useCallback(async(e) => {
     if(process.env.NEXT_PUBLIC_ENV === 'local'){
       e.preventDefault()
     }
@@ -37,7 +37,7 @@ export const AddressForm = ({createInpost, showPlaceOrderButton}) => {
       return setFormErrors(_formErrors)
     }
     createInpost({email, phone, pachkomat})
-  }
+  }, [])
 
   return <div className="p-4 w-full">
     <form className="text-center">
