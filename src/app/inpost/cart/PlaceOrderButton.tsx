@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-export const PlaceOrderButton = React.memo(({onSubmit, show}) => {
+const PlaceOrderButton = React.memo(({onSubmit, show}) => {
 
   useEffect(() => {
     if(show){
@@ -24,3 +24,7 @@ export const PlaceOrderButton = React.memo(({onSubmit, show}) => {
 
   return <></>
 })
+
+PlaceOrderButton.displayName = "PlaceOrderButton";
+
+export default PlaceOrderButton;
