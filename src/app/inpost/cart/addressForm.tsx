@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {PlaceOrderButton} from "@/app/inpost/cart/PlaceOrderButton";
+import PlaceOrderButton from "@/app/inpost/cart/PlaceOrderButton";
 
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
