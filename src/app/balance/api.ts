@@ -1,6 +1,6 @@
 import {http} from "@/services/httpClient";
 
-export const saveTransaction = async({amount, paymentType}) => {
+export const addTransaction = async({amount, paymentType}) => {
   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/transactions", {
     method: 'POST',
     body: JSON.stringify({transactionId: "xxx" + Math.random(), paymentType, amount, direction: "in"}),

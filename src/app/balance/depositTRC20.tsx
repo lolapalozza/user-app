@@ -1,5 +1,5 @@
 import QRCode from "react-qr-code";
-import {createPaymentJob, saveTransaction} from "@/app/balance/api";
+import {addTransaction, createPaymentJob} from "@/app/balance/api";
 import {useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 
@@ -11,7 +11,7 @@ export const DepositTRC20 = ({depositCallback}) => {
   const [payment, setPayment] = useState({})
 
   const deposit = () => { // this is test function
-    saveTransaction({amount, paymentType: "trc-20"}).then((response) => {
+    addTransaction({amount, paymentType: "trc-20"}).then((response) => {
       if(response.success){
         depositCallback()
         setAmount(0)
