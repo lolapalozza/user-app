@@ -28,8 +28,10 @@ export default function ProductPage({params}) {
           <h2 className="text-center mb-2">
             {product.short_description} - {product.price} PLN
           </h2>
-          <img alt={product.short_description} src={product.photo_urls}
-               className="mb-2 max-w-96"/>
+
+          <img className="mb-2 max-w-96"
+               src={`${process.env.NEXT_PUBLIC_API_URL}/products_photo/${product.photo_urls}`}/>
+
           <p className="mb-2">
             {product.long_description}
           </p>
@@ -44,7 +46,7 @@ export default function ProductPage({params}) {
                   cart.setCartItems(_quantity)
                 }
               }
-            product={product}
+              product={product}
           />
         </div>
       </>}

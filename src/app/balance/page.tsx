@@ -1,6 +1,6 @@
 'use client'
 
-import {getBalance, saveTransaction} from "@/app/balance/api";
+import {getBalance} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {DepositTRC20} from "@/app/balance/depositTRC20";
 import {DepositBlik} from "@/app/balance/depositBlik";
@@ -28,8 +28,6 @@ export default function Balance() {
     })
     setDepositType(null)
   }
-
-  const address = "TRDGtt4EL9cvGkRqCpnNoqNiQHojVdPHM2"
 
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
