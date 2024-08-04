@@ -1,5 +1,5 @@
 import QRCode from "react-qr-code";
-import {addTransaction, createPaymentJob} from "@/app/balance/api";
+import {createPaymentJob} from "@/app/balance/api";
 import {useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 
@@ -9,15 +9,6 @@ export const DepositTRC20 = ({depositCallback}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
-
-  const deposit = () => { // this is test function
-    addTransaction({amount, paymentType: "trc-20"}).then((response) => {
-      if(response.success){
-        depositCallback()
-        setAmount(0)
-      }
-    })
-  }
 
   const createPayment = () => {
     createPaymentJob(amount).then((data) => {
@@ -33,7 +24,6 @@ export const DepositTRC20 = ({depositCallback}) => {
     <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" className="bg-transparent text-5xl text-center mb-5 w-40 outline-none" autoFocus />
     <div className="flex gap-2 justify-center">
       <button className="border-2 border-white rounded p-2" onClick={createPayment}>Deposit</button>
-      <button className="border-2 border-white rounded p-2" onClick={deposit}>Fake Deposit</button>
     </div>
 
     {
