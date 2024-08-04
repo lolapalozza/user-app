@@ -40,6 +40,3 @@ export const DepositTRC20 = ({depositCallback}) => {
 
   </div>
 }
-
-
-//

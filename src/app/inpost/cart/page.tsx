@@ -12,11 +12,16 @@ import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
 
+const DELIVERY_PRICE = 40
+const FREE_DELIVERY_TRESHOLD = 700
+
 export default function Cart() {
 
   const [products, setProducts] = useState([])
   const [orderSuccess, setOrderSuccess] = useState(false)
   const [balance, setBalance] = useState(0)
+
+  const { cart } = useContext(CartContext);
 
   useEffect(() => {
     getBalance().then((_balance) => {
@@ -24,17 +29,23 @@ export default function Cart() {
     })
   }, [])
 
-  const { cart } = useContext(CartContext);
-
   useEffect(() => {
     getProducts().then((_products) => setProducts(_products))
   }, [])
 
-  const totalPrice = useMemo(() => {
+  const productsPrice = useMemo(() => {
     return Object.entries(cart.cartItems)
       .map(([_id, quantity]) => products.find(product => product.id === _id)?.price * quantity)
       .reduce((acc, cur) => acc + cur, 0)
   }, [products, cart.cartItems])
+
+  const deliveryPrice = useMemo(() => {
+    return productsPrice >= FREE_DELIVERY_TRESHOLD ? 0 : DELIVERY_PRICE
+  }, [productsPrice])
+
+  const totalPrice = useMemo(() => {
+    return productsPrice + deliveryPrice
+  }, [productsPrice, deliveryPrice])
 
   const balanceClass = classNames({
     "text-red-400": balance < totalPrice
@@ -69,7 +80,7 @@ export default function Cart() {
       </h2>
 
       <div className="p-4 w-full">
-        {totalPrice > 0 ? <ul>
+        {productsPrice > 0 ? <ul>
           {Object.entries(cart.cartItems).map(([_id, quantity]) => {
               const product = products.find(({id}) => id === _id)
               return <li key={_id} className="flex items-center mb-2">
@@ -92,6 +103,9 @@ export default function Cart() {
               </li>
             }
           )}
+
+          <div className="text-right mt-5">Subtotal: {productsPrice} PLN</div>
+
         </ul> : <div className="text-center">
           <Image
             src="/icons/icon-empty.png"
@@ -102,10 +116,15 @@ export default function Cart() {
           <h2>Cart is Empty</h2>
         </div>}
 
-        {totalPrice > 0 && <>
-          <hr className="color-white w-full mt-10"/>
+        {productsPrice > 0 && <>
+          <hr className="color-white w-full mt-5"/>
           <div className="mt-5 flex gap-2 flex-col">
-            <span>Total Price: {totalPrice} PLN</span>
+
+            <span>
+              Delivery: {deliveryPrice} PLN <span className="text-xs">(free from 700 PLN)</span>
+            </span>
+
+            <span>Total Price: {productsPrice + deliveryPrice} PLN</span>
             <span className={balanceClass}>Your Balance: {balance} PLN</span>
             {
               balance < totalPrice &&
