@@ -136,7 +136,7 @@ export default function Cart() {
 
       </div>
 
-      {(totalPrice > 0 && balance >= totalPrice) && <>
+      {(productsPrice > 0 && balance >= totalPrice) && <>
         <div className="p-4 w-full">
           <hr className="color-white w-full"/>
         </div>
