@@ -12,7 +12,7 @@ const PlaceOrderButton = ({onSubmit}) => {
   //   }
   // },[]);
 
-  return <button className="border-2 p-2 rounded" onClick={onSubmit}>
+  return <button className="border-2 p-2 rounded mt-5 w-full" onClick={onSubmit}>
     Place Order
   </button>
 
