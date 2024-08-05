@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-const PlaceOrderButton = ({onSubmit}) => {
+const PlaceOrderButton = ({onSubmit, loading}) => {
 
   // useEffect(() => {
   //   window.Telegram?.WebApp?.MainButton?.setText("Place Order");
@@ -12,7 +12,7 @@ const PlaceOrderButton = ({onSubmit}) => {
   //   }
   // },[]);
 
-  return <button className="border-2 p-2 rounded mt-5 w-full" onClick={onSubmit}>
+  return <button disabled={loading} className="border-2 p-2 rounded mt-5 w-full" onClick={onSubmit}>
     Place Order
   </button>
 

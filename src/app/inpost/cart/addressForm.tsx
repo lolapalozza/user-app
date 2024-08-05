@@ -1,5 +1,6 @@
 import {useCallback, useState} from "react";
 import PlaceOrderButton from "@/app/inpost/cart/PlaceOrderButton";
+import {Loading} from "@/shared/Loading";
 
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,6 +14,7 @@ export const AddressForm = ({createInpost}) => {
   const [pachkomat, setPachkomat] = useState("")
 
   const [formErrors, setFormErrors] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const inputInvalidClasses = "w-full h-9 mb-2 p-1 rounded text-black bg-red-200"
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
@@ -20,6 +22,8 @@ export const AddressForm = ({createInpost}) => {
   const onSubmit = async(e) => {
 
     e.preventDefault()
+
+    setLoading(true)
 
     // if(process.env.NEXT_PUBLIC_ENV === 'local'){
     //   e.preventDefault()
@@ -37,9 +41,13 @@ export const AddressForm = ({createInpost}) => {
       _formErrors.pachkomat = {required: true}
     }
     if(Object.keys(_formErrors).length){
+      setLoading(false)
       return setFormErrors(_formErrors)
     }
-    createInpost({email, phone, pachkomat})
+    const result = await createInpost({email, phone, pachkomat})
+    if(result.success){
+      setLoading(false)
+    }
   }
 
   return <div className="p-4 w-full">
@@ -69,7 +77,10 @@ export const AddressForm = ({createInpost}) => {
         <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
       </div>
 
-      <PlaceOrderButton onSubmit={onSubmit} />
+      <PlaceOrderButton onSubmit={onSubmit} loading={loading} />
+
+      { loading && <Loading /> }
+
 
     </form>
   </div>

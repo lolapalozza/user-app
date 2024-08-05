@@ -68,6 +68,8 @@ export default function Cart() {
       }, 4000)
     }
 
+    return result
+
   }
 
   return (
