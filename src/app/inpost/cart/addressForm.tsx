@@ -18,10 +18,12 @@ export const AddressForm = ({createInpost}) => {
   const inputValidClasses = "w-full h-9 mb-2 p-1 rounded text-black"
 
   const onSubmit = async(e) => {
-    debugger
-    if(process.env.NEXT_PUBLIC_ENV === 'local'){
-      e.preventDefault()
-    }
+
+    e.preventDefault()
+
+    // if(process.env.NEXT_PUBLIC_ENV === 'local'){
+    //   e.preventDefault()
+    // }
 
     const _formErrors = {}
     if(!email){
