@@ -11,6 +11,7 @@ import {getBalance} from "@/app/balance/api";
 import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 const DELIVERY_PRICE = 40
 const FREE_DELIVERY_TRESHOLD = 700
@@ -22,6 +23,7 @@ export default function Cart() {
   const [balance, setBalance] = useState(0)
 
   const { cart } = useContext(CartContext);
+  const router = useRouter()
 
   useEffect(() => {
     getBalance().then((_balance) => {
@@ -66,6 +68,9 @@ export default function Cart() {
       setTimeout(() => {
         setOrderSuccess(false)
       }, 4000)
+
+      router.push("/orders/inpost")
+
     }
 
     return result
