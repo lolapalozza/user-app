@@ -3,12 +3,13 @@
 import {BackButton} from "@/shared/BackButton";
 import {useContext, useEffect, useState} from "react";
 import {getBoughtDrops} from "@/app/orders/api";
-import Link from "next/link";
 import {formatDate} from "@/app/orders/formatDate";
 import {UserContext} from "@/app/Auth";
+import {useRouter} from "next/navigation";
 
 export default function OrdersDrops() {
   const [drops, setDrops] = useState([])
+  const router = useRouter()
 
   const { user } = useContext(UserContext)
 
@@ -18,10 +19,14 @@ export default function OrdersDrops() {
     }
   }, [user])
 
+  const goToDrop = (dropId) => {
+    router.push(`/orders/drops/${dropId}`)
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center relative">
 
-      <BackButton linkTo="orders" />
+      <BackButton linkTo="/orders" />
 
       <table className="w-full border-2 border-separate p-2 border-spacing-2">
         <thead>
@@ -36,11 +41,9 @@ export default function OrdersDrops() {
         </thead>
         <tbody>
         {drops.map((drop) => {
-          return <tr key={drop.id} className="border-2">
+          return <tr key={drop.id} className="border-2 cursor-pointer" onClick={() => goToDrop(drop.id)}>
             <td>
-              <Link href={`/orders/drops/${drop.id}`} className="flex flex-col items-center">
-                <span className="text-blue-300">{drop.productTitle}</span>
-              </Link>
+              <span>{drop.productTitle}</span>
             </td>
             <td>
               {drop.packageQuantity}

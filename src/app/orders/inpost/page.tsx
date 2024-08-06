@@ -33,7 +33,7 @@ export default function OrdersInpost() {
   return (
     <main className="flex min-h-screen flex-col items-center relative">
 
-      <BackButton linkTo="orders" />
+      <BackButton linkTo="/orders" />
 
       <div className="text-right w-full">
         <select className="text-black mb-2 mr-1" value={limit} onChange={(e) => setLimit(+e.target.value)}>
