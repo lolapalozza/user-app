@@ -6,6 +6,7 @@ import {getInpostOrders} from "@/app/orders/api";
 import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 import {formatDate} from "@/app/orders/formatDate";
 import {UserContext} from "@/app/Auth";
+import {BackButton} from "@/shared/BackButton";
 
 export default function OrdersInpost() {
   const [orders, setOrders] = useState([]);
@@ -31,6 +32,8 @@ export default function OrdersInpost() {
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
+
+      <BackButton linkTo="orders" />
 
       <div className="text-right w-full">
         <select className="text-black mb-2 mr-1" value={limit} onChange={(e) => setLimit(+e.target.value)}>

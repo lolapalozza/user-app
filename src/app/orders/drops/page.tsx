@@ -20,6 +20,9 @@ export default function OrdersDrops() {
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
+
+      <BackButton linkTo="orders" />
+
       <table className="w-full border-2 border-separate p-2 border-spacing-2">
         <thead>
         <tr>
