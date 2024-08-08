@@ -1,7 +1,7 @@
 import {http} from "@/services/httpClient";
 
 export const getProducts = async() => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/products/all", {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/products", {
     method: 'GET'
   })
   const productsDTO = await response.json()
