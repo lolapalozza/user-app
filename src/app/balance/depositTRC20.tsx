@@ -1,14 +1,24 @@
 import QRCode from "react-qr-code";
 import {createPaymentJob} from "@/app/balance/api";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 
 const address = "TWTiiVQpCMndDjGzvGoVDorV99QDKmbhjF"
 
-export const DepositTRC20 = ({depositCallback}) => {
+export const DepositTRC20 = ({depositCallback, job}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
+
+  useEffect(() => {
+    if(job.jobId){
+      setPayment({
+        amount: job.cryptoAmount,
+        expires: job.expiresAt
+      })
+      setAmount(job.plnAmount)
+    }
+  }, [job])
 
   const createPayment = () => {
     createPaymentJob(amount).then((data) => {

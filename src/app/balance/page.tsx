@@ -1,10 +1,10 @@
 'use client'
 
-import {getBalance} from "@/app/balance/api";
+import {getBalance, getPaymentJob} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {DepositTRC20} from "@/app/balance/depositTRC20";
 import {DepositBlik} from "@/app/balance/depositBlik";
-import {BackButton, showBackButton} from "@/shared/BackButton";
+import {BackButton} from "@/shared/BackButton";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
@@ -15,12 +15,18 @@ export default function Balance() {
 
   const [depositType, setDepositType] = useState(null)
   const [balance, setBalance] = useState(0)
+  const [activeJob, setActiveJob] = useState({})
+
 
   useEffect(() => {
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
   }, [])
+
+  useEffect(() => {
+    getPaymentJob().then(setActiveJob)
+  },[])
 
   const depositCallback = () => {
     getBalance().then((_balance) => {
@@ -51,7 +57,7 @@ export default function Balance() {
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 depositCallback={depositCallback} />}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} depositCallback={depositCallback} />}
 
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 

@@ -31,3 +31,11 @@ export const createPaymentJob = async(amountPLN) => {
   const result = await response.json()
   return result
 }
+
+export const getPaymentJob = async() => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {
+    method: 'GET'
+  })
+  const result = await response.json()
+  return result
+}
