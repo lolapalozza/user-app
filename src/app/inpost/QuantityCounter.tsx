@@ -20,12 +20,19 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
 
   }
 
-  if((!quantity || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(1)}>Add</button>);
+  const blurred = (e) => {
+    if(e.target.value === ""){
+      setQuantity(0)
+    }
+  }
+
+  if((quantity === null || quantity === undefined || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(1)}>Add</button>);
 
   return <div>
     <div className="flex justify-between">
       <button className="text-2xl" onClick={() => changeQuantity("-")}>-</button>
       <input type="text" className="min-w-1 max-w-28 text-center bg-transparent text-3xl"
+             onBlur={blurred}
            onChange={(e) => setQuantity(e.target.value)} value={quantity ?? 0}/>
       <button className="text-2xl" onClick={() => changeQuantity("+")}>+</button>
     </div>
