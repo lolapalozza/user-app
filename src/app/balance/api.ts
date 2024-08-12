@@ -22,7 +22,7 @@ export const getBalance = async() => {
 
 export const createPaymentJob = async (amountPLN) => {
   try {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {
+    const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {
       method: 'POST',
       body: JSON.stringify({ amount: amountPLN }),
       headers: {
