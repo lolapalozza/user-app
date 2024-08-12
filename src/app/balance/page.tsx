@@ -28,6 +28,12 @@ export default function Balance() {
     getPaymentJob().then(setActiveJob)
   },[])
 
+  useEffect(() => {
+    if(activeJob.jobId){
+      setDepositType(DEPOSIT_TYPE["TRC-20"])
+    }
+  }, [activeJob])
+
   const depositCallback = () => {
     getBalance().then((_balance) => {
       setBalance(_balance.balance)

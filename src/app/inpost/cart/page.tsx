@@ -79,7 +79,6 @@ export default function Cart() {
 
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
-
       <BackButton linkTo="/inpost" />
 
       <h2 className="mb-10">

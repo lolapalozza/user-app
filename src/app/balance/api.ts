@@ -20,17 +20,27 @@ export const getBalance = async() => {
   return balance
 }
 
-export const createPaymentJob = async(amountPLN) => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {
-    method: 'POST',
-    body: JSON.stringify({amount: amountPLN}),
-    headers: {
-      'Content-Type': 'application/json',
+export const createPaymentJob = async (amountPLN) => {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {
+      method: 'POST',
+      body: JSON.stringify({ amount: amountPLN }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error: ${response.status} - ${errorData.message}`);
     }
-  })
-  const result = await response.json()
-  return result
-}
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const getPaymentJob = async() => {
   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment`, {

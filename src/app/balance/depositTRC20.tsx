@@ -2,6 +2,7 @@ import QRCode from "react-qr-code";
 import {createPaymentJob} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
+import {Loading} from "@/shared/Loading";
 
 const address = "TWTiiVQpCMndDjGzvGoVDorV99QDKmbhjF"
 
@@ -9,6 +10,7 @@ export const DepositTRC20 = ({depositCallback, job}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if(job.jobId){
@@ -21,19 +23,30 @@ export const DepositTRC20 = ({depositCallback, job}) => {
   }, [job])
 
   const createPayment = () => {
+
+    //if USDT job exists
+    // if(job.jobId){
+    //   window.Telegram.WebApp.showAlert('You\'re gonna create a new payment');
+    // }
+
+    setIsLoading(true)
     createPaymentJob(amount).then((data) => {
       setPayment({
         amount: data.amountUsdt,
         expires: data.expiresAt
       })
+      setIsLoading(false)
+    }).catch((e) => {
+      setIsLoading(false)
     })
   }
 
   return <div className="text-center">
     <h3>Enter amount in PLN</h3>
     <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" className="bg-transparent text-5xl text-center mb-5 w-40 outline-none" autoFocus />
-    <div className="flex gap-2 justify-center">
+    <div className="flex flex-col items-center gap-2 justify-center">
       <button className="border-2 border-white rounded p-2" onClick={createPayment}>Deposit</button>
+      {isLoading && <Loading />}
     </div>
 
     {
