@@ -14,6 +14,7 @@ export const DepositTon = () => {
 
   const sendTransaction = () => {
     tonConnectUI.sendTransaction({
+      validUntil: Math.floor(new Date() / 1000) + 360,
       messages: [
         {
           address: address.toRawString(),
