@@ -5,10 +5,13 @@ import {useEffect, useState} from "react";
 import {DepositTRC20} from "@/app/balance/depositTRC20";
 import {DepositBlik} from "@/app/balance/depositBlik";
 import {BackButton} from "@/shared/BackButton";
+import {DepositTon} from "@/app/balance/depositTon";
+import {TonConnectUIProvider} from "@tonconnect/ui-react";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
-  "TRC-20": "trc-20"
+  "TRC-20": "trc-20",
+  "TON": "ton"
 }
 
 export default function Balance() {
@@ -56,16 +59,29 @@ export default function Balance() {
 
       <ul className="flex gap-2 mb-10">
         <li>
-          <button onClick={() => setDepositType(DEPOSIT_TYPE["TRC-20"])} className="border-2 border-white rounded p-2">USDT TRC-20</button>
+          <button onClick={() => setDepositType(DEPOSIT_TYPE["TRC-20"])}
+                  className="border-2 border-white rounded p-2">USDT TRC-20
+          </button>
         </li>
         <li>
-          <button onClick={() => setDepositType(DEPOSIT_TYPE.BLIK)} className="border-2 border-white rounded p-2">BLIK</button>
+          <button onClick={() => setDepositType(DEPOSIT_TYPE.BLIK)} className="border-2 border-white rounded p-2">BLIK
+          </button>
+        </li>
+        <li>
+          <button onClick={() => setDepositType(DEPOSIT_TYPE.TON)} className="border-2 border-white rounded p-2">TON
+          </button>
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} depositCallback={depositCallback} />}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} depositCallback={depositCallback}/>}
 
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
+
+      {depositType === DEPOSIT_TYPE["TON"] && (
+        <TonConnectUIProvider manifestUrl="tonconnect-manifest.json">
+          <DepositTon />
+        </TonConnectUIProvider>
+      )}
 
     </main>
   );

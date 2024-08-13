@@ -1,0 +1,7 @@
+{
+  "url": "https://user-app-x.vercel.app",                     // required
+  "name": "hyz-user-bot",                      // required
+  "iconUrl": "https://ton.vote/logo.png",               // required
+  "termsOfUseUrl": "<terms-of-use-url>",     // optional
+  "privacyPolicyUrl": "<privacy-policy-url>" // optional
+}
