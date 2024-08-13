@@ -21,7 +21,7 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
   }
 
   const blurred = (e) => {
-    if(e.target.value === ""){
+    if(e.target.value === "" || e.target.value == 0){
       setQuantity(0)
     }
   }

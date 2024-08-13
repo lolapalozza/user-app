@@ -94,15 +94,23 @@ export default function Cart() {
                 <QuantityCounter
                   className="w-1/3"
                   quantity={quantity}
-                  setQuantity={
-                    (value) => {
-                      let _cartItems = {
+                  setQuantity={(value) => {
+                    let _cartItems;
+
+                    if (value === 0) {
+                      // Remove the property if the value is 0
+                      const { [_id]: _, ...rest } = cart.cartItems;
+                      _cartItems = rest;
+                    } else {
+                      // Set the new value otherwise
+                      _cartItems = {
                         ...cart.cartItems,
-                        [_id]: value
-                      }
-                      cart.setCartItems(_cartItems)
+                        [_id]: value,
+                      };
                     }
-                  }
+
+                    cart.setCartItems(_cartItems);
+                  }}
                   product={product}
                 />
                 <div className="w-1/3 text-right">{product?.price * quantity} PLN</div>

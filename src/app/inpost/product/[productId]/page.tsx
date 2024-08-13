@@ -36,17 +36,25 @@ export default function ProductPage({params}) {
             {product.long_description}
           </p>
           <QuantityCounter
-              quantity={cart.cartItems[product.id]}
-              setQuantity={
-                (value) => {
-                  let _quantity = {
-                    ...cart.cartItems,
-                    [product.id]: value
-                  }
-                  cart.setCartItems(_quantity)
-                }
+            quantity={cart.cartItems[product.id]}
+            setQuantity={(value) => {
+              let _quantity;
+
+              if (value === 0) {
+                // Remove the property if the value is 0
+                const { [product.id]: _, ...rest } = cart.cartItems;
+                _quantity = rest;
+              } else {
+                // Set the new value otherwise
+                _quantity = {
+                  ...cart.cartItems,
+                  [product.id]: value,
+                };
               }
-              product={product}
+
+              cart.setCartItems(_quantity);
+            }}
+            product={product}
           />
         </div>
       </>}

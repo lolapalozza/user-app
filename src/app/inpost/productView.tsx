@@ -26,15 +26,23 @@ export const ProductView = ({product, quantity, setQuantity}) => {
     </p>
     <QuantityCounter
       quantity={quantity[product.id]}
-      setQuantity={
-        (value) => {
-          let _quantity = {
+      setQuantity={(value) => {
+        let _quantity;
+
+        if (value === 0) {
+          // Remove the property if the value is 0
+          const { [product.id]: _, ...rest } = quantity;
+          _quantity = rest;
+        } else {
+          // Set the new value otherwise
+          _quantity = {
             ...quantity,
-            [product.id]: value
-          }
-          setQuantity(_quantity)
+            [product.id]: value,
+          };
         }
-      }
+
+        setQuantity(_quantity);
+      }}
       product={product}
     />
   </li>
