@@ -78,7 +78,7 @@ export default function Balance() {
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 
       {depositType === DEPOSIT_TYPE["TON"] && (
-        <TonConnectUIProvider manifestUrl="tonconnect-manifest.json">
+        <TonConnectUIProvider manifestUrl="https://user-app-x.vercel.app/tonconnect-manifest.json">
           <DepositTon />
         </TonConnectUIProvider>
       )}
