@@ -1,6 +1,7 @@
 import {TonConnectButton, useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
 import {Loading} from "@/shared/Loading";
 import {useState} from "react";
+import { Address } from "@ton/core";
 
 export const DepositTon = () => {
   const wallet = useTonWallet();
@@ -9,12 +10,14 @@ export const DepositTon = () => {
   const [amount, setAmount] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
+  const address = Address.parse('UQBS8sti9dUFpJ4oxf1oFrt58Vs_NuUJ4G4APe3_cEHtqYJM');
+
   const sendTransaction = () => {
     tonConnectUI.sendTransaction({
       messages: [
         {
-          address: "UQAAAcpu6iAoOSdhgCbLh76280j7Y6BFpQ5q60XLJu7WQKZC",
-          amount: (amount * 1000000000).toString() //Toncoin in nanotons
+          address: address.toRawString(),
+          amount: "159713000" //Toncoin in nanotons
         }
       ]
     })
