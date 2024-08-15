@@ -7,6 +7,8 @@ import {DepositBlik} from "@/app/balance/depositBlik";
 import {BackButton} from "@/shared/BackButton";
 import {DepositTon} from "@/app/balance/depositTon";
 import {TonConnectUIProvider} from "@tonconnect/ui-react";
+import classNames from "classnames";
+import Link from "next/link";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
@@ -20,6 +22,17 @@ export default function Balance() {
   const [balance, setBalance] = useState(0)
   const [activeJob, setActiveJob] = useState({})
 
+  const usdtButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
+    "bg-red-400": depositType === DEPOSIT_TYPE["TRC-20"]
+  })
+
+  const blikButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
+    "bg-red-400": depositType === DEPOSIT_TYPE["BLIK"]
+  })
+
+  const tonButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
+    "bg-red-400": depositType === DEPOSIT_TYPE["TON"]
+  })
 
   useEffect(() => {
     getBalance().then((_balance) => {
@@ -53,22 +66,31 @@ export default function Balance() {
         Balance
       </h1>
 
-      <h2 className="mb-10">Your current Balance is <span className="text-5xl">{balance}</span> PLN</h2>
+      <h2 className="mb-5">Your current Balance is <span className="text-5xl">{balance}</span> PLN</h2>
+
+      <Link href="/balance/history">
+        <button className="border-2 rounded p-2 mb-5 text-white">
+          Transactions History
+        </button>
+      </Link>
+
 
       <h3 className="mb-4">Fill up your balance with:</h3>
 
       <ul className="flex gap-2 mb-10">
         <li>
           <button onClick={() => setDepositType(DEPOSIT_TYPE["TRC-20"])}
-                  className="border-2 border-white rounded p-2">USDT TRC-20
+                  className={usdtButtonClasses}>USDT TRC-20
           </button>
         </li>
         <li>
-          <button onClick={() => setDepositType(DEPOSIT_TYPE.BLIK)} className="border-2 border-white rounded p-2">BLIK
+          <button onClick={() => setDepositType(DEPOSIT_TYPE.BLIK)}
+                  className={blikButtonClasses}>BLIK
           </button>
         </li>
         <li>
-          <button onClick={() => setDepositType(DEPOSIT_TYPE.TON)} className="border-2 border-white rounded p-2">TON
+          <button onClick={() => setDepositType(DEPOSIT_TYPE.TON)}
+                  className={tonButtonClasses}>TON
           </button>
         </li>
       </ul>

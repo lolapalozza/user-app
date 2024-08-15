@@ -20,6 +20,9 @@ export const DepositTon = () => {
           amount: (amount * 1000000000).toString() //Toncoin in nanotons
         }
       ]
+    }).then(() => {
+      // get transaction ID, check transaction receiver, check amount snf send these three to backend
+      // back should find this transaction in TON blockchain, check amount, receiver and that this transaction is new and add it
     }).catch((e) => {
       console.log(e)
     })
