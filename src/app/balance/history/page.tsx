@@ -32,7 +32,7 @@ export default function Balance() {
         </tr>
         </thead>
         <tbody>
-        {transactions.map((tr) => <tr>
+        {transactions.map((tr, index) => <tr key={index}>
             <td>{formatDate(tr.created_at)}</td>
             <td>{tr.transaction_type}</td>
             <td>{tr.amount}</td>

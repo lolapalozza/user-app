@@ -65,5 +65,16 @@ export const createTONTransaction = async({amount, comment}) => {
   }catch(e){
     throw(e)
   }
+}
 
+export const getTonRate = async() => {
+  try{
+    const response = await fetch("https://tonapi.io/v2/rates?tokens=ton&currencies=pln", {
+      method: 'GET',
+    })
+    const result = await response.json();
+    return result.rates.TON.prices.PLN;
+  }catch(e){
+    throw(e)
+  }
 }
