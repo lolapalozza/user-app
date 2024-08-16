@@ -34,11 +34,13 @@ export default function Balance() {
     "bg-red-400": depositType === DEPOSIT_TYPE["TON"]
   })
 
-  useEffect(() => {
+  const fetchBalance = () => {
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
-  }, [])
+  }
+
+  useEffect(fetchBalance, [])
 
   useEffect(() => {
     getPaymentJob().then(setActiveJob)
@@ -101,7 +103,7 @@ export default function Balance() {
 
       {depositType === DEPOSIT_TYPE["TON"] && (
         <TonConnectUIProvider manifestUrl="https://user-app-x.vercel.app/tonconnect-manifest.json">
-          <DepositTon />
+          <DepositTon onSuccess={fetchBalance} />
         </TonConnectUIProvider>
       )}
 

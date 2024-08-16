@@ -1,17 +1,5 @@
 import {http} from "@/services/httpClient";
 
-// export const addTransaction = async({amount, paymentType}) => {
-//   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/transactions", {
-//     method: 'POST',
-//     body: JSON.stringify({transactionId: "xxx" + Math.random(), paymentType, amount, direction: "in"}),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   })
-//   const data = await response.json()
-//   return data
-// }
-
 export const getBalance = async() => {
   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/balance`, {
     method: 'GET'
@@ -56,4 +44,26 @@ export const getTransactions = async() => {
   })
   const result = await response.json()
   return result
+}
+
+export const createTONTransaction = async({amount, comment}) => {
+  try{
+    const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + '/transaction/ton', {
+      method: 'POST',
+      body: JSON.stringify({ amount, comment }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error: ${response.status} - ${errorData.message}`);
+    }
+    const result = await response.json();
+    return result;
+
+  }catch(e){
+    throw(e)
+  }
+
 }
