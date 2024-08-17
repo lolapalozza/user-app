@@ -68,7 +68,7 @@ export default function Balance() {
         Balance
       </h1>
 
-      <h2 className="mb-5">Your current Balance is <span className="text-5xl">{balance}</span> PLN</h2>
+      <h2 className="mb-5">Your current Balance is <span className="text-5xl">{balance.toFixed(2)}</span> PLN</h2>
 
       <Link href="/balance/history">
         <button className="border-2 rounded p-2 mb-5 text-white">
