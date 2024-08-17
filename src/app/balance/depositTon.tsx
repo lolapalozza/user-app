@@ -4,7 +4,7 @@ import {useEffect, useMemo, useState} from "react";
 import TonWeb from "tonweb";
 import {createTONTransaction, getTonRate} from "@/app/balance/api";
 
-const address = 'UQBS8sti9dUFpJ4oxf1oFrt58Vs_NuUJ4G4APe3_cEHtqYJM'
+const address = 'UQAAAcpu6iAoOSdhgCbLh76280j7Y6BFpQ5q60XLJu7WQKZC'
 
 export const DepositTon = ({onSuccess}) => {
   const wallet = useTonWallet();
