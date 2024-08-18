@@ -28,7 +28,7 @@ export default function OrdersDrops() {
 
       <BackButton linkTo="/orders" />
 
-      <table className="w-full border-2 border-separate p-2 border-spacing-2">
+      {drops.length ? <table className="w-full border-2 border-separate p-2 border-spacing-2">
         <thead>
         <tr>
           <td>Product</td>
@@ -62,7 +62,11 @@ export default function OrdersDrops() {
           </tr>
         })}
         </tbody>
-      </table>
+      </table> : <div className="mt-5">
+        No Inpost Orders Yet
+      </div>}
+
+
     </main>
   );
 }
