@@ -63,7 +63,7 @@ export default function OrdersDrops() {
         })}
         </tbody>
       </table> : <div className="mt-5">
-        No Inpost Orders Yet
+        No Drops Yet
       </div>}
 
 
