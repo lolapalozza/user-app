@@ -4,6 +4,7 @@ import {useEffect, useMemo, useState} from "react";
 import TonWeb from "tonweb";
 import {createTONTransaction, getTonRate} from "@/app/balance/api";
 
+//@todo get from BE
 const address = 'UQAAAcpu6iAoOSdhgCbLh76280j7Y6BFpQ5q60XLJu7WQKZC'
 
 export const DepositTon = ({onSuccess}) => {
@@ -36,25 +37,25 @@ export const DepositTon = ({onSuccess}) => {
 
     setIsLoading(true)
 
-    const testComment = amount + Math.random() //@todo invent something smarter
+    const comment = `ton:${tonAmount},pln:${amount};` + Math.random() // we use PLN amount from here!
 
     let a = new TonWeb.boc.Cell();
     a.bits.writeUint(0, 32);
-    a.bits.writeString(testComment);
+    a.bits.writeString(comment);
     let payload = TonWeb.utils.bytesToBase64(await a.toBoc());
 
     tonConnectUI.sendTransaction({
       validUntil: Math.floor(new Date() / 1000) + 360,
       messages: [
         {
-          address: address,
+          address,
           amount: (tonAmount * 1000000000).toString(), //Toncoin in nanotons
           payload
         }
       ]
     }).then((result) => { // after transaction done we should check it on backend and create transaction in our db
       setTimeout(() => {
-        createTONTransaction({amount: (tonAmount * 1000000000).toString(), comment: testComment})
+        createTONTransaction({amount: (tonAmount * 1000000000).toString(), comment})
           .then((data) => {
             if(data.success){
               setAmount(0)
@@ -68,7 +69,7 @@ export const DepositTon = ({onSuccess}) => {
           }).catch(() => { // here transaction done, but dont count
           setIsLoading(false)
           setMessage("transaction done, but we didn\'t find it in blockchain. Contact admin")
-          console.log(amount, testComment)
+          console.log(amount, comment)
         })
       },5000)
     }).catch((e) => {
