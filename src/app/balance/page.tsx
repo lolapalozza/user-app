@@ -40,7 +40,7 @@ export default function Balance() {
     setBalanceLoading(true)
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
-      // setBalanceLoading(false)
+      setBalanceLoading(false)
     })
   }
 
