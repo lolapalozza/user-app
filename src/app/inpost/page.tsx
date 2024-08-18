@@ -7,15 +7,21 @@ import {CartContext} from "@/app/inpost/cartContext";
 import {BackButton} from "@/shared/BackButton";
 import {CategoriesSelector} from "@/app/inpost/categoriesSelector";
 import {CartButton} from "@/app/inpost/CartButton";
+import {Loading} from "@/shared/Loading";
 
 export default function Products() {
   const [products, setProducts] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(null)
+  const [productsLoading, setProductsLoading] = useState(false)
 
   const { cart } = useContext(CartContext);
 
   useEffect(() => {
-    getProducts().then((setProducts))
+    setProductsLoading(true)
+    getProducts().then((products) => {
+      setProducts(products);
+      setProductsLoading(false)
+    })
   }, [])
 
   const cartQuantity = useMemo(() => {
@@ -35,15 +41,18 @@ export default function Products() {
 
       <CategoriesSelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
-      <ul className="flex flex-wrap w-full">
-        {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
-          <ProductView
-            key={product.id}
-            product={product}
-            quantity={cart.cartItems}
-            setQuantity={cart.setCartItems}/>
-        )}
-      </ul>
+      {
+        productsLoading ? <Loading/> : <ul className="flex flex-wrap w-full">
+          {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
+            <ProductView
+              key={product.id}
+              product={product}
+              quantity={cart.cartItems}
+              setQuantity={cart.setCartItems}/>
+          )}
+        </ul>
+      }
+
 
     </main>
   );
