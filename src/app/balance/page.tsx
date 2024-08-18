@@ -9,6 +9,7 @@ import {DepositTon} from "@/app/balance/depositTon";
 import {TonConnectUIProvider} from "@tonconnect/ui-react";
 import classNames from "classnames";
 import Link from "next/link";
+import {Loading} from "@/shared/Loading";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
@@ -21,6 +22,7 @@ export default function Balance() {
   const [depositType, setDepositType] = useState(null)
   const [balance, setBalance] = useState(0)
   const [activeJob, setActiveJob] = useState({})
+  const [balanceLoading, setBalanceLoading] = useState(false)
 
   const usdtButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
     "bg-red-400": depositType === DEPOSIT_TYPE["TRC-20"]
@@ -35,8 +37,10 @@ export default function Balance() {
   })
 
   const fetchBalance = () => {
+    setBalanceLoading(true)
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
+      // setBalanceLoading(false)
     })
   }
 
@@ -68,11 +72,14 @@ export default function Balance() {
         Balance
       </h1>
 
-      <h2 className="mb-5">Your current Balance is <span className="text-5xl">{balance.toFixed(2)}</span> PLN</h2>
+      {
+        balanceLoading ? <div className="mb-5"><Loading /></div> :
+          <h2 className="mb-5">Your current Balance is <span className="text-5xl">{balance.toFixed(2)}</span> PLN</h2>
+      }
 
       <Link href="/balance/history">
         <button className="border-2 rounded p-2 mb-5 text-white">
-          Transactions History
+        Transactions History
         </button>
       </Link>
 
