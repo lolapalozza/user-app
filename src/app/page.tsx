@@ -21,7 +21,7 @@ export default function Home() {
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
       {
-        userLoading ? <Loading /> : <>
+        userLoading ? <div className="mb-5"><Loading /></div> : <>
           {user.full_name && <div className="mb-10">Hello, {user.full_name}</div>}
         </>
       }

@@ -41,6 +41,7 @@ export default function Balance() {
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
       setBalanceLoading(false)
+      setDepositType(null)
     })
   }
 
@@ -55,13 +56,6 @@ export default function Balance() {
       setDepositType(DEPOSIT_TYPE["TRC-20"])
     }
   }, [activeJob])
-
-  const depositCallback = () => {
-    getBalance().then((_balance) => {
-      setBalance(_balance.balance)
-    })
-    setDepositType(null)
-  }
 
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
@@ -104,7 +98,7 @@ export default function Balance() {
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} depositCallback={depositCallback}/>}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} onSuccess={fetchBalance}/>}
 
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 

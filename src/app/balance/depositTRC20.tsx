@@ -6,7 +6,7 @@ import {Loading} from "@/shared/Loading";
 
 const address = "TWTiiVQpCMndDjGzvGoVDorV99QDKmbhjF"
 
-export const DepositTRC20 = ({depositCallback, job}) => {
+export const DepositTRC20 = ({onSuccess, job}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
