@@ -5,10 +5,11 @@ import Image from "next/image";
 import {useContext, useEffect, useState} from "react";
 import {hideBackButton} from "@/shared/BackButton";
 import {UserContext} from "@/app/Auth";
+import {Loading} from "@/shared/Loading";
 
 export default function Home() {
 
-  const { user }  = useContext(UserContext)
+  const { user, userLoading }  = useContext(UserContext)
 
   useEffect(() => {
     hideBackButton()
@@ -19,7 +20,11 @@ export default function Home() {
 
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
-      {user.full_name && <div className="mb-10">Hello, {user.full_name}</div>}
+      {
+        userLoading ? <Loading /> : <>
+          {user.full_name && <div className="mb-10">Hello, {user.full_name}</div>}
+        </>
+      }
 
       <ul className="flex gap-10">
         <li className="flex flex-col items-center">

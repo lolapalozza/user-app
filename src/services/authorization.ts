@@ -4,6 +4,7 @@ import {http} from "@/services/httpClient";
 const INTERVAL = 500
 
 export const authorization = {
+  //@todo this should be in .env or even from BE
   bot_token: '7435766909:AAG0Ue5yHw9h6YQ7p9AKvl1rL3usmeBNy9s',
 
   init: async() => {
@@ -14,7 +15,6 @@ export const authorization = {
           window.Telegram.WebApp.initDataUnsafe.user) {
           clearInterval(interval);
           const initData = window.Telegram.WebApp.initData;
-          // const initData = 'query_id=AAGYEdk-AAAAAJgR2T5yJhUO&user=%7B%22id%22%3A1054413208%2C%22first_name%22%3A%22Fyodor%22%2C%22last_name%22%3A%22Khruschov%22%2C%22username%22%3A%22elevenmins%22%2C%22language_code%22%3A%22ru%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1722002004&hash=372706769b22709b918ad3569ce2bd4d49d9c5e579b61d055cf76a51d909808e'
           const result = authorization.isValidHash(initData);
           if (result) {
             http.setHeaders("tg_query", initData);
@@ -34,9 +34,6 @@ export const authorization = {
 
     const secret_key = authorization._HMAC_SHA256(authorization.bot_token, 'WebAppData')
     const hashGenerate = authorization._hex(authorization._HMAC_SHA256(data_check_string, secret_key))
-
-    console.log(hashGenerate)
-    console.log(hash)
 
     return Boolean(hashGenerate === hash)
   },

@@ -27,16 +27,16 @@ export const DepositTon = ({onSuccess}) => {
 
   const sendTransaction = async() => {
 
-    // if(amount < 10){
-    //   setMessage("Amount should be more than 10 PLN")
-    //   return setTimeout(() => {
-    //     setMessage("")
-    //   }, 4000)
-    // }
+    if(amount < 10){
+      setMessage("Amount should be more than 10 PLN")
+      return setTimeout(() => {
+        setMessage("")
+      }, 4000)
+    }
 
     setIsLoading(true)
 
-    const testComment = amount + Math.random()
+    const testComment = amount + Math.random() //@todo invent something smarter
 
     let a = new TonWeb.boc.Cell();
     a.bits.writeUint(0, 32);
@@ -52,7 +52,7 @@ export const DepositTon = ({onSuccess}) => {
           payload
         }
       ]
-    }).then((result) => {
+    }).then((result) => { // after transaction done we should check it on backend and create transaction in our db
       setTimeout(() => {
         createTONTransaction({amount: (tonAmount * 1000000000).toString(), comment: testComment})
           .then((data) => {
@@ -65,8 +65,10 @@ export const DepositTon = ({onSuccess}) => {
                 setMessage("")
               }, 4000)
             }
-          }).catch(() => {
+          }).catch(() => { // here transaction done, but dont count
           setIsLoading(false)
+          setMessage("transaction done, but we didn\'t find it in blockchain. Contact admin")
+          console.log(amount, testComment)
         })
       },5000)
     }).catch((e) => {
