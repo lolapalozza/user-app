@@ -4,7 +4,7 @@ import {useContext, useEffect, useMemo, useState} from "react";
 import {createInpostOrder, getProducts} from "@/app/inpost/api";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/inpost/cartContext";
-import {BackButton, showBackButton} from "@/shared/BackButton";
+import {BackButton} from "@/shared/BackButton";
 import {formatToOrderDTO} from "@/app/inpost/utils/formatToOrderDTO";
 import {AddressForm} from "@/app/inpost/cart/addressForm";
 import {getBalance} from "@/app/balance/api";
@@ -12,6 +12,7 @@ import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
+import {Loading} from "@/shared/Loading";
 
 const DELIVERY_PRICE = 40
 const FREE_DELIVERY_TRESHOLD = 700
@@ -21,18 +22,24 @@ export default function Cart() {
   const [products, setProducts] = useState([])
   const [orderSuccess, setOrderSuccess] = useState(false)
   const [balance, setBalance] = useState(0)
+  const [cartLoading, setCartLoading] = useState(false)
+
 
   const { cart } = useContext(CartContext);
   const router = useRouter()
 
   useEffect(() => {
-    getBalance().then((_balance) => {
+    setCartLoading(true)
+
+    const balancePromise = getBalance().then((_balance) => {
       setBalance(_balance.balance)
     })
-  }, [])
+    const productsPromise = getProducts().then((_products) => setProducts(_products))
 
-  useEffect(() => {
-    getProducts().then((_products) => setProducts(_products))
+    Promise.all([balancePromise, productsPromise]).then(() => {
+      setCartLoading(false)
+    })
+
   }, [])
 
   const productsPrice = useMemo(() => {
@@ -61,20 +68,15 @@ export default function Cart() {
     })
 
     if(result.success){
-
       cart.setCartItems({})
-
       setOrderSuccess(true);
       setTimeout(() => {
         setOrderSuccess(false)
       }, 4000)
-
       router.push("/orders/inpost")
-
     }
 
     return result
-
   }
 
   return (
@@ -85,76 +87,79 @@ export default function Cart() {
         Cart
       </h2>
 
-      <div className="p-4 w-full">
-        {productsPrice > 0 ? <ul>
-          {Object.entries(cart.cartItems).map(([_id, quantity]) => {
-              const product = products.find(({id}) => id === _id)
-              return <li key={_id} className="flex items-center mb-2">
-                <div className="min-w-24 w-1/3">{product?.short_description}</div>
-                <QuantityCounter
-                  className="w-1/3"
-                  quantity={quantity}
-                  setQuantity={(value) => {
-                    let _cartItems;
+      {
+        cartLoading ? <Loading/> : <div className="p-4 w-full">
+          {productsPrice > 0 ? <ul>
+            {Object.entries(cart.cartItems).map(([_id, quantity]) => {
+                const product = products.find(({id}) => id === _id)
+                return <li key={_id} className="flex items-center mb-2">
+                  <div className="min-w-24 w-1/3">{product?.short_description}</div>
+                  <QuantityCounter
+                    className="w-1/3"
+                    quantity={quantity}
+                    setQuantity={(value) => {
+                      let _cartItems;
 
-                    if (value === 0) {
-                      // Remove the property if the value is 0
-                      const { [_id]: _, ...rest } = cart.cartItems;
-                      _cartItems = rest;
-                    } else {
-                      // Set the new value otherwise
-                      _cartItems = {
-                        ...cart.cartItems,
-                        [_id]: value,
-                      };
-                    }
+                      if (value === 0) {
+                        // Remove the property if the value is 0
+                        const {[_id]: _, ...rest} = cart.cartItems;
+                        _cartItems = rest;
+                      } else {
+                        // Set the new value otherwise
+                        _cartItems = {
+                          ...cart.cartItems,
+                          [_id]: value,
+                        };
+                      }
 
-                    cart.setCartItems(_cartItems);
-                  }}
-                  product={product}
-                />
-                <div className="w-1/3 text-right">{product?.price * quantity} PLN</div>
-              </li>
-            }
-          )}
+                      cart.setCartItems(_cartItems);
+                    }}
+                    product={product}
+                  />
+                  <div className="w-1/3 text-right">{product?.price * quantity} PLN</div>
+                </li>
+              }
+            )}
 
-          <div className="text-right mt-5">Subtotal: {productsPrice} PLN</div>
+            <div className="text-right mt-5">Subtotal: {productsPrice} PLN</div>
 
-        </ul> : <div className="text-center">
-          <Image
-            src="/icons/icon-empty.png"
-            className="dark:invert inline-block mb-5"
-            width={64}
-            height={64}
-          />
-          <h2>Cart is Empty</h2>
-        </div>}
+          </ul> : <div className="text-center">
+            <Image
+              src="/icons/icon-empty.png"
+              className="dark:invert inline-block mb-5"
+              width={64}
+              height={64}
+            />
+            <h2>Cart is Empty</h2>
+          </div>}
 
-        {productsPrice > 0 && <>
-          <hr className="color-white w-full mt-5"/>
-          <div className="mt-5 flex gap-2 flex-col">
+          {productsPrice > 0 && <>
+            <hr className="color-white w-full mt-5"/>
+            <div className="mt-5 flex gap-2 flex-col">
 
             <span>
               Delivery: {deliveryPrice} PLN <span className="text-xs">(free from 700 PLN)</span>
             </span>
 
-            <span>Total Price: {productsPrice + deliveryPrice} PLN</span>
-            <span className={balanceClass}>Your Balance: {balance} PLN</span>
-            {
-              balance < totalPrice &&
-                <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
-                    className="text-blue-300" href="/balance">balance</Link></span>
-            }
-          </div>
-        </>}
+              <span>Total Price: {productsPrice + deliveryPrice} PLN</span>
+              <span className={balanceClass}>Your Balance: {balance} PLN</span>
+              {
+                balance < totalPrice &&
+                  <span
+                      className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
+                      className="text-blue-300" href="/balance">balance</Link></span>
+              }
+            </div>
+          </>}
 
-      </div>
+        </div>
+      }
 
       {(productsPrice > 0 && balance >= totalPrice) && <>
         <div className="p-4 w-full">
           <hr className="color-white w-full"/>
         </div>
-        <AddressForm createInpost={createInpost} />
+        <AddressForm createInpost={createInpost}/>
       </>}
 
       {
@@ -165,8 +170,8 @@ export default function Cart() {
                 width={64}
                 height={64}
             />
-          Order Created Successfully!
-        </div>
+            Order Created Successfully!
+          </div>
       }
 
     </main>
