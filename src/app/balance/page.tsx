@@ -80,7 +80,7 @@ export default function Balance() {
 
       <Link href="/balance/history">
         <button className="border-2 rounded p-1 mb-5 text-white text-xs">
-        Transactions History
+        История Транзакций
         </button>
       </Link>
 

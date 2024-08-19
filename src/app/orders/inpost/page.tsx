@@ -92,7 +92,7 @@ export default function OrdersInpost() {
               Total: {pagination?.total}
             </div>
           </div>
-        </> : <div className="mt-5">No Inpost Orders Yet</div>
+        </> : <div className="mt-5">Заказов Inpost не найдено</div>
       }
 
 
