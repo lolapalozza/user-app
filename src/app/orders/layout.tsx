@@ -9,11 +9,11 @@ export default function OrdersLayout({children}){
 
   const path = usePathname()
 
-  const inpostButtonClasses = classNames("border-2", "p-2", {
+  const inpostButtonClasses = classNames("border-2", "p-2", "rounded", {
     "bg-red-400": path.includes('inpost')
   })
 
-  const dropsButtonClasses = classNames("border-2", "p-2", {
+  const dropsButtonClasses = classNames("border-2", "p-2", "rounded", {
     "bg-red-400": path.includes('drops')
   })
 
