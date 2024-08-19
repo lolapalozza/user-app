@@ -110,13 +110,13 @@ export default function Balance() {
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} walletAddress={paymentInfo.usdtWallet} onSuccess={fetchBalance}/>}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} walletAddress={paymentInfo?.usdtWallet} onSuccess={fetchBalance}/>}
 
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 
       {depositType === DEPOSIT_TYPE["TON"] && (
         <TonConnectUIProvider manifestUrl="https://user-app-x.vercel.app/tonconnect-manifest.json">
-          <DepositTon onSuccess={fetchBalance} walletAddress={paymentInfo.tonWallet} />
+          <DepositTon onSuccess={fetchBalance} walletAddress={paymentInfo?.tonWallet} />
         </TonConnectUIProvider>
       )}
 
