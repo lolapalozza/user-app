@@ -29,23 +29,23 @@ export default function Home() {
       <ul className="flex gap-10">
         <li className="flex flex-col items-center text-center">
           <Link href="/balance" className="flex flex-col items-center">
-            <Image
-              src="/icons/balance.png"
-              className="dark:invert"
-              width={48}
-              height={48}
-            />
+            {/*<Image*/}
+            {/*  src="/icons/icon-money.png"*/}
+            {/*  className="dark:invert mb-2"*/}
+            {/*  width={48}*/}
+            {/*  height={48}*/}
+            {/*/>*/}
             <span>Пополнить Баланс</span>
           </Link>
         </li>
         <li className="flex flex-col items-center text-center">
           <Link href="/shop" className="flex flex-col items-center">
-            <Image
-              src="/icons/orders.png"
-              className="dark:invert"
-              width={48}
-              height={48}
-            />
+            {/*<Image*/}
+            {/*  src="/icons/icon-scales.png"*/}
+            {/*  className="dark:invert mb-2"*/}
+            {/*  width={48}*/}
+            {/*  height={48}*/}
+            {/*/>*/}
             <span>В Магазин</span>
           </Link>
         </li>
@@ -73,12 +73,12 @@ export default function Home() {
         {/*</li>*/}
         <li className="flex flex-col items-center text-center">
           <Link href="/orders" className="flex flex-col items-center">
-            <Image
-              src="/icons/orders.png"
-              className="dark:invert"
-              width={48}
-              height={48}
-            />
+            {/*<Image*/}
+            {/*  src="/icons/icon-orders.png"*/}
+            {/*  className="dark:invert mb-2"*/}
+            {/*  width={48}*/}
+            {/*  height={48}*/}
+            {/*/>*/}
             <span>Просмотр Покупок</span>
           </Link>
         </li>

@@ -78,18 +78,18 @@ export default function OrdersInpost() {
           <div className="flex gap-5 mt-5">
             {offset > 0 &&
                 <button onClick={() => setOffset(offset - +limit)}
-                        className="border-2 p-1 border-white">{`<`} Prev</button>
+                        className="border-2 p-1 border-white">{`<`} Назад</button>
             }
 
             {offset} - {Math.min(offset + limit, pagination?.total)}
 
             {+limit + offset < pagination?.total &&
                 <button onClick={() => setOffset(offset + +limit)}
-                        className="border-2 p-1 border-white">Next {`>`}</button>
+                        className="border-2 p-1 border-white">Вперед {`>`}</button>
             }
 
             <div>
-              Total: {pagination?.total}
+              Всего: {pagination?.total}
             </div>
           </div>
         </> : <div className="mt-5">Заказов Inpost не найдено</div>

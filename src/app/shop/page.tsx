@@ -15,7 +15,7 @@ export default function Shop() {
         <Link href="/inpost" className="flex flex-col items-center">
           <img
             src="/icons/envelope.png"
-            className="dark:invert"
+            className="dark:invert mb-2"
             width={48}
             height={48}
           />
@@ -26,7 +26,7 @@ export default function Shop() {
         <Link href="/drops" className="flex flex-col items-center">
           <img
             src="/icons/drop.png"
-            className="dark:invert"
+            className="dark:invert mb-2"
             width={48}
             height={48}
           />
