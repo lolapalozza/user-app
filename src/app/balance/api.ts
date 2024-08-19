@@ -78,3 +78,15 @@ export const getTonRate = async() => {
     throw(e)
   }
 }
+
+export const getPaymentInfo = async() => {
+  try{
+    const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + '/payment/info', {
+      method: 'GET',
+    })
+    const result = await response.json();
+    return result;
+  }catch(e){
+    throw(e)
+  }
+}

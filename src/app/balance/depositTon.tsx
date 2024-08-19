@@ -4,10 +4,7 @@ import {useEffect, useMemo, useState} from "react";
 import TonWeb from "tonweb";
 import {createTONTransaction, getTonRate} from "@/app/balance/api";
 
-//@todo get from BE
-const address = 'UQAAAcpu6iAoOSdhgCbLh76280j7Y6BFpQ5q60XLJu7WQKZC'
-
-export const DepositTon = ({onSuccess}) => {
+export const DepositTon = ({onSuccess, walletAddress}) => {
   const wallet = useTonWallet();
   const [tonConnectUI, setOptions] = useTonConnectUI();
 
@@ -48,7 +45,7 @@ export const DepositTon = ({onSuccess}) => {
       validUntil: Math.floor(new Date() / 1000) + 360,
       messages: [
         {
-          address,
+          address: walletAddress,
           amount: (tonAmount * 1000000000).toString(), //Toncoin in nanotons
           payload
         }

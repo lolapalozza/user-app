@@ -70,9 +70,9 @@ export const Payment = ({selection, setSelection}) => {
       <button disabled={balance < selection.drop.price} onClick={order} className={placeOrderButtonClasses}>
         Place Order
       </button>
-      <button className="border-2 border-white rounded p-2">
-        Get Lucky (Game)
-      </button>
+      {/*<button className="border-2 border-white rounded p-2">*/}
+      {/*  Get Lucky (Game)*/}
+      {/*</button>*/}
     </div>
 
     {

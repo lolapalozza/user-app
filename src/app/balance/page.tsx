@@ -1,6 +1,6 @@
 'use client'
 
-import {getBalance, getPaymentJob} from "@/app/balance/api";
+import {getBalance, getPaymentInfo, getPaymentJob} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {DepositTRC20} from "@/app/balance/depositTRC20";
 import {DepositBlik} from "@/app/balance/depositBlik";
@@ -23,6 +23,7 @@ export default function Balance() {
   const [balance, setBalance] = useState(0)
   const [activeJob, setActiveJob] = useState({})
   const [balanceLoading, setBalanceLoading] = useState(false)
+  const [paymentInfo, setPaymentInfo] = useState({})
 
   const usdtButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
     "bg-red-400": depositType === DEPOSIT_TYPE["TRC-20"]
@@ -56,6 +57,12 @@ export default function Balance() {
       setDepositType(DEPOSIT_TYPE["TRC-20"])
     }
   }, [activeJob])
+
+  useEffect(() => {
+    getPaymentInfo().then((data) => {
+      setPaymentInfo(data)
+    })
+  }, [])
 
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
@@ -104,7 +111,7 @@ export default function Balance() {
 
       {depositType === DEPOSIT_TYPE["TON"] && (
         <TonConnectUIProvider manifestUrl="https://user-app-x.vercel.app/tonconnect-manifest.json">
-          <DepositTon onSuccess={fetchBalance} />
+          <DepositTon onSuccess={fetchBalance} walletAddress={paymentInfo.tonWallet} />
         </TonConnectUIProvider>
       )}
 
