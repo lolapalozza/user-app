@@ -105,7 +105,7 @@ export default function Balance() {
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} onSuccess={fetchBalance}/>}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} walletAddress={paymentInfo.usdtWallet} onSuccess={fetchBalance}/>}
 
       {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
 

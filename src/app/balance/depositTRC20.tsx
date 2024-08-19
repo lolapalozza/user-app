@@ -4,9 +4,7 @@ import {useEffect, useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 import {Loading} from "@/shared/Loading";
 
-const address = "TWTiiVQpCMndDjGzvGoVDorV99QDKmbhjF"
-
-export const DepositTRC20 = ({onSuccess, job}) => {
+export const DepositTRC20 = ({onSuccess, job, walletAddress}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
@@ -56,8 +54,8 @@ export const DepositTRC20 = ({onSuccess, job}) => {
           <div className="text-5xl">{payment.amount}</div>
           <div className="mb-5 text-sm">until {formatDate(payment.expires)}</div>
           <div className="mb-2">to this USDT address:</div>
-          <div className="mb-2">{address}</div>
-          <QRCode className="inline-block mb-2" value={address}/>
+          <div className="mb-2">{walletAddress}</div>
+          <QRCode className="inline-block mb-2" value={walletAddress}/>
           <p className="mb-20 text-sm">Your balance will be updated automatically</p>
         </div>
     }
