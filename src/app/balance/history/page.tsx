@@ -19,16 +19,16 @@ export default function Balance() {
       <BackButton linkTo="/balance" />
 
       <h1 className="mb-20">
-        Transactions History
+        История Транзакций
       </h1>
 
       <table className="border-2 border-separate p-2 border-spacing-2">
         <thead>
         <tr>
-          <td>Date</td>
-          <td>Type</td>
-          <td>Amount</td>
-          <td>Direction</td>
+          <td>Дата</td>
+          <td>Тип</td>
+          <td>Сумма</td>
+          <td>Направление</td>
         </tr>
         </thead>
         <tbody>
