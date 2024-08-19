@@ -19,8 +19,8 @@ export default function OrdersDrop({params}) {
   }, [])
 
   return (<>
-    <h1 className="mb-20 mt-5">
-      Drop Details
+    <h1 className="mb-10 mt-5">
+      Детали заказа:
     </h1>
 
     {drop.id && <>
@@ -32,7 +32,7 @@ export default function OrdersDrop({params}) {
       }
 
       <div className="mb-5">{drop.comment}</div>
-      <div className="text-sm">Purchase Date: {formatDate(drop.sold_at)}</div>
+      <div className="text-sm">Дата заказа: {formatDate(drop.sold_at)}</div>
     </>}
   </>
   );

@@ -60,8 +60,8 @@ export const Payment = ({selection, setSelection}) => {
       <span className={balanceClass}>Ваш Баланс: {balance} PLN</span>
       {
         balance < selection.drop.price &&
-          <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
-              className="text-blue-300" href="/balance">balance</Link></span>
+          <span className="text-sm">У вас недостаточно средств. Пополните свой <Link
+              className="text-blue-300" href="/balance">баланс</Link></span>
       }
     </div>
 

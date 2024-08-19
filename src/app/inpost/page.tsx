@@ -35,10 +35,6 @@ export default function Products() {
 
       <CartButton cartQuantity={cartQuantity} />
 
-      <h1 className="mb-10">
-        Collect Products and Create Order
-      </h1>
-
       <CategoriesSelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
       {

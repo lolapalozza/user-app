@@ -31,12 +31,12 @@ export default function OrdersDrops() {
       {drops.length ? <table className="w-full border-2 border-separate p-2 border-spacing-2">
         <thead>
         <tr>
-          <td>Product</td>
-          <td>Quantity</td>
+          <td>Продукт</td>
+          <td>Количество</td>
           {/*<td>City</td>*/}
           {/*<td>District</td>*/}
-          <td>Price</td>
-          <td>Purchase Date</td>
+          <td>Стоимость</td>
+          <td>Дата Заказа</td>
         </tr>
         </thead>
         <tbody>
@@ -63,7 +63,7 @@ export default function OrdersDrops() {
         })}
         </tbody>
       </table> : <div className="mt-5">
-        No Drops Yet
+        Кладов не найдено
       </div>}
 
 

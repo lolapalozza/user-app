@@ -53,28 +53,28 @@ export const AddressForm = ({createInpost}) => {
   return <div className="p-4 w-full">
     <form className="text-center">
       <h2 className="mb-10">
-        Enter your data
+        Введите данные заказа:
       </h2>
       <input className={(formErrors.email?.required || formErrors.email?.pattern) ? inputInvalidClasses : inputValidClasses} name="email"
              placeholder="Email*"
              value={email}
              onChange={(e) => setEmail(e.target.value)}/>
       {formErrors.email?.required && <div className="text-xs text-red-300 text-left mb-2">
-        Email is required
+        Введите Email
       </div>}
       {formErrors.email?.pattern && <div className="text-xs text-red-300 text-left mb-2">
-        Enter valid Email
+        Введите существующий Email
       </div>}
       <input className="w-full h-9 mb-2 p-1 rounded text-black" name="phone" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
       <input className={formErrors.pachkomat?.required ? inputInvalidClasses : inputValidClasses} name="pachkomat"
-             placeholder="Pachkomat*"
+             placeholder="Пачкомат*"
              value={pachkomat}
              onChange={(e) => setPachkomat(e.target.value)}/>
       {formErrors.pachkomat?.required && <div className="text-xs text-red-300 text-left mb-2">
-        Pachkomat is required
+        Введите пачкомат
       </div>}
       <div className="text-left text-blue-300">
-        <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Find your pachkomat</a>
+        <a target="_blank" href="https://inpost.pl/znajdz-paczkomat">Найти пачкомат</a>
       </div>
 
       <PlaceOrderButton onSubmit={onSubmit} loading={loading} />

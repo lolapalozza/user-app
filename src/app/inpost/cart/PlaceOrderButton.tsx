@@ -13,7 +13,7 @@ const PlaceOrderButton = ({onSubmit, loading}) => {
   // },[]);
 
   return <button disabled={loading} className="border-2 p-2 rounded mt-5 w-full" onClick={onSubmit}>
-    Place Order
+    Заказать
   </button>
 
 }

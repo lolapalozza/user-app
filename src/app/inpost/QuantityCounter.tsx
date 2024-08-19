@@ -26,7 +26,7 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
     }
   }
 
-  if((quantity === null || quantity === undefined || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(1)}>Add</button>);
+  if((quantity === null || quantity === undefined || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(1)}>Добавить</button>);
 
   return <div>
     <div className="flex justify-between">

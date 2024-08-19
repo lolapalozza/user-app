@@ -19,7 +19,7 @@ export default function OrdersLayout({children}){
 
   return <main className="flex min-h-screen mt-10 flex-col items-center relative">
     <BackButton/>
-    <h1 className="mb-5">Orders</h1>
+    <h1 className="mb-5">Ваши покупки</h1>
     <div className="flex gap-2 mb-5">
       <Link href="/orders/inpost" className="flex flex-col items-center">
         <button className={inpostButtonClasses}>
@@ -28,7 +28,7 @@ export default function OrdersLayout({children}){
       </Link>
       <Link href="/orders/drops" className="flex flex-col items-center">
         <button className={dropsButtonClasses}>
-          Drops
+          Клады
         </button>
       </Link>
     </div>

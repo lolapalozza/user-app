@@ -84,7 +84,7 @@ export default function Cart() {
       <BackButton linkTo="/inpost" />
 
       <h2 className="mb-10">
-        Cart
+        Корзина
       </h2>
 
       {
@@ -121,7 +121,7 @@ export default function Cart() {
               }
             )}
 
-            <div className="text-right mt-5">Subtotal: {productsPrice} PLN</div>
+            <div className="text-right mt-5">Сумма заказа: {productsPrice} PLN</div>
 
           </ul> : <div className="text-center">
             <Image
@@ -130,7 +130,7 @@ export default function Cart() {
               width={64}
               height={64}
             />
-            <h2>Cart is Empty</h2>
+            <h2>Корзина пуста</h2>
           </div>}
 
           {productsPrice > 0 && <>
@@ -138,16 +138,16 @@ export default function Cart() {
             <div className="mt-5 flex gap-2 flex-col">
 
             <span>
-              Delivery: {deliveryPrice} PLN <span className="text-xs">(free from 700 PLN)</span>
+              Доставка: {deliveryPrice} PLN <span className="text-xs">(бесплатно от 700 PLN)</span>
             </span>
 
-              <span>Total Price: {productsPrice + deliveryPrice} PLN</span>
-              <span className={balanceClass}>Your Balance: {balance} PLN</span>
+              <span>Итого: {productsPrice + deliveryPrice} PLN</span>
+              <span className={balanceClass}>Ваш Баланс: {balance} PLN</span>
               {
                 balance < totalPrice &&
                   <span
-                      className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
-                      className="text-blue-300" href="/balance">balance</Link></span>
+                      className="text-sm">У вас недостаточно средств. Пополните <Link
+                      className="text-blue-300" href="/balance">баланс</Link></span>
               }
             </div>
           </>}

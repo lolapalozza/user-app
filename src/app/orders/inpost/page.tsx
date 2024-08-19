@@ -47,10 +47,10 @@ export default function OrdersInpost() {
           <table className="w-full border-2 border-separate p-2 border-spacing-2">
             <thead>
             <tr>
-              <td>Order</td>
-              <td>Pachkomat</td>
-              <td>Price</td>
-              <td>Date</td>
+              <td>Заказ</td>
+              <td>Пачкомат</td>
+              <td>Стоимость</td>
+              <td>Дата создания</td>
             </tr>
             </thead>
             <tbody>
