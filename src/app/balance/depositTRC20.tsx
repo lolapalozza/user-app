@@ -43,7 +43,8 @@ export const DepositTRC20 = ({onSuccess, job}) => {
 
   return <div className="text-center">
     <h3>Enter amount in PLN</h3>
-    <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" className="bg-transparent text-5xl text-center mb-5 w-40 outline-none" autoFocus />
+    <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" className="bg-transparent text-5xl text-center mb-5 w-40 outline-none" pattern="^\d*$"
+           autoFocus />
     <div className="flex flex-col items-center gap-2 justify-center">
       <button className="border-2 border-white rounded p-2" onClick={createPayment}>Deposit</button>
       {isLoading && <Loading />}
