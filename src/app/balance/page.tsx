@@ -103,6 +103,11 @@ export default function Balance() {
                   className={tonButtonClasses}>TON
           </button>
         </li>
+        <li>
+          <Link href="/lucky">
+            <button className={tonButtonClasses}>Lucky</button>
+          </Link>
+        </li>
       </ul>
 
       {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} walletAddress={paymentInfo.usdtWallet} onSuccess={fetchBalance}/>}

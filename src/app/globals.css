@@ -60,3 +60,21 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.lucky-board{
+  width: 300px;
+  user-select: none; /* Предотвращает выделение текста */
+}
+
+.lucky-board .cell{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lucky-board .cell.selected{
+  background-color: rgb(248 113 113);
+}

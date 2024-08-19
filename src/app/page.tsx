@@ -6,6 +6,7 @@ import {useContext, useEffect, useState} from "react";
 import {hideBackButton} from "@/shared/BackButton";
 import {UserContext} from "@/app/Auth";
 import {Loading} from "@/shared/Loading";
+import {LuckyGame} from "@/app/drops/luckyGame/LuckyGame";
 
 export default function Home() {
 
