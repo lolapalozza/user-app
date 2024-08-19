@@ -48,7 +48,7 @@ export const Payment = ({selection, setSelection}) => {
 
   return <div>
 
-    <h2 className="mb-5">Ready to Order?</h2>
+    <img className="w-6/12 mb-2" src={`${process.env.NEXT_PUBLIC_API_URL}/products_photo/${selection.product.photo}`} />
 
     <p className="mb-2">{selection.product.product} - {selection.drop.amount}{selection.drop.unit} </p>
     <p className="mb-5">{selection.city.name} - {selection.drop.district.title} </p>
@@ -56,8 +56,8 @@ export const Payment = ({selection, setSelection}) => {
     <hr className="color-white w-full mb-5"/>
 
     <div className="flex gap-2 flex-col mb-5">
-      <span>Total Price: {selection.drop.price} PLN</span>
-      <span className={balanceClass}>Your Balance: {balance} PLN</span>
+      <span>Стоимость: {selection.drop.price} PLN</span>
+      <span className={balanceClass}>Ваш Баланс: {balance} PLN</span>
       {
         balance < selection.drop.price &&
           <span className="text-sm">You have insufficient funds to purchase this order. Please fill up your <Link
@@ -68,7 +68,7 @@ export const Payment = ({selection, setSelection}) => {
 
     <div className="flex gap-2">
       <button disabled={balance < selection.drop.price} onClick={order} className={placeOrderButtonClasses}>
-        Place Order
+        Купить
       </button>
       {/*<button className="border-2 border-white rounded p-2">*/}
       {/*  Get Lucky (Game)*/}

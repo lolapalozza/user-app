@@ -27,8 +27,8 @@ export default function Drops() {
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
 
-      <h1 className="mb-2">
-        Drops
+      <h1 className="mb-5">
+        Клады
       </h1>
 
       <BackButton />

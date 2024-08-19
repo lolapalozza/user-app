@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import {hideBackButton} from "@/shared/BackButton";
 import {UserContext} from "@/app/Auth";
 import {Loading} from "@/shared/Loading";
-import {LuckyGame} from "@/app/drops/luckyGame/LuckyGame";
 
 export default function Home() {
 
@@ -23,34 +22,12 @@ export default function Home() {
 
       {
         userLoading ? <div className="mb-5"><Loading /></div> : <>
-          {user.full_name && <div className="mb-10">Hello, {user.full_name}</div>}
+          {user.full_name && <div className="mb-10">Привет, {user.full_name}</div>}
         </>
       }
 
       <ul className="flex gap-10">
-        <li className="flex flex-col items-center">
-          <Link href="/inpost" className="flex flex-col items-center">
-            <Image
-              src="/icons/envelope.png"
-              className="dark:invert"
-              width={48}
-              height={48}
-            />
-            <span>InPost</span>
-          </Link>
-        </li>
-        <li className="flex flex-col items-center">
-          <Link href="/drops" className="flex flex-col items-center">
-            <Image
-              src="/icons/drop.png"
-              className="dark:invert"
-              width={48}
-              height={48}
-            />
-            <span>Drops</span>
-          </Link>
-        </li>
-        <li className="flex flex-col items-center">
+        <li className="flex flex-col items-center text-center">
           <Link href="/balance" className="flex flex-col items-center">
             <Image
               src="/icons/balance.png"
@@ -58,10 +35,43 @@ export default function Home() {
               width={48}
               height={48}
             />
-            <span>Balance</span>
+            <span>Пополнить Баланс</span>
           </Link>
         </li>
-        <li className="flex flex-col items-center">
+        <li className="flex flex-col items-center text-center">
+          <Link href="/shop" className="flex flex-col items-center">
+            <Image
+              src="/icons/orders.png"
+              className="dark:invert"
+              width={48}
+              height={48}
+            />
+            <span>В Магазин</span>
+          </Link>
+        </li>
+        {/*<li className="flex flex-col items-center text-center">*/}
+        {/*  <Link href="/inpost" className="flex flex-col items-center">*/}
+        {/*    <Image*/}
+        {/*      src="/icons/envelope.png"*/}
+        {/*      className="dark:invert"*/}
+        {/*      width={48}*/}
+        {/*      height={48}*/}
+        {/*    />*/}
+        {/*    <span>InPost</span>*/}
+        {/*  </Link>*/}
+        {/*</li>*/}
+        {/*<li className="flex flex-col items-center text-center">*/}
+        {/*  <Link href="/drops" className="flex flex-col items-center">*/}
+        {/*    <Image*/}
+        {/*      src="/icons/drop.png"*/}
+        {/*      className="dark:invert"*/}
+        {/*      width={48}*/}
+        {/*      height={48}*/}
+        {/*    />*/}
+        {/*    <span>Drops</span>*/}
+        {/*  </Link>*/}
+        {/*</li>*/}
+        <li className="flex flex-col items-center text-center">
           <Link href="/orders" className="flex flex-col items-center">
             <Image
               src="/icons/orders.png"
@@ -69,8 +79,8 @@ export default function Home() {
               width={48}
               height={48}
             />
-            <span>Orders</span>
-            </Link>
+            <span>Просмотр Покупок</span>
+          </Link>
         </li>
       </ul>
     </main>

@@ -25,7 +25,7 @@ export const SelectCity = ({selection, setSelection}) => {
     setSelection(_selection)
   }
   return <div>
-    <h2>Select City:</h2>
+    <h2>Выберите город:</h2>
 
     {
       citiesLoading ? <div className="text-center"><Loading/></div> : <ul className="mt-10 justify-center flex gap-1 flex-wrap">

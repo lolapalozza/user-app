@@ -22,7 +22,7 @@ export const SelectDrop = ({selection, setSelection}) => {
     setSelection(_selection)
   }
   return <div>
-    <h2>Select Drop:</h2>
+    <h2>Выберите Клад:</h2>
 
     {
       dropsLoading ? <div className="text-center"><Loading/></div> : <ul className="mt-10 flex gap-1 flex-wrap">

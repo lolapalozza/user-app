@@ -22,7 +22,7 @@ export const BreadCrumbs = ({selection, setSelection}) => {
 
   return <div className="mb-5">
     <div>{selection.city &&
-        <div className="flex items-center gap-1">City: {selection.city.name} <i onClick={() => goToStep(STEP.CITY)}>
+        <div className="flex items-center gap-1">Город: {selection.city.name} <i onClick={() => goToStep(STEP.CITY)}>
           <Image
               src="/icons/icon-edit.png"
               className="dark:invert"
@@ -30,7 +30,7 @@ export const BreadCrumbs = ({selection, setSelection}) => {
               height={16}
           />
         </i></div>}</div>
-    <div>{selection.product && <div className="flex items-center gap-1">Product: {selection.product.product} <i
+    <div>{selection.product && <div className="flex items-center gap-1">Продукт: {selection.product.product} <i
         onClick={() => goToStep(STEP.PRODUCT)}>
       <Image
           src="/icons/icon-edit.png"

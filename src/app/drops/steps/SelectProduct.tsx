@@ -27,7 +27,7 @@ export const SelectProduct = ({selection, setSelection}) => {
   }
 
   return <div>
-    <h2>Select Product:</h2>
+    <h2>Выберите Продукт:</h2>
 
     {
       productsLoading ? <div className="text-center"><Loading/></div> : <ul className="mt-10 justify-center flex gap-1 flex-wrap">

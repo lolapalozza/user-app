@@ -79,12 +79,12 @@ export const DepositTon = ({onSuccess, walletAddress}) => {
     <TonConnectButton/>
     {
       wallet?.name && <div className="mt-5">
-        <h3>Enter amount in PLN</h3>
+        <h3>Сумма Депозита (PLN):</h3>
         <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number"
                className="bg-transparent text-5xl text-center w-40 outline-none" pattern="^\d*$" autoFocus/>
-          <div className="mb-5 mt-2">approximately {tonAmount} in TON</div>
+          <div className="mb-5 mt-2">{tonAmount} TON</div>
         <div className="flex flex-col items-center gap-2 justify-center">
-          <button className="border-2 border-white rounded p-2" onClick={sendTransaction}>Deposit</button>
+          <button className="border-2 border-white rounded p-2" onClick={sendTransaction}>Оплатить</button>
           {isLoading && <Loading/>}
           {message}
         </div>
