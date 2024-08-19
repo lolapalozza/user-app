@@ -105,7 +105,7 @@ export default function Balance() {
         </li>
         <li>
           <Link href="/lucky">
-            <button className={tonButtonClasses}>Lucky</button>
+            <button className="border-2 p-2 rounded text-xs text-white">Lucky (test)</button>
           </Link>
         </li>
       </ul>
