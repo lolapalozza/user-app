@@ -4,8 +4,7 @@ import {http} from "@/services/httpClient";
 const INTERVAL = 500
 
 export const authorization = {
-  //@todo this should be in .env or even from BE
-  bot_token: '7435766909:AAG0Ue5yHw9h6YQ7p9AKvl1rL3usmeBNy9s',
+  bot_token: process.env.NEXT_PUBLIC_BOT_TOKEN,
 
   init: async() => {
     return new Promise((resolve, reject) => {
