@@ -22,7 +22,10 @@ export default function Home() {
 
       {
         userLoading ? <div className="mb-5"><Loading /></div> : <>
-          {user.full_name && <div className="mb-10">Привет, {user.full_name}</div>}
+          {user.full_name && <div className="text-center">
+            <div className="mb-10 text-3xl">Привет, {user.full_name}</div>
+            <div className="mb-10 text-2xl">Добро пожаловать в Магазин</div>
+          </div>}
         </>
       }
 
@@ -35,7 +38,9 @@ export default function Home() {
             {/*  width={48}*/}
             {/*  height={48}*/}
             {/*/>*/}
-            <span>Пополнить Баланс</span>
+            <button className="border-2 p-2 rounded text-white">
+              <span>Пополнить Баланс</span>
+            </button>
           </Link>
         </li>
         <li className="flex flex-col items-center text-center">
@@ -46,7 +51,9 @@ export default function Home() {
             {/*  width={48}*/}
             {/*  height={48}*/}
             {/*/>*/}
-            <span>В Магазин</span>
+            <button className="border-2 p-2 rounded text-white">
+              <span>В Магазин</span>
+            </button>
           </Link>
         </li>
         {/*<li className="flex flex-col items-center text-center">*/}
@@ -79,10 +86,12 @@ export default function Home() {
             {/*  width={48}*/}
             {/*  height={48}*/}
             {/*/>*/}
-            <span>Просмотр Покупок</span>
+            <button className="border-2 p-2 rounded text-white">
+              <span>Просмотр Покупок</span>
+            </button>
           </Link>
         </li>
       </ul>
     </main>
-  );
+);
 }
