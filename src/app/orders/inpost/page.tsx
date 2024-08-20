@@ -7,6 +7,7 @@ import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 import {formatDate} from "@/app/orders/formatDate";
 import {UserContext} from "@/app/Auth";
 import {BackButton} from "@/shared/BackButton";
+import {getInpostStatus} from "@/app/orders/inpost/getInpostStatus";
 
 export default function OrdersInpost() {
   const [orders, setOrders] = useState([]);
@@ -48,9 +49,10 @@ export default function OrdersInpost() {
             <thead>
             <tr>
               <td>Заказ</td>
-              <td>Пачкомат</td>
+              {/*<td>Пачкомат</td>*/}
               <td>Стоимость</td>
               <td>Дата создания</td>
+              <td>Статус</td>
             </tr>
             </thead>
             <tbody>
@@ -62,14 +64,17 @@ export default function OrdersInpost() {
                     return acc;
                   }, {}), products)}
                 </td>
-                <td>
-                  {order.pachkomat}
-                </td>
+                {/*<td>*/}
+                {/*  {order.pachkomat}*/}
+                {/*</td>*/}
                 <td>
                   {order.price}
                 </td>
                 <td>
                   {formatDate(order.created_at)}
+                </td>
+                <td>
+                  {getInpostStatus(order)}
                 </td>
               </tr>
             })}
