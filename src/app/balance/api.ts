@@ -30,8 +30,14 @@ export const createPaymentJob = async ({amountPLN, currency}) => {
   }
 };
 
-export const getTransactions = async() => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + '/transactions', {
+export const getTransactions = async({limit=10, offset=0}) => {
+  const params = new URLSearchParams();
+  params.append('limit', limit);
+  params.append('offset', offset);
+
+  const queryString = params.toString();
+
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/transactions?${queryString}`, {
     method: 'GET'
   })
   const result = await response.json()
