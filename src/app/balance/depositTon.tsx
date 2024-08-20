@@ -25,7 +25,7 @@ export const DepositTon = ({onSuccess, walletAddress}) => {
 
   const sendTransaction = async() => {
 
-    if(amount < 10){
+    if(amount < 1){
       setMessage("Amount should be more than 10 PLN")
       return setTimeout(() => {
         setMessage("")
