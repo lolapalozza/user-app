@@ -16,7 +16,7 @@ export default function Home() {
   },[])
 
   return (
-    <main className="flex min-h-screen flex-col items-center pt-24">
+    <main className="flex min-h-screen flex-col items-center pt-24 pl-4 pr-4">
 
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
