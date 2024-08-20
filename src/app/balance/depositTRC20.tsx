@@ -1,24 +1,26 @@
 import QRCode from "react-qr-code";
-import {createPaymentJob} from "@/app/balance/api";
+import {createPaymentJob, getPaymentJob} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 import {Loading} from "@/shared/Loading";
 
-export const DepositTRC20 = ({onSuccess, job, walletAddress}) => {
+export const DepositTRC20 = ({onSuccess, walletAddress}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    if(job.jobId){
-      setPayment({
-        amount: job.cryptoAmount,
-        expires: job.expiresAt
-      })
-      setAmount(job.plnAmount)
-    }
-  }, [job])
+    getPaymentJob("usdt").then((job) => {
+      if(job && job.jobId){
+        setPayment({
+          amount: job.cryptoAmount,
+          expires: job.expiresAt
+        })
+        setAmount(job.plnAmount)
+      }
+    })
+  }, [])
 
   const createPayment = () => {
 
@@ -28,7 +30,7 @@ export const DepositTRC20 = ({onSuccess, job, walletAddress}) => {
     // }
 
     setIsLoading(true)
-    createPaymentJob(amount).then((data) => {
+    createPaymentJob({amountPLN: amount, currency: "usdt"}).then((data) => {
       setPayment({
         amount: data.amountUsdt,
         expires: data.expiresAt

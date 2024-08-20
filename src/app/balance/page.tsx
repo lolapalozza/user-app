@@ -21,7 +21,6 @@ export default function Balance() {
 
   const [depositType, setDepositType] = useState(null)
   const [balance, setBalance] = useState(0)
-  const [activeJob, setActiveJob] = useState({})
   const [balanceLoading, setBalanceLoading] = useState(false)
   const [paymentInfo, setPaymentInfo] = useState({})
 
@@ -47,16 +46,6 @@ export default function Balance() {
   }
 
   useEffect(fetchBalance, [])
-
-  useEffect(() => {
-    getPaymentJob().then(setActiveJob)
-  },[])
-
-  useEffect(() => {
-    if(activeJob.jobId){
-      setDepositType(DEPOSIT_TYPE["TRC-20"])
-    }
-  }, [activeJob])
 
   useEffect(() => {
     getPaymentInfo().then((data) => {
@@ -105,9 +94,9 @@ export default function Balance() {
         </li>
       </ul>
 
-      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 job={activeJob} walletAddress={paymentInfo?.usdtWallet} onSuccess={fetchBalance}/>}
+      {depositType === DEPOSIT_TYPE["TRC-20"] && <DepositTRC20 walletAddress={paymentInfo?.usdtWallet} onSuccess={fetchBalance}/>}
 
-      {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik />}
+      {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik walletAddress={paymentInfo?.blikWallet} />}
 
       {depositType === DEPOSIT_TYPE["TON"] && (
         <TonConnectUIProvider manifestUrl="https://user-app-x.vercel.app/tonconnect-manifest.json">
