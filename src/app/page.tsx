@@ -16,13 +16,13 @@ export default function Home() {
   },[])
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main className="flex min-h-screen flex-col items-center pt-24">
 
       {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
       {
         userLoading ? <div className="mb-5"><Loading /></div> : <>
-          {user.full_name && <div className="text-center">
+          {user.full_name && <div className="w-full text-center">
             <div className="mb-10 text-3xl">Привет, {user.full_name}</div>
             <div className="mb-10 text-2xl">Добро пожаловать в Магазин</div>
           </div>}
