@@ -31,8 +31,6 @@ export const authorization = {
     const items = data_keys.map(key => key + '=' + parsedData[key])
     const data_check_string = items.join('\n')
 
-    alert(authorization.bot_token)
-
     const secret_key = authorization._HMAC_SHA256(authorization.bot_token, 'WebAppData')
     const hashGenerate = authorization._hex(authorization._HMAC_SHA256(data_check_string, secret_key))
 
