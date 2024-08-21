@@ -18,6 +18,10 @@ export default function Home() {
   },[])
 
   useEffect(() => {
+
+    const d = JSON.stringify(window.Telegram.WebApp)
+    setHeaderColor(d)
+
     // setHeaderColor(window?.Telegram?.WebApp?.headerColor)
     // setBackgroundColor(window?.Telegram?.WebApp?.backgroundColor)
   },[])
@@ -36,7 +40,7 @@ export default function Home() {
         }
 
         <div>{headerColor}</div>
-        <div>{backgroundColor}</div>
+        {/*<div>{backgroundColor}</div>*/}
 
         <div className="mb-10 text-2xl text-center">Добро пожаловать в Магазин</div>
       </div>
