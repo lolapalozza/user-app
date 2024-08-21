@@ -32,16 +32,10 @@ export default function Home() {
         <div className="mb-10 text-2xl text-center">Добро пожаловать в Магазин</div>
       </div>
 
-      <div className="w-full flex justify-center items-center p-10 pl-4 pr-4">
-        <ul className="flex gap-10">
+      <div className="w-full flex justify-center items-center pt-10 pb-10 pl-1 pr-1">
+        <ul className="flex w-full gap-8">
           <li className="flex flex-col items-center text-center">
             <Link href="/balance" className="flex flex-col items-center">
-              {/*<Image*/}
-              {/*  src="/icons/icon-money.png"*/}
-              {/*  className="dark:invert mb-2"*/}
-              {/*  width={48}*/}
-              {/*  height={48}*/}
-              {/*/>*/}
               <button>
                 <span>Пополнить Баланс</span>
               </button>
@@ -49,47 +43,13 @@ export default function Home() {
           </li>
           <li className="flex flex-col items-center text-center">
             <Link href="/shop" className="flex flex-col items-center">
-              {/*<Image*/}
-              {/*  src="/icons/icon-scales.png"*/}
-              {/*  className="dark:invert mb-2"*/}
-              {/*  width={48}*/}
-              {/*  height={48}*/}
-              {/*/>*/}
               <button>
                 <span>В Магазин</span>
               </button>
             </Link>
           </li>
-          {/*<li className="flex flex-col items-center text-center">*/}
-          {/*  <Link href="/inpost" className="flex flex-col items-center">*/}
-          {/*    <Image*/}
-          {/*      src="/icons/envelope.png"*/}
-          {/*      className="dark:invert"*/}
-          {/*      width={48}*/}
-          {/*      height={48}*/}
-          {/*    />*/}
-          {/*    <span>InPost</span>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          {/*<li className="flex flex-col items-center text-center">*/}
-          {/*  <Link href="/drops" className="flex flex-col items-center">*/}
-          {/*    <Image*/}
-          {/*      src="/icons/drop.png"*/}
-          {/*      className="dark:invert"*/}
-          {/*      width={48}*/}
-          {/*      height={48}*/}
-          {/*    />*/}
-          {/*    <span>Drops</span>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
           <li className="flex flex-col items-center text-center">
             <Link href="/orders" className="flex flex-col items-center">
-              {/*<Image*/}
-              {/*  src="/icons/icon-orders.png"*/}
-              {/*  className="dark:invert mb-2"*/}
-              {/*  width={48}*/}
-              {/*  height={48}*/}
-              {/*/>*/}
               <button>
                 <span>Просмотр Покупок</span>
               </button>
@@ -97,8 +57,6 @@ export default function Home() {
           </li>
         </ul>
       </div>
-
-
     </main>
   );
 }
