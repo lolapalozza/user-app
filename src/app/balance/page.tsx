@@ -41,11 +41,16 @@ export default function Balance() {
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
       setBalanceLoading(false)
-      setDepositType(null)
     })
   }
 
-  useEffect(fetchBalance, [])
+  useEffect(() => {
+    fetchBalance();
+    const interval = setInterval(fetchBalance, 15000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   useEffect(() => {
     getPaymentInfo().then((data) => {
