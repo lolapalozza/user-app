@@ -1,15 +1,14 @@
 'use client';
 
 import Link from "next/link";
-import Image from "next/image";
-import {useContext, useEffect, useMemo, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {hideBackButton} from "@/shared/BackButton";
 import {UserContext} from "@/app/Auth";
 import {Loading} from "@/shared/Loading";
 
 export default function Home() {
 
-  const [headerColor, setHeaderColor] = useState("#000")
+  const [headerColor, setHeaderColor] = useState("#333")
   const [backgroundColor, setBackgroundColor] = useState("#000")
 
   const { user, userLoading }  = useContext(UserContext)
