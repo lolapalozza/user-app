@@ -78,3 +78,11 @@ body {
 .lucky-board .cell.selected{
   background-color: rgb(248 113 113);
 }
+
+.main-page-header{
+  background-color: brown;
+}
+
+.main-page-body{
+  background-color: green;
+}
