@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import {http} from "@/services/httpClient";
+import WebApp from "@twa-dev/sdk";
 
 const INTERVAL = 500
 
@@ -9,11 +10,9 @@ export const authorization = {
   init: async() => {
     return new Promise((resolve, reject) => {
       const interval = setInterval(() => {
-        if (window.Telegram &&
-          window.Telegram.WebApp.initDataUnsafe &&
-          window.Telegram.WebApp.initDataUnsafe.user) {
+        if (WebApp && WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
           clearInterval(interval);
-          const initData = window.Telegram.WebApp.initData;
+          const initData = WebApp.initData;
           const result = authorization.isValidHash(initData);
           if (result) {
             http.setHeaders("tg_query", initData);
