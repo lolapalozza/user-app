@@ -12,6 +12,10 @@ export const authorization = {
         if (window.Telegram &&
           window.Telegram.WebApp.initDataUnsafe &&
           window.Telegram.WebApp.initDataUnsafe.user) {
+
+          const d = JSON.stringify(window.Telegram.WebApp)
+          alert(d)
+
           clearInterval(interval);
           const initData = window.Telegram.WebApp.initData;
           const result = authorization.isValidHash(initData);
