@@ -17,18 +17,9 @@ export default function Home() {
     hideBackButton()
   },[])
 
-  useEffect(() => {
-
-    // const d = JSON.stringify(window.Telegram.WebApp)
-    // setHeaderColor(d)
-
-    // setHeaderColor(window?.Telegram?.WebApp?.headerColor)
-    // setBackgroundColor(window?.Telegram?.WebApp?.backgroundColor)
-  },[])
-
   return (
     <main className="flex min-h-screen flex-col items-center pl-4 pr-4">
-      <div style={{backgroundColor: headerColor}} className="w-full flex flex-col justify-center p-20">
+      <div className="main-page-header w-full flex flex-col justify-center pt-20 pb-20">
         {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
         {
@@ -38,14 +29,10 @@ export default function Home() {
             </div>}
           </>
         }
-
-        {/*<div>{headerColor}</div>*/}
-        {/*<div>{backgroundColor}</div>*/}
-
         <div className="mb-10 text-2xl text-center">Добро пожаловать в Магазин</div>
       </div>
 
-      <div style={{backgroundColor: backgroundColor}} className="w-full flex justify-center items-center p-10">
+      <div className="w-full flex justify-center items-center p-10">
         <ul className="flex gap-10">
           <li className="flex flex-col items-center text-center">
             <Link href="/balance" className="flex flex-col items-center">

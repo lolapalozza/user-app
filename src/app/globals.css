@@ -80,7 +80,7 @@ body {
 }
 
 .main-page-header{
-  background-color: brown;
+  background-color: var(--tg-theme-text-color);
 }
 
 .main-page-body{
