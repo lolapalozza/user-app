@@ -18,14 +18,15 @@ export default function Home() {
   },[])
 
   useEffect(() => {
-    setHeaderColor(window?.Telegram?.WebApp?.headerColor)
-    setBackgroundColor(window?.Telegram?.WebApp?.backgroundColor)
+    // setHeaderColor(window?.Telegram?.WebApp?.headerColor)
+    // setBackgroundColor(window?.Telegram?.WebApp?.backgroundColor)
   },[])
 
   return (
     <main className="flex min-h-screen flex-col items-center pl-4 pr-4">
       <div style={{backgroundColor: headerColor}} className="w-full flex flex-col justify-center p-20">
         {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
+
         {
           userLoading ? <div className="mb-5"><Loading/></div> : <>
             {user.full_name && <div className="w-full text-center">
@@ -34,8 +35,8 @@ export default function Home() {
           </>
         }
 
-        {headerColor}
-        {backgroundColor}
+        <div>{headerColor}</div>
+        <div>{backgroundColor}</div>
 
         <div className="mb-10 text-2xl text-center">Добро пожаловать в Магазин</div>
       </div>
