@@ -42,7 +42,7 @@ export default function Home() {
               {/*  width={48}*/}
               {/*  height={48}*/}
               {/*/>*/}
-              <button className="border-2 p-2 rounded text-white">
+              <button>
                 <span>Пополнить Баланс</span>
               </button>
             </Link>
@@ -55,7 +55,7 @@ export default function Home() {
               {/*  width={48}*/}
               {/*  height={48}*/}
               {/*/>*/}
-              <button className="border-2 p-2 rounded text-white">
+              <button>
                 <span>В Магазин</span>
               </button>
             </Link>
@@ -90,7 +90,7 @@ export default function Home() {
               {/*  width={48}*/}
               {/*  height={48}*/}
               {/*/>*/}
-              <button className="border-2 p-2 rounded text-white">
+              <button>
                 <span>Просмотр Покупок</span>
               </button>
             </Link>

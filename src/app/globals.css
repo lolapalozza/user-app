@@ -86,3 +86,11 @@ body {
 .main-page-body{
   background-color: green;
 }
+
+button{
+  /*background-color: #282e33;*/
+  background-color: var(--tg-theme-header-bg-color);
+  border-radius: 10px;
+  text-align: center;
+  padding: 14px
+}
