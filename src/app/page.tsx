@@ -18,7 +18,7 @@ export default function Home() {
   },[])
 
   return (
-    <main className="flex min-h-screen flex-col items-center pl-4 pr-4">
+    <main className="flex min-h-screen flex-col items-center">
       <div className="main-page-header w-full flex flex-col justify-center pt-20 pb-20">
         {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
@@ -32,7 +32,7 @@ export default function Home() {
         <div className="mb-10 text-2xl text-center">Добро пожаловать в Магазин</div>
       </div>
 
-      <div className="w-full flex justify-center items-center p-10">
+      <div className="w-full flex justify-center items-center p-10 pl-4 pr-4">
         <ul className="flex gap-10">
           <li className="flex flex-col items-center text-center">
             <Link href="/balance" className="flex flex-col items-center">
