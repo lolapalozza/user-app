@@ -3,6 +3,7 @@
 import {createContext, useEffect, useState} from "react";
 import {authorization} from "@/services/authorization";
 import {getUser} from "@/app/api";
+import Script from "next/script";
 
 export const UserContext = createContext({});
 
@@ -37,6 +38,7 @@ export const Auth = ({children}) => {
   }, []);
 
   return <>
+    <Script src="https://telegram.org/js/telegram-web-app.js" />
     <UserContext.Provider value={{ user, userLoading }}>
       {children}
     </UserContext.Provider>

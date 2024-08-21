@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@tonconnect/ui-react": "^2.0.8",
-    "@twa-dev/sdk": "^7.8.0",
     "classnames": "^2.5.1",
     "next": "14.2.4",
     "react": "^18",
