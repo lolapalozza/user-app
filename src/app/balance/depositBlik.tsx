@@ -25,10 +25,11 @@ export const DepositBlik = ({walletAddress}) => {
     setIsLoading(true)
     createPaymentJob({amountPLN: amount, currency: "blik"}).then((data) => {
       console.log(data)
-      // setPayment({
-      //   amount: data.amountUsdt,
-      //   expires: data.expiresAt
-      // })
+      setPayment({
+        amount: data.amount,
+        expires: data.expiresAt,
+        comment: data.paymentMeta
+      })
       setIsLoading(false)
     }).catch((e) => {
       setIsLoading(false)
