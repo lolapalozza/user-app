@@ -10,16 +10,27 @@ export const DepositTRC20 = ({onSuccess, walletAddress}) => {
   const [payment, setPayment] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
+  const fetchPaymentJob = () => {
     getPaymentJob("usdt").then((job) => {
-      if(job && job.jobId){
+      if(job && job.jobId) {
         setPayment({
           amount: job.cryptoAmount,
           expires: job.expiresAt
         })
         setAmount(job.plnAmount)
       }
+    }).catch((e) => {
+      setPayment({})
+      setAmount(0)
     })
+  }
+
+  useEffect(() => {
+    fetchPaymentJob()
+    const interval = setInterval(fetchPaymentJob, 15000)
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
   const createPayment = () => {

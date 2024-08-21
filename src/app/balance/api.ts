@@ -90,9 +90,18 @@ export const getPaymentInfo = async() => {
 }
 
 export const getPaymentJob = async(currency) => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment/${currency}`, {
-    method: 'GET'
-  })
-  const result = await response.json()
-  return result
+  try{
+    const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/payment/${currency}`, {
+      method: 'GET'
+    })
+    if(response.ok){
+      const result = await response.json()
+      return result
+    }else{
+      const error = await response.json()
+      throw error.detail
+    }
+  }catch(e){
+    throw(e)
+  }
 }

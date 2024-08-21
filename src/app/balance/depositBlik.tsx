@@ -8,7 +8,7 @@ export const DepositBlik = ({walletAddress}) => {
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
 
-  useEffect(() => {
+  const fetchPaymentJob = () => {
     getPaymentJob("blik").then((job) => {
       if(job && job.jobId){ // and job status
         setPayment({
@@ -18,7 +18,18 @@ export const DepositBlik = ({walletAddress}) => {
         })
         setAmount(job.amount)
       }
+    }).catch((e) => { // no job found
+      setPayment({})
+      setAmount(0)
     })
+  }
+
+  useEffect(() => {
+    fetchPaymentJob()
+    const interval = setInterval(fetchPaymentJob, 15000)
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
   const createPayment = () => {
