@@ -34,6 +34,10 @@ export default function Home() {
             </div>}
           </>
         }
+
+        {headerColor}
+        {backgroundColor}
+
         <div className="mb-10 text-2xl text-center">Добро пожаловать в Магазин</div>
       </div>
 
