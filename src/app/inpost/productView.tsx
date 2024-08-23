@@ -11,7 +11,7 @@ export const ProductView = ({product, quantity, setQuantity}) => {
   }
 
   const productItemsClasses = classNames(
-    "w-1/3", "p-4", "text-center", "rounded", "border-red-400",
+    "w-1/3", "pt-4", "pb-4", "text-center", "rounded", "border-red-400",
     {"border-2": quantity[product.id] > 0}
   );
 
