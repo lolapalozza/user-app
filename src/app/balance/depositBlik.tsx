@@ -8,6 +8,7 @@ export const DepositBlik = ({walletAddress}) => {
   const [isLoading, setIsLoading] = useState(false)
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
+  const [message, setMessage] = useState("")
 
   const fetchPaymentJob = () => {
     getPaymentJob("blik").then((job) => {
@@ -34,9 +35,16 @@ export const DepositBlik = ({walletAddress}) => {
   }, [])
 
   const createPayment = () => {
+
+    if(amount < 5){
+      setMessage("Amount should be more than 5 PLN")
+      return setTimeout(() => {
+        setMessage("")
+      }, 4000)
+    }
+
     setIsLoading(true)
     createPaymentJob({amountPLN: amount, currency: "blik"}).then((data) => {
-      console.log(data)
       setPayment({
         amount: data.amount,
         expires: data.expiresAt,
@@ -59,6 +67,7 @@ export const DepositBlik = ({walletAddress}) => {
     <div className="flex flex-col items-center gap-2 justify-center">
       <button className="border-2 border-white rounded p-2" onClick={createPayment}>Оплатить</button>
       {isLoading && <Loading/>}
+      {message}
     </div>
 
     {

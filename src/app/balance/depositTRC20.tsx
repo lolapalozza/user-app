@@ -10,6 +10,7 @@ export const DepositTRC20 = ({onSuccess, walletAddress}) => {
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState("")
 
   const fetchPaymentJob = () => {
     getPaymentJob("usdt").then((job) => {
@@ -36,6 +37,13 @@ export const DepositTRC20 = ({onSuccess, walletAddress}) => {
 
   const createPayment = () => {
 
+    if(amount < 5){
+      setMessage("Amount should be more than 5 PLN")
+      return setTimeout(() => {
+        setMessage("")
+      }, 4000)
+    }
+
     //if USDT job exists
     // if(job.jobId){
     //   window.Telegram.WebApp.showAlert('You\'re gonna create a new payment');
@@ -60,6 +68,7 @@ export const DepositTRC20 = ({onSuccess, walletAddress}) => {
     <div className="flex flex-col items-center gap-2 justify-center">
       <button className="border-2 border-white rounded p-2" onClick={createPayment}>Оплатить</button>
       {isLoading && <Loading />}
+      {message}
     </div>
 
     {
