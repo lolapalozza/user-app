@@ -95,3 +95,10 @@ button{
   font-size: 16px;
   padding: 8px 14px;
 }
+
+.copy-text-tooltip{
+  top: -30px;
+  right: -50px;
+  /*background-color: #282e33;*/
+  background-color: var(--tg-theme-header-bg-color);
+}

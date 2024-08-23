@@ -2,6 +2,7 @@ import {Loading} from "@/shared/Loading";
 import {useEffect, useState} from "react";
 import {createPaymentJob, getPaymentJob} from "@/app/balance/api";
 import {formatDate} from "@/app/orders/formatDate";
+import {ClickToCopy} from "@/shared/ClickToCopy";
 
 export const DepositBlik = ({walletAddress}) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -48,6 +49,9 @@ export const DepositBlik = ({walletAddress}) => {
   }
 
   return <div className="text-center">
+
+    {/*<div className="absolute top-0.5 right-0.5 rounded-xl border-1 transition-opacity opacity-100 opacity-0"></div>*/}
+
     <h3>Сумма Депозита (PLN):</h3>
     <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number"
            className="bg-transparent text-5xl text-center mb-2 w-40 outline-none" pattern="^\d*$"
@@ -60,11 +64,13 @@ export const DepositBlik = ({walletAddress}) => {
     {
       payment.amount && <div className="mt-5 text-center">
         <div className="mb-2">Отправьте сумму на этот адрес:</div>
-        <div className="text-2xl mb-5">{walletAddress}</div>
+        <ClickToCopy copyData={walletAddress} className="text-2xl mb-5 inline-block pr-5">{walletAddress}</ClickToCopy>
         <div>Обязательно укажите комментарий:</div>
-        <div className="border-2 border-dashed p-2 mt-5 mb-5 rounded">{payment.comment}</div>
-        <div className="mb-5 text-sm">until {formatDate(payment.expires)}</div>
-        <p className="mb-20 text-sm">средства зачисляются автоматически</p>
+          <ClickToCopy copyData={payment.comment} className="border-2 border-dashed p-2 mt-5 mb-5 rounded">
+              {payment.comment}
+          </ClickToCopy>
+          <div className="mb-5 text-sm">until {formatDate(payment.expires)}</div>
+          <p className="mb-20 text-sm">средства зачисляются автоматически</p>
       </div>
     }
 
