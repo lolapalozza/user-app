@@ -3,6 +3,7 @@ import {createPaymentJob, getPaymentJob} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 import {formatDate} from "@/app/orders/formatDate";
 import {Loading} from "@/shared/Loading";
+import {ClickToCopy} from "@/shared/ClickToCopy";
 
 export const DepositTRC20 = ({onSuccess, walletAddress}) => {
 
@@ -64,10 +65,10 @@ export const DepositTRC20 = ({onSuccess, walletAddress}) => {
     {
       payment.amount && <div className="mt-10 text-center">
           <div className="mb-2">Отправьте точную сумму:</div>
-          <div className="text-5xl">{payment.amount}</div>
+          <ClickToCopy copyData={payment.amount} className="text-5xl inline-block pr-5">{payment.amount}</ClickToCopy>
           <div className="mb-5 text-sm">until {formatDate(payment.expires)}</div>
           <div className="mb-2">на этот адрес:</div>
-          <div className="mb-2">{walletAddress}</div>
+          <ClickToCopy copyData={walletAddress} className="mb-2 inline-block pr-5">{walletAddress}</ClickToCopy>
           <QRCode className="inline-block mb-2" value={walletAddress}/>
           <p className="mb-20 text-sm">средства зачисляются автоматически</p>
         </div>
