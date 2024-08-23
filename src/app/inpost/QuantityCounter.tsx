@@ -21,12 +21,16 @@ export const QuantityCounter = ({quantity, setQuantity, product}) => {
   }
 
   const blurred = (e) => {
-    if(e.target.value === "" || e.target.value == 0){
+
+    const value = e.target.value
+
+    if(value === "" || value == 0){
       setQuantity(0)
     }
+
   }
 
-  if((quantity === null || quantity === undefined || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(1)}>Добавить</button>);
+  if((quantity === null || quantity === undefined || quantity === 0)) return (<button className="text-l border-2 border-white p-1 rounded" onClick={() => setQuantity(product.min_cart_step)}>Добавить</button>);
 
   return <div>
     <div className="flex justify-between">
