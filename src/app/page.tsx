@@ -8,10 +8,7 @@ import {Loading} from "@/shared/Loading";
 
 export default function Home() {
 
-  const [headerColor, setHeaderColor] = useState("#333")
-  const [backgroundColor, setBackgroundColor] = useState("#000")
-
-  const { user, userLoading }  = useContext(UserContext)
+  const { user, userLoading}  = useContext(UserContext)
 
   useEffect(() => {
     hideBackButton()
@@ -23,7 +20,7 @@ export default function Home() {
         {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
 
         {
-          userLoading ? <div className="mb-5"><Loading/></div> : <>
+          userLoading ? <div className="mb-5 text-center"><Loading/></div> : <>
             {user.full_name && <div className="w-full text-center">
               <div className="mb-10 text-3xl">Привет, {user.full_name}</div>
             </div>}
@@ -33,7 +30,7 @@ export default function Home() {
       </div>
 
       <div className="w-full flex justify-center items-center pt-10 pb-10 pl-1 pr-1">
-        <ul className="flex w-full gap-8">
+        <ul className="flex w-full gap-8 justify-center">
           <li className="flex flex-col items-center text-center">
             <Link href="/balance" className="flex flex-col items-center">
               <button>
