@@ -41,7 +41,7 @@ export default function Home() {
           <li className="flex flex-col items-center text-center">
             <Link href="/shop" className="flex flex-col items-center">
               <button>
-                <span>В Магазин</span>
+                <span>В Магазин </span>
               </button>
             </Link>
           </li>
