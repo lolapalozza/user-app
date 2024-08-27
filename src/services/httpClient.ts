@@ -3,7 +3,7 @@ class HttpClient {
   constructor(){
     this.headers = {
       "app": "user",
-      "telegram_id": '8'
+      "telegram_id": '2'
     }
   }
 

@@ -6,21 +6,27 @@ import {buyDrop} from "@/app/drops/api";
 import Image from "next/image";
 import {defaultSelection} from "@/app/drops/page";
 import {useRouter} from "next/navigation";
+import {Loading} from "@/shared/Loading";
 
 export const Payment = ({selection, setSelection}) => {
 
   const [balance, setBalance] = useState(0)
   const [orderSuccess, setOrderSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
 
   useEffect(() => {
+    setLoading(true)
     getBalance().then((_balance) => {
       setBalance(_balance.balance)
+      setLoading(false)
     })
   }, [])
 
   const order = async(e) => {
+
+    setLoading(true)
 
     e.preventDefault()
 
@@ -28,10 +34,13 @@ export const Payment = ({selection, setSelection}) => {
       cityId: selection.city.id,
       districtId: selection.drop.district.districtId,
       productId: selection.product.id,
-      packageId: 2 // @todo add real packageID
+      packageId: selection.drop.package_id
     }
 
     const result = await buyDrop(dropData)
+
+    setLoading(false)
+
     if(result.success){
       router.push(`orders/drops/${result.id}`)
       setSelection(defaultSelection())
@@ -66,7 +75,7 @@ export const Payment = ({selection, setSelection}) => {
     </div>
 
 
-    <div className="flex gap-2">
+    <div className="flex gap-2 mb-2">
       <button disabled={balance < selection.drop.price} onClick={order} className={placeOrderButtonClasses}>
         Купить
       </button>
@@ -74,6 +83,10 @@ export const Payment = ({selection, setSelection}) => {
       {/*  Get Lucky (Game)*/}
       {/*</button>*/}
     </div>
+
+    {
+      loading && <Loading />
+    }
 
     {
       orderSuccess && <div>
