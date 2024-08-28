@@ -28,14 +28,21 @@ export const SelectCity = ({selection, setSelection}) => {
     <h2>Выберите город:</h2>
 
     {
-      citiesLoading ? <div className="text-center"><Loading/></div> : <ul className="mt-10 justify-center flex gap-1 flex-wrap">
+      citiesLoading ? <div className="text-center"><Loading/></div> : <div>
         {
-          cities.map((city) => <li key={city.id}>
-            <button className="border-2 border-white p-3 rounded"
-                    onClick={() => onCitySelected(city)}>{city.name}</button>
-          </li>)
+          cities.length ? <ul className="mt-10 justify-center flex gap-1 flex-wrap">
+            {
+              cities.map((city) => <li key={city.id}>
+                <button className="border-2 border-white p-3 rounded"
+                        onClick={() => onCitySelected(city)}>{city.name}</button>
+              </li>)
+            }
+          </ul> : <div className="text-center mt-5">
+            В данный момент нет доступных позиций
+          </div>
         }
-      </ul>
+      </div>
+
     }
 
 
