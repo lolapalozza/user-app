@@ -15,6 +15,9 @@ export default function Home() {
   },[])
 
   const sss = () => {
+    alert('catch')
+    alert(window.Telegram)
+    alert(window.Telegram.WebApp.sendData)
     window.Telegram.WebApp.sendData("orderData");
   }
 
