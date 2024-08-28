@@ -14,13 +14,6 @@ export default function Home() {
     hideBackButton()
   },[])
 
-  const sss = () => {
-    alert('catch')
-    alert(window.Telegram)
-    alert(window.Telegram.WebApp.sendData)
-    window.Telegram.WebApp.sendData("orderData");
-  }
-
   return (
     <main className="flex min-h-screen flex-col items-center">
       <div className="main-page-header w-full flex flex-col justify-center pt-20 pb-20">
@@ -58,11 +51,6 @@ export default function Home() {
                 <span>Просмотр Покупок</span>
               </button>
             </Link>
-          </li>
-          <li>
-            <button onClick={sss}>
-              sendmsg
-            </button>
           </li>
         </ul>
       </div>
