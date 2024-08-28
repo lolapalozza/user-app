@@ -21,7 +21,7 @@ export const Pagination = ({children, pagination, onChange, limit, offset, setLi
                   className="border-2 p-1 border-white">{`<`} назад</button>
       }
 
-      {offset} - {Math.min(offset + limit, pagination?.total)}
+      {offset + 1} - {Math.min(offset + limit, pagination?.total)}
 
       {+limit + offset < pagination?.total &&
           <button onClick={() => setOffset(offset + +limit)}
