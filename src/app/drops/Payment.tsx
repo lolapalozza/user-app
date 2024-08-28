@@ -43,7 +43,7 @@ export const Payment = ({selection, setSelection}) => {
 
     if(result.success){
       router.push(`orders/drops/${result.id}`)
-      setSelection(defaultSelection())
+      // setSelection(defaultSelection())
     }
   }
 
