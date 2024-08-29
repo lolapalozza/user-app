@@ -1,13 +1,14 @@
 'use client'
 
-import {useContext, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
-import {getInpostOrders} from "@/app/orders/api";
+import {getBoughtDrops, getInpostOrders} from "@/app/orders/api";
 import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 import {formatDate} from "@/app/orders/formatDate";
 import {UserContext} from "@/app/Auth";
 import {BackButton} from "@/shared/BackButton";
 import {getInpostStatus} from "@/app/orders/inpost/getInpostStatus";
+import {Pagination} from "@/shared/Pagination";
 
 export default function OrdersInpost() {
   const [orders, setOrders] = useState([]);
@@ -22,14 +23,21 @@ export default function OrdersInpost() {
     getProducts().then(setProducts)
   }, [])
 
-  useEffect(() => {
-    if(user.user_id){
-      getInpostOrders({userId: user.user_id, limit, offset}).then(({orders, pagination}) => {
+  const updateInpostList = useCallback(({limit, offset}) => {
+    if(user?.user_id){
+      getInpostOrders({limit, offset, userId: user.user_id}).then(({orders, pagination}) => {
         setOrders(orders)
         setPagination(pagination)
       })
     }
-  }, [user, limit, offset])
+  }, [user])
+
+  useEffect(() => {
+    if (user) {
+      updateInpostList({ limit, offset });
+    }
+  }, [user, limit, offset, updateInpostList]);
+
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
@@ -37,14 +45,8 @@ export default function OrdersInpost() {
       <BackButton linkTo="/orders" />
 
       {
-        orders.length ? <>
-          <div className="text-right w-full">
-            <select className="text-black mb-2 mr-1" value={limit} onChange={(e) => setLimit(+e.target.value)}>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-            </select>
-          </div>
+        orders?.length ? <Pagination pagination={pagination} onChange={updateInpostList} limit={limit} offset={offset} setLimit={setLimit}
+                                     setOffset={setOffset}>
           <table className="w-full border-2 border-separate p-2 border-spacing-2">
             <thead>
             <tr>
@@ -80,24 +82,7 @@ export default function OrdersInpost() {
             })}
             </tbody>
           </table>
-          <div className="flex gap-5 mt-5">
-            {offset > 0 &&
-                <button onClick={() => setOffset(offset - +limit)}
-                        className="border-2 p-1 border-white">{`<`} Назад</button>
-            }
-
-            {offset} - {Math.min(offset + limit, pagination?.total)}
-
-            {+limit + offset < pagination?.total &&
-                <button onClick={() => setOffset(offset + +limit)}
-                        className="border-2 p-1 border-white">Вперед {`>`}</button>
-            }
-
-            <div>
-              Всего: {pagination?.total}
-            </div>
-          </div>
-        </> : <div className="mt-5">Заказов Inpost не найдено</div>
+        </Pagination> : <div className="mt-5">Заказов Inpost не найдено</div>
       }
 
 

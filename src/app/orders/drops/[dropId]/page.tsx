@@ -2,7 +2,7 @@
 
 import {BackButton} from "@/shared/BackButton";
 import {useEffect, useMemo, useState} from "react";
-import {getBoughtDrops, getDropById} from "@/app/orders/api";
+import {getDropById} from "@/app/orders/api";
 import {formatDate} from "@/app/orders/formatDate";
 
 export default function OrdersDrop({params}) {
@@ -19,6 +19,9 @@ export default function OrdersDrop({params}) {
   }, [])
 
   return (<>
+
+    <BackButton linkTo="/orders/drops" />
+
     <h1 className="mb-10 mt-5">
       Детали заказа:
     </h1>

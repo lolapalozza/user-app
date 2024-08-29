@@ -8,8 +8,8 @@ export const getInpostOrders = async({userId, limit=10, offset=0}) => {
   return orders
 }
 
-export const getBoughtDrops = async(userId) => {
-  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/drops`,{
+export const getBoughtDrops = async({userId, limit=10, offset=0}) => {
+  const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + `/user/${userId}/drops?limit=${limit}&offset=${offset}`,{
     method: "GET"
   })
   const drops = await response.json()
