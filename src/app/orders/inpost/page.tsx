@@ -26,7 +26,7 @@ export default function OrdersInpost() {
   const updateInpostList = useCallback(({limit, offset}) => {
     if(user?.user_id){
       getInpostOrders({limit, offset, userId: user.user_id}).then(({orders, pagination}) => {
-        setOrders(orders)
+        setOrders(orders);
         setPagination(pagination)
       })
     }
