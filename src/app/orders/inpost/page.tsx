@@ -2,7 +2,7 @@
 
 import {useCallback, useContext, useEffect, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
-import {getBoughtDrops, getInpostOrders} from "@/app/orders/api";
+import {getInpostOrders} from "@/app/orders/api";
 import {formatOrderString} from "@/app/inpost/utils/formatOrderString";
 import {formatDate} from "@/app/orders/formatDate";
 import {UserContext} from "@/app/Auth";

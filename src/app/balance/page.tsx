@@ -10,6 +10,7 @@ import {TonConnectUIProvider} from "@tonconnect/ui-react";
 import classNames from "classnames";
 import Link from "next/link";
 import {Loading} from "@/shared/Loading";
+import {useBalance} from "@/app/balance/useBalance";
 
 const DEPOSIT_TYPE = {
   "BLIK": "blik",
@@ -20,9 +21,9 @@ const DEPOSIT_TYPE = {
 export default function Balance() {
 
   const [depositType, setDepositType] = useState(null)
-  const [balance, setBalance] = useState(0)
-  const [balanceLoading, setBalanceLoading] = useState(false)
   const [paymentInfo, setPaymentInfo] = useState({})
+
+  const [balance, balanceLoading] = useBalance()
 
   const usdtButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
     "bg-red-400": depositType === DEPOSIT_TYPE["TRC-20"]
@@ -35,22 +36,6 @@ export default function Balance() {
   const tonButtonClasses = classNames("border-2", "border-white", "rounded", "p-2", {
     "bg-red-400": depositType === DEPOSIT_TYPE["TON"]
   })
-
-  const fetchBalance = () => {
-    setBalanceLoading(true)
-    getBalance().then((_balance) => {
-      setBalance(_balance.balance)
-      setBalanceLoading(false)
-    })
-  }
-
-  useEffect(() => {
-    fetchBalance();
-    const interval = setInterval(fetchBalance, 15000)
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
 
   useEffect(() => {
     getPaymentInfo().then((data) => {
