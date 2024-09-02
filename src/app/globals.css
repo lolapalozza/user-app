@@ -102,3 +102,7 @@ button{
   /*background-color: #282e33;*/
   background-color: var(--tg-theme-header-bg-color);
 }
+
+a{
+  color: #3DA9DF;
+}
