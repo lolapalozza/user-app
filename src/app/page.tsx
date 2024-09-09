@@ -70,7 +70,7 @@ export default function Home() {
               src="/icons/icon-cards.png"
               className="dark:invert inline-block mb-5"
               width={24}
-              height={24}
+              height={ 24 }
             /> Мои покупки
           </div>
           <div>
