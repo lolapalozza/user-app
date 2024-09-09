@@ -10,6 +10,9 @@ export const CategoriesSelector = ({selectedCategory, setSelectedCategory}) => {
   }, [])
 
   const categoryClicked = (id) => {
+    if(!id){
+      return setSelectedCategory(null)
+    }
     if(selectedCategory === id){
       setSelectedCategory(null)
     }else{
@@ -18,13 +21,20 @@ export const CategoriesSelector = ({selectedCategory, setSelectedCategory}) => {
   }
 
   const categoryButtonClass = (id) => {
-    return id === selectedCategory ? "border-2 p-2 bg-red-400 rounded" : "border-2 p-2 rounded"
+    const activeClasses = "p-2 pl-5 pr-5 bg-color-3 rounded-2xl"
+    const classes = "p-2 pl-5 pr-5 rounded-2xl"
+    return id === selectedCategory ? activeClasses : classes
   }
 
-  return <ul className="flex justify-center flex-wrap gap-2 mb-10 w-full">
+  return <ul className="flex overflow-auto gap-2 mb-10 w-full">
+    <li>
+      <button className={categoryButtonClass(null)}
+              onClick={() => categoryClicked()}>Все</button>
+    </li>
     {categories.map((category) => {
       return <li key={category.id}>
-        <button className={categoryButtonClass(category.id)} onClick={() => categoryClicked(category.id)}>{category.title}</button>
+        <button className={categoryButtonClass(category.id)}
+                onClick={() => categoryClicked(category.id)}>{category.title}</button>
       </li>
     })}
   </ul>

@@ -22,5 +22,5 @@ export const useBalance = () => {
     })
   }
 
-  return [balance, balanceLoading]
+  return [balance, balanceLoading, fetchBalance]
 }

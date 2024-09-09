@@ -3,18 +3,19 @@ import {useEffect} from "react";
 
 interface INavigationBackProps {
   linkTo?: string;
+  onClick: () => void;
 }
 
-export const BackButton = ({linkTo}: INavigationBackProps) => {
+export const BackButton = ({linkTo, onClick}: INavigationBackProps) => {
 
   const router = useRouter()
 
   useEffect(() => {
     showBackButton(() => {
-      router.push(linkTo || "/")
+      onClick ? onClick() : router.push(linkTo || "/")
     })
     return hideBackButton
-  }, [router, linkTo]);
+  }, [router, linkTo, onClick]);
 
   return <></>
 }

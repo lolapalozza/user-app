@@ -7,11 +7,14 @@ import {UserContext} from "@/app/Auth";
 import {Loading} from "@/shared/Loading";
 import Image from "next/image";
 import {useBalance} from "@/app/balance/useBalance";
+import {useLastOrders} from "@/app/orders/useLastOrders";
 
 export default function Home() {
 
   const { user, userLoading}  = useContext(UserContext)
   const [balance, balanceLoading] = useBalance()
+
+  const lastOrders = useLastOrders()
 
   useEffect(() => {
     hideBackButton()
@@ -30,9 +33,9 @@ export default function Home() {
         }
       </div>
 
-      <div className="rounded-2xl w-full p-3 mr-2" style={{backgroundColor: "#08132A"}}>
+      <div className="rounded-2xl w-full p-3 mr-2" style={{backgroundImage: "url(/images/balance-bg.webp)", backgroundSize: 'cover' }}>
         <div className="flex justify-between">
-          <div className="flex gap-1 items-start">
+          <div className="flex gap-2 items-start">
             <Image
               src="/icons/icon-coins.png"
               className="dark:invert inline-block mb-5"
@@ -41,7 +44,7 @@ export default function Home() {
             /> Мой Баланс
           </div>
           <div>
-            <Link href="/balance">Больше ></Link>
+            <Link href="/balance">Больше &nbsp;&nbsp; ></Link>
           </div>
         </div>
         <div className="mt-5 text-3xl">
@@ -50,41 +53,40 @@ export default function Home() {
       </div>
 
       <div className="w-full flex gap-1 mt-5 mr-2">
-        <div className="rounded-2xl w-6/12 p-3" style={{backgroundColor: "#171D29E5"}}>
+        <div className="rounded-2xl w-6/12 p-3 bg-color-2">
           Готовые клады
           <div className="text-right"><Link href="/drops"> > </Link></div>
         </div>
-        <div className="rounded-2xl w-6/12 p-3 bg-amber-700" style={{backgroundColor: "#171D29E5"}}>
+        <div className="rounded-2xl w-6/12 p-3 bg-color-2">
           Заказать Inpost
           <div className="text-right"><Link href="/inpost"> > </Link></div>
         </div>
       </div>
 
-      <div className="w-full bg-blue-500 flex-col rounded-2xl flex gap-1 mt-5 mr-2">
+      <div className="w-full flex-col rounded-2xl flex gap-1 mt-5 mr-2">
         <div className="flex w-full p-3 justify-between">
           <div className="flex gap-1 items-start">
             <Image
-              src="/icons/icon-orders.png"
+              src="/icons/icon-cards.png"
               className="dark:invert inline-block mb-5"
               width={24}
               height={24}
             /> Мои покупки
           </div>
           <div>
-            <Link href="/orders">Больше ></Link>
+            <Link href="/orders">Больше &nbsp;&nbsp; ></Link>
           </div>
         </div>
-        <div className="p-2 flex gap-1">
-          <div className="w-5/12 rounded-xl bg-green-900 p-2 text-center" style={{backgroundColor: "#161C26"}}>
-            <div>No man's sky</div>
-            <div>action game</div>
-            <div>$50</div>
-          </div>
-          <div className="w-5/12 rounded-xl bg-green-900 p-2 text-center" style={{backgroundColor: "#161C26"}}>
-            <div>No man's sky</div>
-            <div>action game</div>
-            <div>$50</div>
-          </div>
+        <div className="p-2 flex overflow-auto gap-1">
+          {lastOrders.length ? lastOrders?.map((order) =>
+            <div className="w-5/12 flex-none rounded-xl bg-green-900 p-2 text-center" style={{backgroundColor: "#161C26"}}>
+              <div>{order.productTitle ? order.productTitle : "Inpost Order"}</div>
+              {/*<div>action game</div>*/}
+              <div>{order.price ? order.price + " PLN" : "ЦЕНА"}</div>
+            </div>
+          ) : <div>
+            Здесь будут отображаться твои покупки. Перейди в магазин, чтобы совершить первую покупку.
+          </div>}
         </div>
       </div>
 

@@ -21,7 +21,7 @@ export const ClickToCopy = ({className, children, copyData}) => {
       <img onClick={copy} src="icons/icon-copy.png" width={16} height={16} className="cursor-pointer dark:invert mb-2"/>
     </div>
     <div className={tooltipClasses}>
-      copied
+      Скопировано!
     </div>
     <div className="cursor-pointer" onClick={copy}>
       {children}
