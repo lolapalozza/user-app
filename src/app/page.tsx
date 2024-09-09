@@ -79,7 +79,7 @@ export default function Home() {
         </div>
         <div className="p-2 flex overflow-auto gap-1">
           {lastOrders.length ? lastOrders?.map((order) =>
-            <div className="w-5/12 flex-none rounded-xl bg-green-900 p-2 text-center" style={{backgroundColor: "#161C26"}}>
+            <div key={order.id} className="w-5/12 flex-none rounded-xl bg-green-900 p-2 text-center" style={{backgroundColor: "#161C26"}}>
               <div>{order.productTitle ? order.productTitle : "Inpost Order"}</div>
               {/*<div>action game</div>*/}
               <div>{order.price ? order.price + " PLN" : "ЦЕНА"}</div>
