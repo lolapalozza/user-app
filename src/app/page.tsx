@@ -55,11 +55,11 @@ export default function Home() {
       <div className="w-full flex gap-1 mt-5 mr-2">
         <div className="rounded-2xl w-6/12 p-3 bg-color-2">
           Готовые клады
-          <div className="text-right"><Link href="/drops"> > </Link></div>
+          <div className="text-right"><Link href="/drops"> &gt; </Link></div>
         </div>
         <div className="rounded-2xl w-6/12 p-3 bg-color-2">
           Заказать Inpost
-          <div className="text-right"><Link href="/inpost"> > </Link></div>
+          <div className="text-right"><Link href="/inpost"> &gt; </Link></div>
         </div>
       </div>
 
