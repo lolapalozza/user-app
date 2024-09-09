@@ -44,7 +44,7 @@ export default function Home() {
             /> Мой Баланс
           </div>
           <div>
-            <Link href="/balance">Больше &nbsp;&nbsp; ></Link>
+            <Link href="/balance">Больше &nbsp;&nbsp; &gt;</Link>
           </div>
         </div>
         <div className="mt-5 text-3xl">

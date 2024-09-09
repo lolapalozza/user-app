@@ -95,7 +95,7 @@ export default function Balance() {
                   /> История Баланса
                 </div>
                 <div>
-                  <Link href="/balance/history">Все ></Link>
+                  <Link href="/balance/history">Все &gt;</Link>
                 </div>
               </div>
               <div>
