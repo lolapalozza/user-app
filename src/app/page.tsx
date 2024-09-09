@@ -74,7 +74,7 @@ export default function Home() {
             /> Мои покупки
           </div>
           <div>
-            <Link href="/orders">Больше &nbsp;&nbsp; ></Link>
+            <Link href="/orders">Больше &nbsp;&nbsp; &gt;</Link>
           </div>
         </div>
         <div className="p-2 flex overflow-auto gap-1">
