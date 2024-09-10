@@ -53,14 +53,18 @@ export default function Home() {
       </div>
 
       <div className="w-full flex gap-1 mt-5 mr-2">
-        <div className="rounded-2xl w-6/12 p-3 bg-color-2">
-          Готовые клады
-          <div className="text-right"><Link href="/drops"> &gt; </Link></div>
-        </div>
-        <div className="rounded-2xl w-6/12 p-3 bg-color-2">
-          Заказать Inpost
-          <div className="text-right"><Link href="/inpost"> &gt; </Link></div>
-        </div>
+        <Link className="w-6/12" href="/drops">
+          <div className="rounded-2xl p-3 bg-color-2">
+            <span className="text-white">Готовые клады</span>
+            <div className="text-right"> &gt; </div>
+          </div>
+        </Link>
+        <Link className="w-6/12" href="/inpost">
+          <div className="rounded-2xl p-3 bg-color-2">
+            <span className="text-white">Заказать Inpost</span>
+            <div className="text-right"> &gt; </div>
+          </div>
+        </Link>
       </div>
 
       <div className="w-full flex-col rounded-2xl flex gap-1 mt-5 mr-2">
@@ -94,31 +98,6 @@ export default function Home() {
         {/*<div className="ml-5 mt-5 self-start w-8 text-4xl max-w-30 text-black border-spacing-2"></div>*/}
       </div>
 
-      {/*<div className="w-full flex justify-center items-center pt-10 pb-10 pl-1 pr-1">*/}
-      {/*  <ul className="flex w-full gap-8 justify-center">*/}
-      {/*    <li className="flex flex-col items-center text-center">*/}
-      {/*      <Link href="/balance" className="flex flex-col items-center">*/}
-      {/*        <button>*/}
-      {/*          <span>Пополнить Баланс</span>*/}
-      {/*        </button>*/}
-      {/*      </Link>*/}
-      {/*    </li>*/}
-      {/*    <li className="flex flex-col items-center text-center">*/}
-      {/*      <Link href="/shop" className="flex flex-col items-center">*/}
-      {/*        <button>*/}
-      {/*          <span>В Магазин </span>*/}
-      {/*        </button>*/}
-      {/*      </Link>*/}
-      {/*    </li>*/}
-      {/*    <li className="flex flex-col items-center text-center">*/}
-      {/*      <Link href="/orders" className="flex flex-col items-center">*/}
-      {/*        <button>*/}
-      {/*          <span>Просмотр Покупок</span>*/}
-      {/*        </button>*/}
-      {/*      </Link>*/}
-      {/*    </li>*/}
-      {/*  </ul>*/}
-      {/*</div>*/}
     </main>
   );
 }
