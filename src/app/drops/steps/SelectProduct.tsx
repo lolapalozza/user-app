@@ -36,7 +36,7 @@ export const SelectProduct = ({selection, setSelection}) => {
         {
           products.map((product) => <li className="w-full cursor-pointer" key={product.id}>
             <div onClick={() => onProductSelected(product)} className="rounded-3xl w-full p-8 flex justify-between bg-color">
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-center gap-2">
                 <img className="mb-2 h-20"
                      src={`${process.env.NEXT_PUBLIC_API_URL}/products_photo/${product.photo}`}/>
                 <div className="text-xl">{product.product}</div>

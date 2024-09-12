@@ -109,14 +109,14 @@ export const DepositTRC20 = ({onSuccess, walletAddress, balance}) => {
 
           <div className="w-full flex justify-center">
             <button onClick={() => setIsEditing(true)}
-                    className="bg-color mt-2 text-color rounded-2xl p-2 pl-5 pr-5 flex gap-2 justify-center items-baseline">
+                    className="bg-color mt-2 text-color rounded-2xl p-2 pl-5 pr-5 flex gap-2 justify-center items-center">
               <Image
                 src="/icons/icon-pen.svg"
-                className="dark:invert inline-block"
+                className="inline-block"
                 width={16}
                 height={16}
               />
-              Изменить
+              <span>Изменить</span>
             </button>
           </div>
         </div>

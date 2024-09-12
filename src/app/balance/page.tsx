@@ -39,7 +39,7 @@ export default function Balance() {
     })
   }, [])
 
-  const balanceContainerClasses = classNames( "w-full", "flex", "flex-col",  "items-center")
+  const balanceContainerClasses = classNames( "w-full", "flex", "flex-col",  "items-center", "p-4")
 
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
@@ -49,12 +49,12 @@ export default function Balance() {
       <BackButton/>
 
       {
-        depositType === null && <div className={balanceContainerClasses}>
-          <div className="w-full text-center" style={{backgroundImage: "url(/images/balance-page-bg.webp)", backgroundSize: 'cover' }}>
-            <div className="flex gap-1 items-start justify-center">
+        depositType === null && <div className={balanceContainerClasses} style={{backgroundImage: "url(/images/balance-page-bg.webp)", backgroundSize: 'cover' }}>
+          <div className="w-full text-center">
+            <div className="flex gap-2 items-start justify-center">
               <Image
                   src="/icons/icon-coins.png"
-                  className="dark:invert inline-block mb-5"
+                  className="dark:invert inline-block mb-2"
                   width={24}
                   height={24}
               /> Мой Баланс
@@ -65,26 +65,26 @@ export default function Balance() {
                   <h2 className="mb-5"><span className="text-5xl">{balance.toFixed(2)}</span> PLN</h2>
               }
             </div>
-            <h3 className="mb-2 mt-7">Выбери, чтобы пополнить</h3>
+            <h3 className="mb-2 mt-10">Выбери, чтобы пополнить</h3>
             <ul className="flex gap-2 mb-10 p-1 w-full">
               <li className="w-4/12">
                 <button onClick={() => setDepositType(DEPOSIT_TYPE["TRC-20"])}
-                        className="w-full bg-color-3 text-black rounded-2xl p-2">USDT
+                        className="w-full bg-color-3 rounded-2xl p-2">USDT
                 </button>
               </li>
               <li className="w-4/12">
                 <button onClick={() => setDepositType(DEPOSIT_TYPE.BLIK)}
-                        className="w-full bg-color-3 text-black rounded-2xl p-2">BLIK
+                        className="w-full bg-color-3 rounded-2xl p-2">BLIK
                 </button>
               </li>
               <li className="w-4/12">
                 <button onClick={() => setDepositType(DEPOSIT_TYPE.TON)}
-                        className="w-full bg-color-3 text-black rounded-2xl p-2">TON
+                        className="w-full bg-color-3 rounded-2xl p-2">TON
                 </button>
               </li>
             </ul>
           </div>
-          <div className="border-2 border-white w-full rounded-2xl p-3">
+          <div className="w-full rounded-2xl p-5 bg-color-4">
               <div className="flex justify-between">
                 <div className="flex gap-2 items-start">
                   <Image
@@ -102,13 +102,13 @@ export default function Balance() {
                 {
                   transactions.map(transaction => <div key={transaction.created_at}
                                                        className="flex items-center justify-between gap-2 p-2">
-                    <div className="flex gap-2 align-center">
+                    <div className="flex gap-3 items-center">
                       <div>
                         <Image
                           src={`/icons/${transactionIcon[transaction.transaction_type]}.png`}
                           className="dark:invert"
-                          width={20}
-                          height={20}
+                          width={36}
+                          height={36}
                         />
                       </div>
 
@@ -130,7 +130,7 @@ export default function Balance() {
         {depositType === DEPOSIT_TYPE["TRC-20"] &&
             <DepositTRC20 balance={balance} walletAddress={paymentInfo?.usdtWallet} onSuccess={fetchBalance}/>}
 
-        {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik walletAddress={paymentInfo?.blikWallet}/>}
+        {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik balance={balance} onSuccess={fetchBalance} walletAddress={paymentInfo?.blikWallet}/>}
 
         {depositType === DEPOSIT_TYPE["TON"] && (
           <TonConnectUIProvider manifestUrl={`${window.location.hostname}/tonconnect-manifest.json`}>

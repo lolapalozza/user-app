@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {getDropsToBuy} from "@/app/drops/api";
 import {Loading} from "@/shared/Loading";
+import Image from "next/image";
 
 export const SelectDrop = ({selection, setSelection}) => {
   const [drops, setDrops] = useState([])
@@ -22,15 +23,19 @@ export const SelectDrop = ({selection, setSelection}) => {
     setSelection(_selection)
   }
   return <div>
-    <h2>Выберите Клад:</h2>
 
     {
-      dropsLoading ? <div className="text-center"><Loading/></div> : <ul className="mt-10 flex gap-1 flex-wrap">
+      dropsLoading ? <div className="text-center"><Loading/></div> : <ul className="justify-center flex gap-1 flex-wrap">
         {
-          drops.map((drop, index) => <li key={index}>
-            <button className="border-2 border-white p-3 rounded"
-                    onClick={() => onDropSelected(drop)}>{selection.product.product} {drop.amount}{drop.unit} - {drop.district.title} - {drop.price} PLN
-            </button>
+          drops.map((drop, index) => <li className="w-full cursor-pointer" key={index}>
+            <div onClick={() => onDropSelected(drop)} className="rounded-3xl w-full p-8 flex justify-between bg-color">
+              <div className="text-xl">{selection.product.product} {drop.amount}{drop.unit} - {drop.district.title} - {drop.price} PLN</div>
+              <Image
+                src="/icons/icon-arrow-right.svg"
+                width={28}
+                height={28}
+              />
+            </div>
           </li>)
         }
       </ul>

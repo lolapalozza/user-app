@@ -1,5 +1,6 @@
 import {useState} from "react";
 import classNames from "classnames";
+import Image from "next/image";
 
 export const ClickToCopy = ({className, children, copyData}) => {
 

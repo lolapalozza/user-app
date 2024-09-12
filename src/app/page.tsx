@@ -33,7 +33,7 @@ export default function Home() {
         }
       </div>
 
-      <div className="rounded-2xl w-full p-3 mr-2" style={{backgroundImage: "url(/images/balance-bg.webp)", backgroundSize: 'cover' }}>
+      <div className="rounded-2xl w-full p-5 mr-2" style={{backgroundImage: "url(/images/balance-bg.webp)", backgroundSize: 'cover' }}>
         <div className="flex justify-between">
           <div className="flex gap-2 items-start">
             <Image
@@ -54,15 +54,27 @@ export default function Home() {
 
       <div className="w-full flex gap-1 mt-5 mr-2">
         <Link className="w-6/12" href="/drops">
-          <div className="rounded-2xl p-3 bg-color-2">
+          <div className="relative rounded-2xl h-40 p-5 bg-color-2">
             <span className="text-white">Готовые клады</span>
-            <div className="text-right"> &gt; </div>
+            <div className="flex bottom-2.5 right-2.5 absolute">
+              <Image
+                src="/icons/icon-arrow-right.svg"
+                width={28}
+                height={28}
+              />
+            </div>
           </div>
         </Link>
         <Link className="w-6/12" href="/inpost">
-          <div className="rounded-2xl p-3 bg-color-2">
+          <div className="relative rounded-2xl h-40 p-5 bg-color-2">
             <span className="text-white">Заказать Inpost</span>
-            <div className="text-right"> &gt; </div>
+            <div className="flex bottom-2.5 right-2.5 absolute">
+              <Image
+                src="/icons/icon-arrow-right.svg"
+                width={28}
+                height={28}
+              />
+            </div>
           </div>
         </Link>
       </div>
