@@ -133,7 +133,7 @@ export default function Balance() {
         {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik walletAddress={paymentInfo?.blikWallet}/>}
 
         {depositType === DEPOSIT_TYPE["TON"] && (
-          <TonConnectUIProvider manifestUrl="tonconnect-manifest.json">
+          <TonConnectUIProvider manifestUrl={`${window.location.hostname}/tonconnect-manifest.json`}>
             <DepositTon onSuccess={fetchBalance} walletAddress={paymentInfo?.tonWallet}/>
           </TonConnectUIProvider>
         )}
