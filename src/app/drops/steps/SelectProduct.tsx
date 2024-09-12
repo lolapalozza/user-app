@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {getProductsByCity} from "@/app/drops/api";
 import {STEP} from "@/app/drops/DropSelector";
 import {Loading} from "@/shared/Loading";
+import Image from "next/image";
 
 export const SelectProduct = ({selection, setSelection}) => {
 
@@ -26,15 +27,26 @@ export const SelectProduct = ({selection, setSelection}) => {
     setSelection(_selection)
   }
 
+  console.log(products)
+
   return <div>
-    <h2>Выберите Продукт:</h2>
 
     {
-      productsLoading ? <div className="text-center"><Loading/></div> : <ul className="mt-10 justify-center flex gap-1 flex-wrap">
+      productsLoading ? <div className="text-center"><Loading/></div> : <ul className="justify-center flex gap-1 flex-wrap">
         {
-          products.map((product) => <li key={product.id}>
-            <button className="border-2 border-white p-3 rounded"
-                    onClick={() => onProductSelected(product)}>{product.product}</button>
+          products.map((product) => <li className="w-full cursor-pointer" key={product.id}>
+            <div onClick={() => onProductSelected(product)} className="rounded-3xl w-full p-8 flex justify-between bg-color">
+              <div className="flex items-baseline gap-2">
+                <img className="mb-2"
+                     src={`${process.env.NEXT_PUBLIC_API_URL}/products_photo/${product.photo}`}/>
+                <div className="text-xl">{product.product}</div>
+              </div>
+              <Image
+                src="/icons/icon-arrow-right.svg"
+                width={28}
+                height={28}
+              />
+            </div>
           </li>)
         }
       </ul>

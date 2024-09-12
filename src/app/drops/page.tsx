@@ -28,12 +28,12 @@ export default function Drops() {
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
 
       <h1 className="mb-5">
-        Клады
+        Готовые Клады
       </h1>
 
       <BackButton />
 
-      <BreadCrumbs selection={selection} setSelection={setSelection} />
+      {/*<BreadCrumbs selection={selection} setSelection={setSelection} />*/}
 
       <div className="p-5 w-full">
         {selection.drop ? <Payment selection={selection} setSelection={setSelection} /> : <DropSelector selection={selection} setSelection={setSelection} />}
