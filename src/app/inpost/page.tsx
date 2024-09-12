@@ -29,7 +29,7 @@ export default function Products() {
   }, [cart.cartItems])
 
   return (
-    <main className="flex min-h-screen mt-10 flex-col items-center relative">
+    <main className="flex min-h-screen mt-10 flex-col items-center relative p-3">
 
       <BackButton />
 
@@ -38,7 +38,7 @@ export default function Products() {
       <CategoriesSelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
       {
-        productsLoading ? <Loading/> : <ul className="flex flex-wrap w-full">
+        productsLoading ? <Loading/> : <ul className="flex gap-2 flex-wrap w-full">
           {products.filter(product => selectedCategory ? product.category_id === selectedCategory : true).map((product) =>
             <ProductView
               key={product.id}
