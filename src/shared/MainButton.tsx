@@ -21,7 +21,7 @@ export const MainButton = ({children, className, onClick}) => {
         window.Telegram.WebApp.MainButton.setParams({is_visible: false})
       }
     }
-  }, [isTGenv])
+  }, [isTGenv, onClick])
 
   return <div className="w-full p-1">
     {isTGenv ? null : <button onClick={onClick} className={buttonClasses}>
