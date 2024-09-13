@@ -11,7 +11,7 @@ export const MainButton = ({children, className, onClick}) => {
 
   useEffect(() => {
     if(isTGenv){
-      window.Telegram.WebApp.MainButton.onClick(() => onClick())
+      window.Telegram.WebApp.MainButton.onClick(onClick)
       window.Telegram.WebApp.MainButton.setText(children)
       window.Telegram.WebApp.MainButton.setParams({is_visible: true})
     }
