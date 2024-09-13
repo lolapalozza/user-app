@@ -89,41 +89,50 @@ export default function Cart() {
 
       {
         cartLoading ? <Loading/> : <div className="p-4 w-full">
-          {productsPrice > 0 ? <ul>
-            {Object.entries(cart.cartItems).map(([_id, quantity]) => {
-                const product = products.find(({id}) => id === _id)
-                return <li key={_id} className="flex items-center mb-2">
-                  <div className="min-w-24 w-1/3">{product?.short_description}</div>
-                  <QuantityCounter
-                    className="w-1/3"
-                    quantity={quantity}
-                    setQuantity={(value) => {
-                      let _cartItems;
+          {productsPrice > 0 ? <div className="rounded-3xl bg-color p-5">
+            <ul className="flex gap-5 flex-col">
+              {Object.entries(cart.cartItems).map(([_id, quantity]) => {
+                  const product = products.find(({id}) => id === _id)
+                  return <li key={_id} className="flex gap-6 items-start mb-2">
+                    <div className="min-w-24">
+                      <img className="mb-2 max-w-24"
+                           src={`${process.env.NEXT_PUBLIC_API_URL}/products_photo/${product.photo_urls}`}/>
+                    </div>
+                    <div className="flex-1">
+                      <div className="min-w-24 w-1/3">{product?.short_description}</div>
+                      <div className="w-1/3">{product?.price * quantity} PLN</div>
+                      <QuantityCounter
+                        className="w-36"
+                        quantity={quantity}
+                        setQuantity={(value) => {
+                          let _cartItems;
 
-                      if (value === 0) {
-                        // Remove the property if the value is 0
-                        const {[_id]: _, ...rest} = cart.cartItems;
-                        _cartItems = rest;
-                      } else {
-                        // Set the new value otherwise
-                        _cartItems = {
-                          ...cart.cartItems,
-                          [_id]: value,
-                        };
-                      }
+                          if (value === 0) {
+                            // Remove the property if the value is 0
+                            const {[_id]: _, ...rest} = cart.cartItems;
+                            _cartItems = rest;
+                          } else {
+                            // Set the new value otherwise
+                            _cartItems = {
+                              ...cart.cartItems,
+                              [_id]: value,
+                            };
+                          }
 
-                      cart.setCartItems(_cartItems);
-                    }}
-                    product={product}
-                  />
-                  <div className="w-1/3 text-right">{product?.price * quantity} PLN</div>
-                </li>
-              }
-            )}
-
+                          cart.setCartItems(_cartItems);
+                        }}
+                        product={product}
+                      />
+                    </div>
+                    {/*<div>*/}
+                    {/*  Delete*/}
+                    {/*</div>*/}
+                  </li>
+                }
+              )}
+            </ul>
             <div className="text-right mt-5">Сумма заказа: {productsPrice} PLN</div>
-
-          </ul> : <div className="text-center">
+          </div> : <div className="text-center">
             <Image
               src="/icons/icon-empty.png"
               className="dark:invert inline-block mb-5"

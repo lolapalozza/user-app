@@ -2,8 +2,7 @@
 
 import {useContext, useEffect, useMemo, useState} from "react";
 import {getProducts} from "@/app/inpost/api";
-import {useRouter} from "next/navigation";
-import {BackButton, showBackButton} from "@/shared/BackButton";
+import {BackButton} from "@/shared/BackButton";
 import {QuantityCounter} from "@/app/inpost/QuantityCounter";
 import {CartContext} from "@/app/inpost/cartContext";
 
