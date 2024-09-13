@@ -22,7 +22,7 @@ export const CategoriesSelector = ({selectedCategory, setSelectedCategory}) => {
 
   const categoryButtonClass = (id) => {
     const activeClasses = "p-2 pl-5 pr-5 bg-color-3 rounded-2xl"
-    const classes = "p-2 pl-5 pr-5 rounded-2xl"
+    const classes = "p-2 pl-5 pr-5 rounded-2xl bg-color"
     return id === selectedCategory ? activeClasses : classes
   }
 

@@ -11,7 +11,7 @@ export const ProductView = ({product, quantity, setQuantity}) => {
   }
 
   const productItemsClasses = classNames(
-    "pt-4", "pb-4", "text-center", "rounded-2xl", "bg-color", "w-48percent"
+    "p-4", "text-center", "rounded-3xl", "bg-color", "product-item"
   );
 
   return <li className={productItemsClasses}>

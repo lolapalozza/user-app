@@ -122,6 +122,10 @@ a{
   background-color: #0E0E10;
 }
 
+.bg-color-5{
+  background-color: #1e232e;
+}
+
 .border-color{
   border-color: #496B7C;
 }
@@ -130,6 +134,7 @@ a{
   color: #2A71FC;
 }
 
-.w-48percent{
+.product-item{
   width: 48%;
+  background: linear-gradient(0deg, rgba(23, 29, 41, 0) 0%, #0D1118 50.4%);
 }
