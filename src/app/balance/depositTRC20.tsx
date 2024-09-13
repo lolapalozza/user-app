@@ -46,8 +46,6 @@ export const DepositTRC20 = ({onSuccess, walletAddress, balance}) => {
 
   const createPayment = () => {
 
-    alert(amount)
-
     if(amount < 5){
       setMessage("Amount should be more than 5 PLN")
       return setTimeout(() => {
