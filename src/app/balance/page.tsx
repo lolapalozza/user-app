@@ -128,7 +128,7 @@ export default function Balance() {
 
       <div className="w-full">
         {depositType === DEPOSIT_TYPE["TRC-20"] &&
-            <DepositTRC20 balance={balance} walletAddress={paymentInfo?.usdtWallet} onSuccess={fetchBalance}/>}
+            <DepositTRC20 balance={balance} walletAddress={paymentInfo?.usdtWallet} onSuccess={fetchBalance} goBack={() => setDepositType(null)} />}
 
         {depositType === DEPOSIT_TYPE["BLIK"] && <DepositBlik balance={balance} onSuccess={fetchBalance} walletAddress={paymentInfo?.blikWallet}/>}
 

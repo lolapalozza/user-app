@@ -8,7 +8,7 @@ import {MainButton} from "@/shared/MainButton";
 import Image from "next/image";
 import {BackButton} from "@/shared/BackButton";
 
-export const DepositTRC20 = ({onSuccess, walletAddress, balance}) => {
+export const DepositTRC20 = ({onSuccess, walletAddress, balance, goBack}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
@@ -53,11 +53,6 @@ export const DepositTRC20 = ({onSuccess, walletAddress, balance}) => {
       }, 4000)
     }
 
-    //if USDT job exists
-    // if(job.jobId){
-    //   window.Telegram.WebApp.showAlert('You\'re gonna create a new payment');
-    // }
-
     setIsLoading(true)
     createPaymentJob({amountPLN: amount, currency: "usdt"}).then((data) => {
       setPayment({
@@ -74,7 +69,7 @@ export const DepositTRC20 = ({onSuccess, walletAddress, balance}) => {
   return <div className="text-center w-full">
 
     {
-      isEditing && <BackButton onClick={() => setIsEditing(false)} />
+      isEditing ? <BackButton onClick={() => setIsEditing(false)} /> : <BackButton onClick={goBack} />
     }
 
     {
