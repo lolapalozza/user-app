@@ -1,7 +1,7 @@
 import {getBalance} from "@/app/balance/api";
 import {useEffect, useState} from "react";
 
-export const useBalance = () => {
+export const useBalance = (deps = []) => {
 
   const [balance, setBalance] = useState(0)
   const [balanceLoading, setBalanceLoading] = useState(false)
@@ -12,7 +12,7 @@ export const useBalance = () => {
     return () => {
       clearInterval(interval)
     }
-  }, [])
+  }, deps)
 
   const fetchBalance = () => {
     setBalanceLoading(true)

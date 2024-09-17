@@ -12,7 +12,7 @@ import {useLastOrders} from "@/app/orders/useLastOrders";
 export default function Home() {
 
   const { user, userLoading}  = useContext(UserContext)
-  const [balance, balanceLoading] = useBalance()
+  const [balance, balanceLoading] = useBalance([user]) // Передаем user как зависимость
 
   const lastOrders = useLastOrders()
 
