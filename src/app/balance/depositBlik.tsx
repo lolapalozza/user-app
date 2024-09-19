@@ -6,7 +6,6 @@ import {ClickToCopy} from "@/shared/ClickToCopy";
 import {BackButton} from "@/shared/BackButton";
 import {MainButton} from "@/shared/MainButton";
 import Image from "next/image";
-import QRCode from "react-qr-code";
 
 export const DepositBlik = ({walletAddress, onSuccess, balance}) => {
 
@@ -75,7 +74,6 @@ export const DepositBlik = ({walletAddress, onSuccess, balance}) => {
     {
       isEditing && <BackButton onClick={() => setIsEditing(false)} />
     }
-
 
     {
       !payment.amount || isEditing ? <>

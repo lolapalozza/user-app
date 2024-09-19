@@ -11,8 +11,8 @@ export const BackButton = ({linkTo, onClick}: INavigationBackProps) => {
   const router = useRouter()
 
   useEffect(() => {
-    showBackButton(() => {
-      onClick ? onClick() : router.push(linkTo || "/")
+    onClick ? showBackButton(onClick) : showBackButton(() => {
+      router.push(linkTo || "/")
     })
     return hideBackButton
   }, [router, linkTo, onClick]);
