@@ -7,7 +7,7 @@ import {BackButton} from "@/shared/BackButton";
 import {MainButton} from "@/shared/MainButton";
 import Image from "next/image";
 
-export const DepositBlik = ({walletAddress, onSuccess, balance}) => {
+export const DepositBlik = ({walletAddress, onSuccess, balance, goBack}) => {
 
   const [amount, setAmount] = useState(0)
   const [payment, setPayment] = useState({})
@@ -72,7 +72,7 @@ export const DepositBlik = ({walletAddress, onSuccess, balance}) => {
     {/*<div className="absolute top-0.5 right-0.5 rounded-xl border-1 transition-opacity opacity-100 opacity-0"></div>*/}
 
     {
-      isEditing && <BackButton onClick={() => setIsEditing(false)} />
+      isEditing ? <BackButton onClick={() => setIsEditing(false)} /> : <BackButton onClick={goBack} />
     }
 
     {
