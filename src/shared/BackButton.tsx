@@ -3,19 +3,23 @@ import {useEffect} from "react";
 
 interface INavigationBackProps {
   linkTo?: string;
-  onClick: () => void;
+  onClick: () => void | null;
 }
 
-export const BackButton = ({linkTo, onClick}: INavigationBackProps) => {
+export const BackButton = ({linkTo, onClick = null}: INavigationBackProps) => {
 
   const router = useRouter()
 
+  const callback = () => {
+    return onClick ? onClick : () => {
+      router.push(linkTo || "/")
+    }
+  }
+
   useEffect(() => {
-    onClick ? showBackButton(onClick) : showBackButton(() => {
-      // router.push(linkTo || "/")
-    })
-    return hideBackButton
-  }, [router, linkTo, onClick]);
+    showBackButton(callback)
+    return () => hideBackButton(callback)
+  }, [callback]);
 
   return <></>
 }
@@ -25,6 +29,8 @@ export const showBackButton = (callback) => {
   window.Telegram?.WebApp?.BackButton?.show()
 }
 
-export const hideBackButton = () => {
+export const hideBackButton = (callback) => {
   window.Telegram?.WebApp?.BackButton?.hide()
+  window.Telegram?.WebApp?.BackButton?.offClick(callback);
+
 }
