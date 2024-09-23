@@ -12,11 +12,11 @@ export const getProducts = async() => {
   }));
 }
 
-export const createInpostOrder = async({userId, price, phone, email, pachkomat, order}) => {
+export const createInpostOrder = async({userId, price, phone, email, pachkomat, order, createdBy, shopId}) => {
   const response = await http.fetch(process.env.NEXT_PUBLIC_API_URL + "/inpost", {
     method: "POST",
     body: JSON.stringify({
-      userId, price, phone, email, pachkomat, order
+      userId, price, phone, email, pachkomat, order, createdBy, shopId
     }),
     headers: {
       'Content-Type': 'application/json',

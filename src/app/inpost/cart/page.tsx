@@ -13,6 +13,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
 import {Loading} from "@/shared/Loading";
+import {UserContext} from "@/app/Auth";
 
 const DELIVERY_PRICE = 40
 const FREE_DELIVERY_TRESHOLD = 700
@@ -24,8 +25,9 @@ export default function Cart() {
   const [balance, setBalance] = useState(0)
   const [cartLoading, setCartLoading] = useState(false)
 
-
   const { cart } = useContext(CartContext);
+  const { user }  = useContext(UserContext)
+
   const router = useRouter()
 
   useEffect(() => {
@@ -64,7 +66,7 @@ export default function Cart() {
     const order = formatToOrderDTO(cart.cartItems)
 
     const result = await createInpostOrder({
-      userId: 1, price: totalPrice, email, phone, pachkomat, order
+      userId: user.user_id, price: totalPrice, email, phone, pachkomat, order, createdBy: user.user_id, shopId: null
     })
 
     if(result.success){
