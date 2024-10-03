@@ -5,7 +5,7 @@ export const getCitiesWithProducts = async() => {
     method: 'GET'
   })
   const cities = await response.json()
-  return cities;
+  return cities
 }
 
 export const getProductsByCity = async(cityId) => {
