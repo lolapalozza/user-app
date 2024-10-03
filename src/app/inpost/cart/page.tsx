@@ -66,7 +66,7 @@ export default function Cart() {
     const order = formatToOrderDTO(cart.cartItems)
 
     const result = await createInpostOrder({
-      userId: user.user_id, price: totalPrice, email, phone, pachkomat, order, createdBy: user.user_id, shopId: null
+      userId: user.user_id, price: totalPrice, email, phone, pachkomat, order, createdBy: user.user_id, shopId: 4 // Гашишка
     })
 
     if(result.success){
