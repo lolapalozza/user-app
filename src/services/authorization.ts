@@ -26,7 +26,7 @@ export const authorization = {
 
   isValidHash: (initData) => {
     const parsedData = window.Telegram.Utils.urlParseQueryString(initData)
-    const hash = parsedData.hash
+    const hash = parsedData.hash;
     const data_keys = Object.keys(parsedData).filter(v => v !== 'hash').sort()
     const items = data_keys.map(key => key + '=' + parsedData[key])
     const data_check_string = items.join('\n')
