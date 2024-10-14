@@ -61,10 +61,33 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full flex gap-1 mt-5 mr-2">
+      <div className="w-full flex gap-2 mt-5 mr-2">
         <Link className="w-6/12" href="/drops">
-          <div className="relative rounded-2xl h-40 p-5 bg-color-2">
+          <div className="relative rounded-2xl h-44 p-5 bg-color-2">
             <span className="text-white">Готовые клады</span>
+            <div className="h-full relative flex mt-5">
+              <div className="border-2 rounded-xl relative z-10 bg-white flex justify-center items-center" style={{width: "55px", opacity: "30%", height: "55px", transform: 'translate(30%, 25%) rotate(-15deg)'}}>
+                <Image
+                  src="/icons/icon-brand.png"
+                  width={42}
+                  height={42}
+                />
+              </div>
+              <div className="border-2 rounded-xl relative z-20 bg-white flex justify-center items-center" style={{width: "55px", height: "55px"}}>
+                <Image
+                  src="/icons/icon-pill.png"
+                  width={42}
+                  height={42}
+                />
+              </div>
+              <div className="border-2 rounded-xl relative z-10 bg-white" style={{width: "55px", opacity: "30%", height: "55px", transform: 'translate(-30%, 25%) rotate(15deg)'}}>
+                <Image
+                  src="/icons/plant.png"
+                  width={50}
+                  height={50}
+                />
+              </div>
+            </div>
             <div className="flex bottom-2.5 right-2.5 absolute">
               <Image
                 src="/icons/icon-arrow-right.svg"
@@ -75,8 +98,41 @@ export default function Home() {
           </div>
         </Link>
         <Link className="w-6/12" href="/inpost">
-          <div className="relative rounded-2xl h-40 p-5 bg-color-2">
+          <div className="relative rounded-2xl h-44 p-5 bg-color-2">
             <span className="text-white">Заказать Inpost</span>
+            <div className="h-full relative flex mt-5">
+              <div className="border-2 rounded-xl relative z-10 bg-white flex justify-center items-center" style={{
+                width: "55px",
+                opacity: "30%",
+                height: "55px",
+                transform: 'translate(30%, 25%) rotate(-15deg)'
+              }}>
+                <Image
+                  src="/icons/icon-brand.png"
+                  width={42}
+                  height={42}
+                />
+              </div>
+              <div className="border-2 rounded-xl relative z-20 bg-white" style={{width: "55px", height: "55px"}}>
+                <Image
+                  src="/icons/plant.png"
+                  width={50}
+                  height={50}
+                />
+              </div>
+              <div className="border-2 rounded-xl relative z-10 bg-white flex items-center justify-center" style={{
+                width: "55px",
+                opacity: "30%",
+                height: "55px",
+                transform: 'translate(-30%, 25%) rotate(15deg)'
+              }}>
+                <Image
+                  src="/icons/icon-pill.png"
+                  width={42}
+                  height={42}
+                />
+              </div>
+            </div>
             <div className="flex bottom-2.5 right-2.5 absolute">
               <Image
                 src="/icons/icon-arrow-right.svg"
@@ -95,7 +151,7 @@ export default function Home() {
               src="/icons/icon-cards.png"
               className="dark:invert inline-block mb-5"
               width={24}
-              height={ 24 }
+              height={24}
             /> Мои покупки
           </div>
           <div>

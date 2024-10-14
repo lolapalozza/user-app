@@ -44,7 +44,7 @@ export default function Balance() {
   return (
     <main className="flex min-h-screen mt-10 flex-col items-center relative">
 
-      {/*<div className="bg-sky-500"></div>*/}
+      {/*<div className="bg-sky-500 h-50"></div>*/}
 
       <BackButton/>
 
