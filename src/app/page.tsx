@@ -24,7 +24,9 @@ export default function Home() {
   },[])
 
   const navigateOrder = (order) => {
-    router.push(`/orders/drops/${order.id}`)
+    if(order.comment) { // if drop
+      router.push(`/orders/drops/${order.id}`)
+    }
   }
 
   return (
