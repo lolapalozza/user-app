@@ -24,7 +24,7 @@ export default function Home() {
   },[])
 
   const navigateOrder = (order) => {
-    if(order.comment) { // if drop
+    if(order.type === "drop") { // if drop
       router.push(`/orders/drops/${order.id}`)
     }
   }
@@ -162,6 +162,12 @@ export default function Home() {
           {lastOrders.length ? lastOrders?.map((order) =>
             <div onClick={() => navigateOrder(order)} key={order.id} className="w-5/12 flex-none rounded-xl bg-green-900 p-2 text-center"
                  style={{backgroundColor: "#161C26"}}>
+              <div className="flex w-full justify-center mb-4 mt-2">
+                <img className="w-24 rounded-xl"
+                     src={`${process.env.NEXT_PUBLIC_API_URL}/products_photo/${order.thumbs[0]}`}/>
+                {order.contents}
+              </div>
+
               <div>{order.productTitle ? order.productTitle : "Inpost Order"}</div>
               {/*<div>action game</div>*/}
               <div>{order.price ? order.price + " PLN" : "ЦЕНА"}</div>
