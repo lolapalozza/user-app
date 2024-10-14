@@ -8,6 +8,7 @@ import {Loading} from "@/shared/Loading";
 import Image from "next/image";
 import {useBalance} from "@/app/balance/useBalance";
 import {useLastOrders} from "@/app/orders/useLastOrders";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
 
@@ -16,9 +17,15 @@ export default function Home() {
 
   const lastOrders = useLastOrders()
 
+  const router = useRouter()
+
   useEffect(() => {
     hideBackButton()
   },[])
+
+  const navigateOrder = (order) => {
+    router.push(`/orders/drops/${order.id}`)
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center pl-3 pt-2">
@@ -95,7 +102,8 @@ export default function Home() {
         </div>
         <div className="p-2 flex overflow-auto gap-1">
           {lastOrders.length ? lastOrders?.map((order) =>
-            <div key={order.id} className="w-5/12 flex-none rounded-xl bg-green-900 p-2 text-center" style={{backgroundColor: "#161C26"}}>
+            <div onClick={() => navigateOrder(order)} key={order.id} className="w-5/12 flex-none rounded-xl bg-green-900 p-2 text-center"
+                 style={{backgroundColor: "#161C26"}}>
               <div>{order.productTitle ? order.productTitle : "Inpost Order"}</div>
               {/*<div>action game</div>*/}
               <div>{order.price ? order.price + " PLN" : "ЦЕНА"}</div>
