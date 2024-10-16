@@ -34,7 +34,7 @@ export const SelectCity = ({selection, setSelection}) => {
           cities.length ? <ul className="justify-center flex gap-2 flex-wrap">
             {
               cities.map((city) => <li className="w-full cursor-pointer" key={city.id}>
-                <div onClick={() => onCitySelected(city)} className="rounded-3xl w-full p-8 flex justify-between bg-color">
+                <div onClick={() => onCitySelected(city)} className="rounded-3xl w-full p-6 flex justify-between bg-color">
                   <div className="text-xl">{city.name}</div>
                   <Image
                     src="/icons/icon-arrow-right.svg"

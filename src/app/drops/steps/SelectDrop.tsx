@@ -28,7 +28,7 @@ export const SelectDrop = ({selection, setSelection}) => {
       dropsLoading ? <div className="text-center"><Loading/></div> : <ul className="justify-center flex gap-1 flex-wrap">
         {
           drops.map((drop, index) => <li className="w-full cursor-pointer" key={index}>
-            <div onClick={() => onDropSelected(drop)} className="rounded-3xl w-full p-8 flex justify-between bg-color">
+            <div onClick={() => onDropSelected(drop)} className="rounded-3xl w-full p-6 flex justify-between bg-color">
               <div className="text-xl">{selection.product.product} {drop.amount}{drop.unit} - {drop.district.title} - {drop.price} PLN</div>
               <Image
                 src="/icons/icon-arrow-right.svg"
