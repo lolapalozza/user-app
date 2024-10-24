@@ -40,4 +40,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .env.local:
 
 NEXT_PUBLIC_API_URL=http://localhost:8080
+
 NEXT_PUBLIC_ENV=local
